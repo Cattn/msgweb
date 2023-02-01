@@ -1,4 +1,42 @@
-html, body {
-  height: 100%;
-  width: 100%;
+ /* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+
+body {
+  font-family: "DM Sans";
 }
+
+button {
+  padding: 15px;
+  background-color: #E1E1E1;
+  border: none;
+  border-radius: 5px;
+}
+
+.link {
+  text-decoration: none;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  color: inherit;
+  font-size: 2vw;
+  float: right;
+  color: white;
+}
+
+#nav {
+  display: flex;
+  align-items: center;
+  float: right;
+  text-align: right;
+  
+  top: 0;
+  left: 0;
+  height: 50px;
+  background-color: #7a7a7a;
+  color: white;
+  width: 100%;
+  padding: 10vw 1vw; 
+  transition: 0.4s; 
+  position: fixed; 
+}
+
+.navlink { margin: 0 5px; }
