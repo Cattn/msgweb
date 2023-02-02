@@ -1,6 +1,11 @@
  /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@700&display=swap');
 
+
+html {
+  background-color: #0f0f0f;
+}
 body {
   font-family: "DM Sans";
 }
@@ -14,12 +19,12 @@ button {
 
 .link {
   text-decoration: none;
-  padding-left: 1vw;
-  padding-right: 1vw;
   color: inherit;
   font-size: 2vw;
   float: right;
-  color: white;
+  color: black;
+  transition: 0.4s;
+  font-weight: bold;
 }
 
 #nav {
@@ -30,13 +35,45 @@ button {
   
   top: 0;
   left: 0;
-  height: 50px;
+  height: 3vh;
   background-color: #7a7a7a;
   color: white;
   width: 100%;
-  padding: 10vw 1vw; 
+  padding: 10vw 2vw; 
   transition: 0.4s; 
   position: fixed; 
 }
 
-.navlink { margin: 0 5px; }
+.navMain::before {
+   content: "";
+   position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+     background-image: url("assets/msg-banner.png");
+    background-repeat:no-repeat;
+    background-position: center center;
+   background-size: cover;
+      opacity: 0.75;
+}
+
+.mainLogo {
+   transition: 0.4s;
+  height: 15vw;
+  float: right;
+  padding-left: 1.5vw;
+  z-index: 10;
+}
+.navlink { margin: 0 1vw; }
+
+.first-content {
+  text-align: center;
+  margin-top: 45vh;
+}
+
+.title-text {
+  color: white;
+  font-size: 6vw;
+  font-family: 'Blinker', sans-serif;
+}
