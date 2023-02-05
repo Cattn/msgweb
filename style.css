@@ -1,13 +1,13 @@
  /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Blinker:wght@700&display=swap');
-
+@import url('https://fonts.cdnfonts.com/css/baloo-da');
 
 html {
-  background-color: #0f0f0f;
+  background-color: var(--bg-color);
 }
 body {
-  font-family: "DM Sans";
+  font-family: var(--body-family);
 }
 
 button {
@@ -41,7 +41,8 @@ button {
   width: 100%;
   padding: 10vw 2vw; 
   transition: 0.4s; 
-  position: fixed; 
+  position: fixed;
+  z-index: 100;
 }
 
 .navMain::before {
@@ -73,7 +74,7 @@ button {
 }
 
 .title-text {
-  color: white;
+  color: var(--title-color);
   font-size: 6vw;
-  font-family: 'Blinker', sans-serif;
+  font-family: var(--title-family);
 }

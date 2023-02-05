@@ -1,0 +1,20 @@
+:root {
+    --title-color: #962c2c;
+    --bg-color: #c2c2c2;
+    --title-family: 'Blinker', sans-serif;
+    --body-family: 'DM Sans';
+    --card-color: #616161;
+    --card-title-font: 'Blinker', sans-serif;
+    --card-title-color: black;
+  /* Unfinished!! */
+}
+
+/* Placeholder values!! */
+[data-theme="dark"] {
+    --title-color: #962c2c;
+    --bg-color: #c2c2c2;
+    --title-family: 'Blinker', sans-serif;
+    --body-family: 'DM Sans';
+    --card-color: #616161;
+    --card-title-font: 'Blinker', sans-serif;
+}

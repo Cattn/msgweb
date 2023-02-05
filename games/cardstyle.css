@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@700&display=swap');
+#games {
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.game-image {
+  width: 100%;
+}
+
+.card {
+  border-radius: 3vh;
+  font-family: Verdana;
+  background-color: var(--card-color);
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 1rem;
+  margin: 1rem;
+  text-align: left;
+  width: 20%;
+}
+
+.card:hover {
+  box-shadow: 2px 2px 13px #575b5c;
+  transform: scale(1.05);
+}
+.card>* {
+    flex: 1 1 160px;
+}
+
+h1 {
+  text-align: center;
+  font-family: var(--card-title-font);
+  font-size: 2vw;
+  color: var(--card-title-color);
+}
