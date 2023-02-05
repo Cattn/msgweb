@@ -7,9 +7,9 @@
   <title>Msgv3</title>
   
   <link href="../style.css" rel="stylesheet" type="text/css" />
-  <link href="./cardstyle.css" rel="stylesheet" type="text/css"/>
   <link href="../hover.min.css" rel="stylesheet" type="text/css" />
-  <link href="./themes.css" rel="stylesheet" type="text/css" />  
+  <link href="../games/themes.css" rel="stylesheet" type="text/css" />  
+    <link href="./settings.css" rel="stylesheet" type="text/css" />
   <script src="../quick.js"></script>
 </head>
 
@@ -19,23 +19,39 @@
     <a class="link navlink hvr-underline-from-left" href="/">Home</a>
     <a class="link navlink hvr-underline-from-left" href="/games">Games</a>
     <a class="link navlink hvr-underline-from-left" href="#">Search</a>
-    <a class="link navlink hvr-underline-from-left" href="../settings/">Settings</a>
+    <a class="link navlink hvr-underline-from-left" href="">Settings</a>
   </div>
   <div class="space-make"><p> space </p></div>
 
   <div class="first-content">
-      <h1 class="title-text"> Games </h1>
+      <h1 class="title-text"> Settings </h1>
       <a style="cursor: pointer;" class="hvr-underline-from-left theme-value" onclick="themeValue(2)">Dark Mode</a>
       <a style="cursor: pointer;" class="hvr-underline-from-left theme-value" onclick="themeValue(1)">Light Mode</a>
   </div>
 
-  <div id="games">
+
+  <div class="settings-container">
+    <div class="settings-card">
+      <h1 class="settings-title">General</h1>
+      <p class="settings-text">Change general site settings</p>
+    </div>
+    <div class="settings-card">
+      <h1 class="settings-title">Theme</h1>
+      <p class="settings-text">Change the theme of the website</p>
+    </div>
+    <div class="settings-card">
+      <h1 class="settings-title">Ads</h1>
+      <p class="settings-text">Change your ad settings</p>
+    </div>
+    <div class="settings-card">
+      <h1 class="settings-title">Hosting</h1>
+      <p class="settings-text">Change your hosting settings</p>
+    </div>
   </div>
+
   
    
 </body>
-<script src="games.js"></script>
-<script src="loadgames.js"></script>
 <script src="../script.js"></script>
 <script src="../theme.js"></script>
 </html>

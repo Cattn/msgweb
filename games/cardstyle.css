@@ -30,9 +30,7 @@
     flex: 1 1 160px;
 }
 
-h1 {
+.card-content p {
   text-align: center;
-  font-family: var(--card-title-font);
-  font-size: 2vw;
-  color: var(--card-title-color);
+  color: var(--card-text-color);
 }

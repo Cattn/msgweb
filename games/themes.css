@@ -3,18 +3,29 @@
     --bg-color: #c2c2c2;
     --title-family: 'Blinker', sans-serif;
     --body-family: 'DM Sans';
-    --card-color: #616161;
+    --card-color: #43b4ab;
     --card-title-font: 'Blinker', sans-serif;
     --card-title-color: black;
+    --card-text-color: black;
+    --card-text-weight: bold;
+    --p-text-color: black;
+    --link-decoration: none;
+    --settings-container: #c2c2c2;
   /* Unfinished!! */
 }
 
 /* Placeholder values!! */
 [data-theme="dark"] {
-    --title-color: #962c2c;
-    --bg-color: #c2c2c2;
-    --title-family: 'Blinker', sans-serif;
-    --body-family: 'DM Sans';
-    --card-color: #616161;
-    --card-title-font: 'Blinker', sans-serif;
+  --title-color: #962c2c;
+  --bg-color: #111111;
+  --title-family: 'Blinker', sans-serif;
+  --body-family: 'DM Sans';
+  --card-color: #4b64a8;
+  --card-title-font: 'Blinker', sans-serif;
+  --card-title-color: rgb(255, 255, 255);
+  --card-text-color: rgb(255, 255, 255);
+  --card-text-weight: bold;
+  --p-text-color: rgb(255, 255, 255);
+  --link-decoration: none;
+  --settings-container: #111111;
 }

@@ -78,3 +78,24 @@ button {
   font-size: 6vw;
   font-family: var(--title-family);
 }
+
+.theme-value {
+  padding: 0.5vw;
+}
+
+h1 {
+  text-align: center;
+  font-family: var(--card-title-font);
+  font-size: 2vw;
+  color: var(--card-title-color);
+}
+
+p {
+  text-align: center;
+  color: var(--p-text-color);
+}
+
+a {
+  text-decoration: var(--link-decoration);
+  color: var(--card-text-color);
+}
