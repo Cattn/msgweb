@@ -166,7 +166,7 @@ function darkLightSwitch() {
 }
 
 function changeurl(url, title) {
-  var new_url = '/' + url;
+  var new_url = 'msgv3/' + url;
   if (location.href.includes("msgv3")) {
     window.history.pushState('data', title, new_url);
   } else {
