@@ -168,7 +168,7 @@ function darkLightSwitch() {
 function changeurl(url, title) {
   var new_url = '/' + url;
   if (location.href.includes("msgv3")) {
-    window.history.pushState('data', title, "msgv3/" + new_url);
+    window.history.pushState('data', title, new_url);
   } else {
     window.history.pushState('data', title, new_url);
   }
