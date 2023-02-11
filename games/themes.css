@@ -11,6 +11,9 @@
     --p-text-color: black;
     --link-decoration: none;
     --settings-container: #c2c2c2;
+    --media-skip-buttons: rgba(189, 116, 116, 0.7);
+    --media-play-buttons: rgba(223, 192, 113, 0.7);
+    --media-icon-color: white;
   /* Unfinished!! */
 }
 
@@ -28,4 +31,7 @@
   --p-text-color: rgb(255, 255, 255);
   --link-decoration: none;
   --settings-container: #111111;
+  --media-skip-buttons: rgba(102, 40, 40, 0.7);
+  --media-play-buttons: rgba(128, 105, 46, 0.7);
+  --media-icon-color: black;
 }
