@@ -179,7 +179,7 @@ function changeurl(url, title) {
 function settingsChange() {
   var url = "settings/";
   changeurl(url, "Settings"); 
-  getHTML( '../settings', function (response) {
+  getHTML( '/settings', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
     var otherSiteContent = response.querySelector( '#siteContent' );
     var children = otherSiteContent.querySelectorAll(".settings-container, .first-content");
@@ -226,7 +226,7 @@ console.log(window.location.pathname + window.location.search + window.location.
 function gameChange() {
   var url = "games/";
   changeurl(url, "Games"); 
-  getHTML( '../games', function (response) {
+  getHTML( '/games', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
     var otherSiteContent = response.querySelector( '#siteContent' );
     var children = otherSiteContent.querySelectorAll("*");
