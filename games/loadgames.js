@@ -28,8 +28,13 @@ games.forEach(game => {
   content.appendChild(image)
   content.appendChild(desc)
   card.appendChild(content)
+  if (document.getElementById("games") == null) {
+    console.log("No games found")
+  } else if(window.location.href.includes("games")) {
   _.get("#games").appendChild(card)
-
+  } else {
+    console.log("Not on games page")
+  }
   _.on(card, "click", () => {
     location.href = game.file
   })

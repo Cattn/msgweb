@@ -6,12 +6,14 @@ function scrollFunction() {
     _.setCSS("#nav", "padding", "2.5vw 0.3vw");
    navLinks.forEach(navLinks => {
      navLinks.style.fontSize = "1.3vw"
+     navLinks.style.height = "2vw"
+      navLinks.style.width = "5vw"
    })
     _.setCSS("#logoMain", "height", "5vw");
 
     // Set Media Sizes 
     _.setCSS("#mediaPlayerOuter", "margin-bottom", "1vh");
-    _.setCSS("#mediaPlayerOuter", "margin-left", "50vw");
+    _.setCSS("#mediaPlayerOuter", "margin-left", "35vw");
 
     _.setCSS("#mediaPlayerOuter", "height", "11vh");
     _.setCSS("#mediaPlayerOuter", "width", "20vw");
@@ -32,7 +34,7 @@ function scrollFunction() {
 
     // Set Quick Setting Sizes
     _.setCSS("#quickSettingsOuter", "margin-top", "0vh");
-    _.setCSS("#quickSettingsOuter", "margin-left", "75vw");
+    _.setCSS("#quickSettingsOuter", "margin-left", "56vw");
 
 
     _.setCSS("#quickSettingsOuter", "height", "11vh");
@@ -58,6 +60,8 @@ function scrollFunction() {
     _.setCSS("#nav", "padding", "10vw 0.5vw");
     navLinks.forEach(navLinks => {
      navLinks.style.fontSize = "2vw"
+     navLinks.style.height = "5vw"
+      navLinks.style.width = "10vw"
    })
     _.setCSS("#logoMain", "height", "15vw");
 
@@ -175,8 +179,26 @@ function settingsChange() {
 }
 
 function homeChange() {
-  var url = "";
+  var url = "index.html";
   changeurl(url, "Home"); 
+  getHTML( '../', function (response) {
+    var siteContent = document.querySelector( '#siteContent' );
+    var otherSiteContent = response.querySelector( '#siteContent' );
+    var children = otherSiteContent.querySelectorAll("*");
+    var games = document.querySelector("#games");
+    var pageTitle = document.querySelector("#pageTitle");
+    pageTitle.innerHTML = "Welcome to MSGv3";
+    [].forEach.call(children, function (child) {
+      siteContent.appendChild(child.cloneNode(true));
+    });
+  
+    [].forEach.call(siteContent.children, function (child) {
+      if (child !== games) {
+        child.remove();
+      }
+    });
+    games.remove();
+  });
 }
 
 function gameChange() {
@@ -190,10 +212,6 @@ function gameChange() {
     pageTitle.innerHTML = "Games";
     [].forEach.call(children, function (child) {
       siteContent.appendChild(child.cloneNode(true));
-    });
-  
-    [].forEach.call(siteContent.children, function (child) {
-        child.remove();
     });
     games.forEach(game => {
       /*
@@ -234,6 +252,9 @@ function gameChange() {
       
     })
   });
+  [].forEach.call(siteContent.children, function (child) {
+    child.remove();
+});
 }
 
 
@@ -344,6 +365,9 @@ let currentSongIndex = 0;
 let isPlaying = false;
 
 function playSong(songName) {
+  if (!songName) {
+    songName = songs[0];
+  }
   const openRequest = indexedDB.open("songs_db", 1);
 
   openRequest.onsuccess = function(event) {
@@ -391,27 +415,27 @@ document.getElementById("songData").addEventListener("click", function(event) {
 });
 
 document.getElementById("backArrow").addEventListener("click", function() {
-if (aud) {
-aud.pause();
-}
-if (currentSongIndex === 0) {
-currentSongIndex = songs.length - 1;
-} else {
-currentSongIndex -= 1;
-}
-playSong(songs[currentSongIndex]);
+  if (aud) {
+    aud.pause();
+  }
+  if (currentSongIndex === 0) {
+    currentSongIndex = songs.length - 1;
+  } else {
+    currentSongIndex -= 1;
+  }
+  playSong(songs[currentSongIndex]);
 });
 
 document.getElementById("forwardArrow").addEventListener("click", function() {
-if (aud) {
-aud.pause();
-}
-if (currentSongIndex === songs.length - 1) {
-currentSongIndex = 0;
-} else {
-currentSongIndex += 1;
-}
-playSong(songs[currentSongIndex]);
+  if (aud) {
+    aud.pause();
+  }
+  if (currentSongIndex === songs.length - 1) {
+    currentSongIndex = 0;
+  } else {
+    currentSongIndex += 1;
+  }
+  playSong(songs[currentSongIndex]);
 });
 
 let pause = document.getElementById("pause");
@@ -426,4 +450,10 @@ pause.addEventListener("click", function() {
     isPlaying = true;
   }
 });
+
+// Check if there's no song playing and play the first song if so
+if (!aud) {
+  playSong(songs[0]);
+}
+
 window.onload = displaySongs;
