@@ -167,7 +167,12 @@ function darkLightSwitch() {
 
 function changeurl(url, title) {
   var new_url = '/' + url;
-  window.history.pushState('data', title, new_url);
+  if (location.href.includes("msgv3")) {
+    window.history.pushState('data', title, "msgv3/" + new_url);
+  } else {
+    window.history.pushState('data', title, new_url);
+  }
+  
   
 }
 
@@ -216,6 +221,7 @@ function homeChange() {
     games.remove();
   });
 }
+console.log(window.location.pathname + window.location.search + window.location.hash);
 
 function gameChange() {
   var url = "games/";
