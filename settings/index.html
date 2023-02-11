@@ -16,10 +16,10 @@
 <body>
   <div class="navMain" id="nav">
     <img class="mainLogo" id="logoMain" src="../assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
-<a class="link navlink hvr-underline-from-left" href="/">Home</a>
-<a class="link navlink hvr-underline-from-left" href="/games">Games</a>
-<a class="link navlink hvr-underline-from-left" href="#">Search</a>
-<a class="link navlink hvr-underline-from-left" href="../settings/">Settings</a>
+<a class="link navlink hvr-underline-from-left" onclick="homeChange();">Home</a>
+<a class="link navlink hvr-underline-from-left" onclick="gameChange();">Games</a>
+<a class="link navlink hvr-underline-from-left" >Search</a>
+<a class="link navlink hvr-underline-from-left" onclick="settingsChange();">Settings</a>
 
 
 <div class="media-player-wrap" id="mediaPlayerOuter">
@@ -63,12 +63,11 @@
 </div>
   <div class="space-make"><p> space </p></div>
 
-  <div class="first-content">
-      <h1 class="title-text"> Settings </h1>
-      <a style="cursor: pointer;" class="hvr-underline-from-left theme-value" onclick="themeValue(2)">Dark Mode</a>
-      <a style="cursor: pointer;" class="hvr-underline-from-left theme-value" onclick="themeValue(1)">Light Mode</a>
-  </div>
+  <div id="siteContent">
 
+    <div class="first-content">
+      <h1 class="title-text"> Settings </h1>
+    </div>
 
   <div class="settings-container">
     <div class="settings-card">
@@ -89,7 +88,7 @@
     </div>
   </div>
 
-  
+</div>  
    
 </body>
 <script src="../script.js"></script>

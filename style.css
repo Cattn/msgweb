@@ -78,7 +78,7 @@ button {
 }
 
 .media-button-wrap {
-  margin-top: 9vh;
+  margin-top: 3vh;
   transition: 0.4s; 
 }
 
@@ -214,8 +214,38 @@ button {
   box-shadow: #000000 0px 0px 1vh 0px;
 }
 
-.media-player-wrap::before {
+.song {
+  color: var(--card-title-color);
+  font-size: 1.5vw;
+  font-family: var(--card-title-font);
+  margin-top: 1vh;
+  transition: 0.4s; 
+  background-color: var(--card-color);
+  text-align: center;
+  width: 20%;
+  margin-left: 40%;
+  border-radius: 3vw;
+}
 
+.song:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #000000 0px 0px 1vh 0px;
+}
+
+.volumeSlide {
+  -webkit-appearance: none;
+  width: 80%;
+  height: 0.5vh;
+  background: var(--card-color);
+  outline: none;
+  opacity: 0.9;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin-top: 1vh;
+  margin-right: 2vw;
+  transition: 0.4s; 
+  margin-bottom: none;
 }
 
 .mainLogo {
@@ -257,4 +287,35 @@ p {
 a {
   text-decoration: var(--link-decoration);
   color: var(--card-text-color);
+  cursor: pointer;
+}
+
+.settings-container {
+  display: flex;
+  background-color: var(--settings-container);
+  width: 70vw;
+  justify-content: center;
+  text-align: center;
+  padding-left: 15vw;
+}
+
+.settings-card {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 3vh;
+  font-family: Verdana;
+  background-color: var(--card-color);
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 20%;
+}
+
+.settings-card:hover {
+  box-shadow: 2px 2px 13px #575b5c;
+  transform: scale(1.05);
+}
+
+.settings-text {
+  color: var(--card-text-color);
+  
 }

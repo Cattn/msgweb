@@ -16,10 +16,10 @@
 <body>
   <div class="navMain" id="nav">
          <img class="mainLogo" id="logoMain" src="../assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
-    <a class="link navlink hvr-underline-from-left" href="/">Home</a>
-    <a class="link navlink hvr-underline-from-left" href="/games">Games</a>
-    <a class="link navlink hvr-underline-from-left" href="#">Search</a>
-    <a class="link navlink hvr-underline-from-left" href="../settings/">Settings</a>
+    <a class="link navlink hvr-underline-from-left" onclick="homeChange();">Home</a>
+    <a class="link navlink hvr-underline-from-left" onclick="gameChange();">Games</a>
+    <a class="link navlink hvr-underline-from-left" >Search</a>
+    <a class="link navlink hvr-underline-from-left" onclick="settingsChange();">Settings</a>
 
 
     <div class="media-player-wrap" id="mediaPlayerOuter">
@@ -62,15 +62,13 @@
     </div>
   </div>
   <div class="space-make"><p> space </p></div>
-
   <div class="first-content">
-      <h1 class="title-text"> Games </h1>
+    <h1 class="title-text" id="pageTitle"> Games </h1>
   </div>
-
-  <div id="games">
+  <div id="siteContent">  
+    <div id="games">
+    </div>
   </div>
-  
-   
 </body>
 <script src="games.js"></script>
 <script src="loadgames.js"></script>
