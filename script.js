@@ -1,19 +1,28 @@
 window.onscroll = function() {scrollFunction()};
 const navLinks = document.querySelectorAll(".link");
+const linkBack = document.querySelectorAll(".linkBack");
 
 function scrollFunction() {
   if (document.body.scrollTop > 235 || document.documentElement.scrollTop > 235) {
     _.setCSS("#nav", "padding", "2.5vw 0.3vw");
    navLinks.forEach(navLinks => {
-     navLinks.style.fontSize = "1.3vw"
+     navLinks.style.fontSize = "2vw"
      navLinks.style.height = "2vw"
-      navLinks.style.width = "5vw"
+      navLinks.style.width = "7vw"
+      navLinks.style.paddingTop = "0.3vw"
+      navLinks.style.marginLeft = "0.3vw"
+
    })
+   linkBack.forEach(linkBack => {
+    linkBack.style.height = "3vw"
+    linkBack.style.width = "9vw"
+  })
     _.setCSS("#logoMain", "height", "5vw");
+    _.setCSS("#logoMain", "margin-left", "5vw");
 
     // Set Media Sizes 
     _.setCSS("#mediaPlayerOuter", "margin-bottom", "1vh");
-    _.setCSS("#mediaPlayerOuter", "margin-left", "35vw");
+    _.setCSS("#mediaPlayerOuter", "margin-left", "53vw");
 
     _.setCSS("#mediaPlayerOuter", "height", "11vh");
     _.setCSS("#mediaPlayerOuter", "width", "20vw");
@@ -34,7 +43,7 @@ function scrollFunction() {
 
     // Set Quick Setting Sizes
     _.setCSS("#quickSettingsOuter", "margin-top", "0vh");
-    _.setCSS("#quickSettingsOuter", "margin-left", "56vw");
+    _.setCSS("#quickSettingsOuter", "margin-left", "74vw");
 
 
     _.setCSS("#quickSettingsOuter", "height", "11vh");
@@ -45,31 +54,38 @@ function scrollFunction() {
     _.setCSS("#themeSwitch", "height", "4vw");
     _.setCSS("#themeSwitch", "width", "4vw");
     _.setCSS("#themeSwitch", "border-radius", "3vh");
-    _.setCSS("#themeSwitch", "margin-right", "2vw");
+    _.setCSS("#themeSwitch", "margin-right", "1vw");
 
     _.setCSS("#reloadSwitch", "height", "4vw");
     _.setCSS("#reloadSwitch", "width", "4vw");
     _.setCSS("#reloadSwitch", "border-radius", "3vh");
-    _.setCSS("#reloadSwitch", "margin-right", "2vw");
+    _.setCSS("#reloadSwitch", "margin-right", "1vw");
 
     _.setCSS("#fullScreenSwitch", "height", "4vw");
     _.setCSS("#fullScreenSwitch", "width", "4vw");
     _.setCSS("#fullScreenSwitch", "border-radius", "3vh");
-    _.setCSS("#fullScreenSwitch", "margin-right", "2vw");
+    _.setCSS("#fullScreenSwitch", "margin-right", "1vw");
   } else {
     _.setCSS("#nav", "padding", "10vw 0.5vw");
     navLinks.forEach(navLinks => {
      navLinks.style.fontSize = "2vw"
      navLinks.style.height = "5vw"
       navLinks.style.width = "10vw"
+    navLinks.style.paddingTop = "2vh"
+     navLinks.style.marginLeft = "0vw"
    })
-    _.setCSS("#logoMain", "height", "15vw");
+  linkBack.forEach(linkBack => {
+   linkBack.style.height = "9vh"
+   linkBack.style.width = "12%"
+ })
+   _.setCSS("#logoMain", "height", "15vw");
+   _.setCSS("#logoMain", "margin-left", "1vw");
 
     // Re-size Media
     _.setCSS("#mediaPlayerOuter", "margin-bottom", "20vh");
     _.setCSS("#mediaPlayerOuter", "margin-left", "70vw");
 
-    _.setCSS("#mediaPlayerWrap", "margin-top", "5vh");
+    _.setCSS("#mediaPlayerWrap", "margin-top", "7vh");
 
     _.setCSS("#mediaPlayerOuter", "height", "18vh");
     _.setCSS("#mediaPlayerOuter", "width", "23vw");
@@ -99,17 +115,17 @@ function scrollFunction() {
     _.setCSS("#themeSwitch", "height", "6vw");
     _.setCSS("#themeSwitch", "width", "6vw");
     _.setCSS("#themeSwitch", "border-radius", "2vh");
-    _.setCSS("#themeSwitch", "margin-right", "1vw");
+    _.setCSS("#themeSwitch", "margin-right", "0.5vw");
 
     _.setCSS("#reloadSwitch", "height", "6vw");
     _.setCSS("#reloadSwitch", "width", "6vw");
     _.setCSS("#reloadSwitch", "border-radius", "2vh");
-    _.setCSS("#reloadSwitch", "margin-right", "1vw");
+    _.setCSS("#reloadSwitch", "margin-right", "0.5vw");
 
     _.setCSS("#fullScreenSwitch", "height", "6vw");
     _.setCSS("#fullScreenSwitch", "width", "6vw");
     _.setCSS("#fullScreenSwitch", "border-radius", "2vh");
-    _.setCSS("#fullScreenSwitch", "margin-right", "1vw");
+    _.setCSS("#fullScreenSwitch", "margin-right", "0.5vw");
   }
 }
 
@@ -363,11 +379,12 @@ function displaySongs() {
 let aud;
 let currentSongIndex = 0;
 let isPlaying = false;
-
+let data_streams = localStorage.getItem("data_streams") || 0;
 function playSong(songName) {
   if (!songName) {
     songName = songs[0];
   }
+  data_streams += 1;
   const openRequest = indexedDB.open("songs_db", 1);
 
   openRequest.onsuccess = function(event) {
@@ -401,6 +418,7 @@ function playSong(songName) {
   openRequest.onerror = function(event) {
     console.error("Error accessing database", event.target.error);
   };
+  localStorage.setItem("data_streams", data_streams);
 }
 
 document.getElementById("songData").addEventListener("click", function(event) {

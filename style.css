@@ -27,13 +27,14 @@ button {
   font-weight: bold;
   height: 5vh;
   width: 10vw;
+  padding-top: 2vh;
 }
 
 #nav {
   display: flex;
   align-items: center;
   float: right;
-  text-align: right;
+  text-align: center;
   
   top: 0;
   left: 0;
@@ -55,13 +56,14 @@ button {
   background-repeat:no-repeat;
     background-position: center center;
    background-size: cover;
-      opacity: 0.75;
+      opacity: 1;
       display: block;
     position: inherit;
     margin-left: 70vw;
     margin-bottom: 20vh;
     transition: 0.4s; 
 }
+
 
 .quick-settings-wrap {
   background: var(--bg-color);
@@ -80,7 +82,7 @@ button {
 }
 
 .media-button-wrap {
-  margin-top: 3vh;
+  margin-top: 7vh;
   transition: 0.4s; 
 }
 
@@ -136,7 +138,7 @@ button {
   margin-left: 0;
   border-radius: 2vh;
   display: inline-block;
-  margin-right: 1vw;
+  margin-right: 0vw;
   transition: 0.4s; 
 }
 
@@ -164,7 +166,7 @@ button {
   margin-left: 0;
   border-radius: 2vh;
   display: inline-block;
-  margin-right: 1vw;
+  margin-right: 0.5vw;
   transition: 0.4s; 
 }
 
@@ -185,7 +187,7 @@ button {
   margin-left: 0;
   border-radius: 2vh;
   display: inline-block;
-  margin-right: 1vw;
+  margin-right: 0.5vw;
   transition: 0.4s; 
 }
 
@@ -206,7 +208,7 @@ button {
   margin-left: 0;
   border-radius: 2vh;
   display: inline-block;
-  margin-right: 1vw;
+  margin-right: 0.5vw;
   transition: 0.4s; 
 }
 
@@ -245,7 +247,7 @@ button {
   -webkit-transition: .2s;
   transition: opacity .2s;
   margin-top: 1vh;
-  margin-right: 2vw;
+  margin-right: 1vw;
   transition: 0.4s; 
   margin-bottom: none;
 }
@@ -254,7 +256,7 @@ button {
    transition: 0.4s;
   height: 15vw;
   float: right;
-  padding-left: 1.5vw;
+  margin-left: 1vw;
   z-index: 10;
 }
 .navlink { margin: 0 1vw; }
@@ -358,4 +360,19 @@ a {
 .card-content p {
   text-align: center;
   color: var(--card-text-color);
+}
+
+.linkBack {
+  background-color: var(--card-color);
+  width: 12%;
+  height: 9vh;
+  border-radius: 4vh;
+  margin-left: 1vw;
+  transition: 0.4s;
+}
+
+.linkBack:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #000000 0px 0px 1vh 0px;
 }
