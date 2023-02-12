@@ -406,14 +406,40 @@ function displaySongs() {
         cursor.continue();
       } else {
         let html = "";
-        for (let i = 0; i < songs.length; i++) {
+        const totalSongs = songs.length;
+        const maxSongsToDisplay = 10;
+        const songsToDisplay =
+          totalSongs > maxSongsToDisplay
+            ? maxSongsToDisplay
+            : totalSongs;
+        for (let i = 0; i < songsToDisplay; i++) {
           const song = songs[i];
           html += `<div class="song" onclick="playSong('${song}'); currentSongIndex = ${i};">${song.replace(
             "_",
             " "
           )}</div>`;
         }
+        if (totalSongs > maxSongsToDisplay) {
+          html += `<button id="showMoreSongsBtn">Show More </button>`;
+        }
         songData.innerHTML = html;
+        if (totalSongs > maxSongsToDisplay) {
+          const showMoreSongsBtn = document.getElementById(
+            "showMoreSongsBtn"
+          );
+          showMoreSongsBtn.addEventListener("click", function() {
+            let moreHtml = "";
+            for (let i = maxSongsToDisplay; i < totalSongs; i++) {
+              const song = songs[i];
+              moreHtml += `<div class="song" onclick="playSong('${song}'); currentSongIndex = ${i};">${song.replace(
+                "_",
+                " "
+              )}</div>`;
+            }
+            songData.innerHTML = html + moreHtml;
+            showMoreSongsBtn.remove();
+          });
+        }
       }
     };
   };
@@ -477,6 +503,11 @@ document.getElementById("songData").addEventListener("click", function(event) {
   playSong(songs[currentSongIndex]);
 });
 
+document.getElementById("volumeControl").addEventListener("input", function(event) {
+  if (aud) {
+    aud.volume = event.target.value;
+  }
+});
 document.getElementById("backArrow").addEventListener("click", function() {
 if (aud) {
 aud.pause();
