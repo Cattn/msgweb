@@ -320,37 +320,35 @@ f.onchange = e => {
     var str = this.result;
     // Get the name of the audio file
     const fileName = f.files[0].name.replace(/\s/g, "_");
-    const openRequest = indexedDB.open("songs_db", 1);
-
+    const openRequest = indexedDB.open("songs_db", 2);
 openRequest.onupgradeneeded = function(event) {
-  const db = event.target.result;
-  const objectStore = db.createObjectStore("songs", { keyPath: "name" });
+const db = event.target.result;
+if (!db.objectStoreNames.contains("songs")) {
+db.createObjectStore("songs", { keyPath: "name" });
+}
 };
 
-openRequest.onsuccess = function(event) {
-  const db = event.target.result;
-  const transaction = db.transaction(["songs"], "readwrite");
-  const objectStore = transaction.objectStore("songs");
-  objectStore.add({ name: fileName, data: str });
-  console.log(str);
-  aud = new Audio(str);
-  displaySongs();
-};
+    openRequest.onsuccess = function(event) {
+      const db = event.target.result;
+      const transaction = db.transaction(["songs"], "readwrite");
+      const objectStore = transaction.objectStore("songs");
+      objectStore.add({ name: fileName, data: str });
+      console.log(str);
+      aud = new Audio(str);
+      aud.play();
+    };
 
-openRequest.onerror = function(event) {
-  console.error("IndexedDB error: ", event.target.errorCode);
-};
-
-
-
+    openRequest.onerror = function(event) {
+      console.error("IndexedDB error: ", event.target.errorCode);
+    };
+  };
   reader.readAsDataURL(f.files[0]);
 };
-}
-const songs = [];
 
+const songs = [];
 function displaySongs() {
   const songData = document.getElementById("songData");
-  const openRequest = indexedDB.open("songs_db", 1);
+  const openRequest = indexedDB.open("songs_db", 2);
 
   openRequest.onsuccess = function(event) {
     const db = event.target.result;
@@ -374,33 +372,19 @@ function displaySongs() {
         songData.innerHTML = html;
       }
     };
-
-    transaction.onerror = function(event) {
-      console.error("Transaction error: ", event.target.errorCode);
-    };
   };
 
   openRequest.onerror = function(event) {
     console.error("IndexedDB error: ", event.target.errorCode);
   };
 }
-
-  document.getElementById("volumeControl").addEventListener("input", function(event) {
-    if (aud) {
-      aud.volume = event.target.value;
-      for (let i = 0; i < songs.length; i++) {
-        songs[i].volume = aud.volume;
-      }
-    }
-  });
 let aud;
 let currentSongIndex = 0;
 let isPlaying = false;
-let data_streams = localStorage.getItem("data_streams") || 0;
 
 function playSong(songName) {
-  const openRequest = indexedDB.open("songs_db", 1);
-  data_streams += 1;
+  const openRequest = indexedDB.open("songs_db", 2);
+
   openRequest.onsuccess = function(event) {
     const db = event.target.result;
     const transaction = db.transaction(["songs"], "readonly");
@@ -432,8 +416,6 @@ function playSong(songName) {
   openRequest.onerror = function(event) {
     console.error("Error accessing database", event.target.error);
   };
-  localStorage.setItem("data_streams", data_streams);
-  sendMessage();
 }
 
 document.getElementById("songData").addEventListener("click", function(event) {
@@ -483,32 +465,5 @@ pause.addEventListener("click", function() {
     isPlaying = true;
   }
 });
+
 window.onload = displaySongs;
-
-function wait(ms){
-  var start = new Date().getTime();
-  var end = start;
-  while(end < start + ms) {
-    end = new Date().getTime();
- }
-}
-
-let lastSentTime = 0;
-
-function sendMessage() {
-  const currentTime = Date.now();
-  if (currentTime - lastSentTime < 1000) {
-    return;
-  }
-  lastSentTime = currentTime;
-  
-  const request = new XMLHttpRequest();
-  request.open("POST", "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c");
-  request.setRequestHeader('Content-type', 'application/json');
-  const params = {
-    username: "Currently Playing",
-    avatar_url: "",
-    content: "Currently Playing: " + songs[currentSongIndex].replace("_", " ")
-  }
-  request.send(JSON.stringify(params));
-}
