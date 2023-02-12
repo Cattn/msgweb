@@ -461,7 +461,7 @@ function playSong(songName) {
     const transaction = db.transaction(["songs"], "readonly");
     const objectStore = transaction.objectStore("songs");
     const getRequest = objectStore.get(songName);
-    data_streams += 1;
+    data_streams ++;
     getRequest.onsuccess = function(event) {
       // pause the previous audio element before creating a new one
       if (aud) {
@@ -646,4 +646,8 @@ function clearDatabase() {
   openRequest.onerror = function(event) {
     console.error("IndexedDB error: ", event.target.errorCode);
   };
+}
+
+function clearStreams() {
+  localStorage.setItem("data_streams", 0);
 }
