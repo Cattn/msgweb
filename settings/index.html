@@ -89,11 +89,14 @@
       <div id="musicSettingsContainer">
         <h1> Database Settings </h1>
         <p class="hover-setting" style="font-size: 3vh; text-decoration: underline; margin-bottom: 0.4vh;" onclick="clearDatabase();">Clear Your Library.</p> <p style="color: red; text-decoration: underline; font-size: 1.4vh; margin:0; padding: 0;">WARNING: THIS IS IRREVERSABLE</p>
-        <h1> Webhook Settings </h1>
+        <h1> Webhook Settings (Send Your Listening Activity to a Discord channel) </h1>
         <h2> Enter your username you'd like displayed when sending streams to discord. (Will only send to webhook if a user is inputted) </h2>
         <input type="text" id="webhookUser" placeholder="Webhook Username" style="margin-top: 1vh; margin-bottom: 1vh;">
         <h2> Enter your webhook url. (If left blank, will default to Math-Study) </h2>
-        <input type="text" id="webhookURL" placeholder="Webhook URL" style="margin-top: 1vh; margin-bottom: 1vh;">
+        <input type="text" id="webhookURL" placeholder="Webhook URL" style="margin-top: 0vh; margin-bottom: 0vh;">
+        <h2> Enter the profile picture you'd like to display on the webhook (If Left Blank, will default to Math-Study) </h2>
+        <p> You can get it <a style="text-decoration: underline" href="https://toolscord.com/">here!</a></p>
+        <input type="text" id="webhookPic" placeholder="Webhook Profile Picture" style="margin-top: 1vh; margin-bottom: 1vh;">
       </div>
     </div>
   </div>

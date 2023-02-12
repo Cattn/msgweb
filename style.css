@@ -87,10 +87,9 @@ button {
     border-radius: 10vh;
     font-family: Verdana;
     background-color: var(--card-color);
-    cursor: pointer;
     transition: all 0.3s;
     width: 60vw;
-    height: 70vh;
+    height: auto;
     position: absolute;
     margin-left: 20vw;
     margin-top: 10vh;
@@ -103,6 +102,10 @@ button {
 
 #musicSettingsContainer {
   display: none;
+}
+
+.hover-setting {
+  border:rgba(0, 0, 0, .6) 0.1vh solid;
 }
 
 .hover-setting:hover {

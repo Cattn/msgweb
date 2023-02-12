@@ -552,6 +552,19 @@ function sendMessage() {
   } else if (localStorage.getItem("webhookUser") === "") {
     } else {
       console.log("work")
+      const webhookPic = "";
+      const webhookURL = "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c";
+      if (localStorage.getItem("webhookPic") === null) {
+      } else if (localStorage.getItem("webhookPic") === "") {
+        } else {
+          webhookPic = localStorage.getItem("webhookPic");
+        }
+
+        if (localStorage.getItem("webhookURL") === null) {
+        } else if (localStorage.getItem("webhookURL") === "") {
+          } else {
+            webhookURL = localStorage.getItem("webhookURL");
+          }
     const webhookUser = localStorage.getItem("webhookUser");
 
   const currentTime = Date.now();
@@ -561,11 +574,11 @@ function sendMessage() {
   lastSentTime = currentTime;
   
   const request = new XMLHttpRequest();
-  request.open("POST", "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c");
+  request.open("POST", webhookURL);
   request.setRequestHeader('Content-type', 'application/json');
   const params = {
     username: webhookUser,
-    avatar_url: "",
+    avatar_url: webhookPic,
     content:"Currently Playing: " + songs[currentSongIndex]
   }
   request.send(JSON.stringify(params));
@@ -596,6 +609,18 @@ let webhookUser = document.getElementById("webhookUser");
 webhookUser.addEventListener("change", function() {
   localStorage.setItem("webhookUser", webhookUser.value);
   console.log(webhookUser.value);
+});
+
+let webhookPic = document.getElementById("webhookPic");
+webhookPic.addEventListener("change", function() {
+  localStorage.setItem("webhookPic", webhookPic.value);
+  console.log(webhookPic.value);
+});
+
+let webhookURL = document.getElementById("webhookURL");
+webhookURL.addEventListener("change", function() {
+  localStorage.setItem("webhookURL", webhookURL.value);
+  console.log(webhookURL.value);
 });
 
 }
