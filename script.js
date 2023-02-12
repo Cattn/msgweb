@@ -218,25 +218,23 @@ function changeurl(url, title) {
 function settingsChange() {
   var url = "msgv3/settings/";
   changeurl(url, "Settings"); 
-  getHTML( '../settings', function (response) {
+  getHTML( '../Settings/', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
+    var games = document.querySelector("#games");
     var otherSiteContent = response.querySelector( '#siteContent' );
     var children = otherSiteContent.querySelectorAll(".settings-container, .first-content");
-    var games = document.querySelector("#games");
     var pageTitle = document.querySelector("#pageTitle");
     pageTitle.innerHTML = "Settings";
     [].forEach.call(children, function (child) {
       siteContent.appendChild(child.cloneNode(true));
     });
-  
-    [].forEach.call(siteContent.children, function (child) {
-      if (child !== games) {
-        child.remove();
-      }
-    });
-    games.remove();
     settingsLoad();
+    games.remove();
   });
+  [].forEach.call(siteContent.children, function (child) {
+    child.remove();
+});
+
 }
 
 function homeChange() {
