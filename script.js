@@ -353,9 +353,15 @@ function displaySongs() {
 
   openRequest.onsuccess = function(event) {
     const db = event.target.result;
-    const transaction = db.transaction(["songs"], "readonly");
+    if (!db.objectStoreNames.contains("songs")) {
+      console.error("Object store 'songs' does not exist");
+      return;
+    }
+    const transaction = db.transaction(["songs"], "readwrite");
+    transaction.onerror = function(event) {
+      console.error("Transaction error:", event.target.error.message);
+    };
     const objectStore = transaction.objectStore("songs");
-
     objectStore.openCursor().onsuccess = function(event) {
       const cursor = event.target.result;
       if (cursor) {
@@ -374,6 +380,7 @@ function displaySongs() {
       }
     };
   };
+  
 
   openRequest.onerror = function(event) {
     console.error("IndexedDB error: ", event.target.errorCode);
