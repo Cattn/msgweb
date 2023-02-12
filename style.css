@@ -104,6 +104,30 @@ button {
   display: none;
 }
 
+#f {
+  display: none;
+}
+
+.custom-file-upload {
+  color: var(--card-title-color);
+  font-size: 1.5vw;
+  font-family: var(--card-title-font);
+  margin-top: 3vh;
+  transition: 0.4s; 
+  background-color: var(--alt-bg-color);
+  text-align: center;
+  width: 20%;
+  display: block;
+  margin-left: 40%;
+  border-radius: 3vw;
+}
+
+.custom-file-upload:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #18d631 0px 0px 1vh 0px;
+}
+
 .hover-setting {
   border:rgba(0, 0, 0, .6) 0.1vh solid;
 }

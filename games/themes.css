@@ -14,6 +14,7 @@
     --media-skip-buttons: rgba(189, 116, 116, 0.7);
     --media-play-buttons: rgba(223, 192, 113, 0.7);
     --media-icon-color: white;
+    --alt-bg-color: #33c263;
   /* Unfinished!! */
 }
 
@@ -34,4 +35,5 @@
   --media-skip-buttons: rgba(102, 40, 40, 0.7);
   --media-play-buttons: rgba(128, 105, 46, 0.7);
   --media-icon-color: black;
+  --alt-bg-color: #33c263;
 }
