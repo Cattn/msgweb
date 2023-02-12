@@ -313,6 +313,7 @@ var getHTML = function ( url, callback ) {
 f.onchange = e => {
   if (f.files[0].type.indexOf('audio/') !== 0) {
     console.warn('not an audio file');
+    alert('Error: The selected file is not an audio file');
     return;
   }
   const reader = new FileReader();
@@ -340,6 +341,7 @@ f.onchange = e => {
 
     openRequest.onerror = function(event) {
       console.error("IndexedDB error: ", event.target.errorCode);
+      alert('Error: Failed to open the database. Error code: ' + event.target.errorCode);
     };
   };
   reader.readAsDataURL(f.files[0]);
@@ -351,7 +353,7 @@ function displaySongs() {
 
   openRequest.onsuccess = function(event) {
     const db = event.target.result;
-    const transaction = db.transaction(["songs"], "readwrite");
+    const transaction = db.transaction(["songs"], "readonly");
     const objectStore = transaction.objectStore("songs");
 
     objectStore.openCursor().onsuccess = function(event) {
@@ -371,6 +373,11 @@ function displaySongs() {
         songData.innerHTML = html;
       }
     };
+  };
+
+  openRequest.onerror = function(event) {
+    console.error("IndexedDB error: ", event.target.errorCode);
+    alert('Error: Failed to open the database. Error code: ' + event.target.errorCode);
   };
   document.getElementById("volumeControl").addEventListener("input", function(event) {
     if (aud) {
