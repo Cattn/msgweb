@@ -586,7 +586,7 @@ function clearDatabase() {
       console.error("Failed to clear the object store: ", event.target.errorCode);
     };
   };
-
+  localStorage.setItem("loaded", "0");
   openRequest.onerror = function(event) {
     console.error("IndexedDB error: ", event.target.errorCode);
   };
