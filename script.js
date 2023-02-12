@@ -335,7 +335,7 @@ db.createObjectStore("songs", { keyPath: "name" });
       objectStore.add({ name: fileName, data: str });
       console.log(str);
       aud = new Audio(str);
-      aud.play();
+      localStorage.setItem("loaded", "1")
     };
 
     openRequest.onerror = function(event) {
@@ -344,6 +344,10 @@ db.createObjectStore("songs", { keyPath: "name" });
   };
   reader.readAsDataURL(f.files[0]);
 };
+
+if (localStorage.getItem("loaded") === "1") {
+  displaySongs();
+}
 
 const songs = [];
 function displaySongs() {
@@ -465,5 +469,3 @@ pause.addEventListener("click", function() {
     isPlaying = true;
   }
 });
-
-window.onload = displaySongs;
