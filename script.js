@@ -313,7 +313,6 @@ var getHTML = function ( url, callback ) {
 f.onchange = e => {
   if (f.files[0].type.indexOf('audio/') !== 0) {
     console.warn('not an audio file');
-    alert('Error: The selected file is not an audio file');
     return;
   }
   const reader = new FileReader();
@@ -326,7 +325,6 @@ f.onchange = e => {
     openRequest.onupgradeneeded = function(event) {
       const db = event.target.result;
       const objectStore = db.createObjectStore("songs", { keyPath: "name" });
-      objectStore.add({ name: fileName, data: str });
     };
 
     openRequest.onsuccess = function(event) {
@@ -341,52 +339,50 @@ f.onchange = e => {
 
     openRequest.onerror = function(event) {
       console.error("IndexedDB error: ", event.target.errorCode);
-      alert('Error: Failed to open the database. Error code: ' + event.target.errorCode);
     };
   };
   reader.readAsDataURL(f.files[0]);
 };
+
 const songs = [];
+
 function displaySongs() {
   const songData = document.getElementById("songData");
   const openRequest = indexedDB.open("songs_db", 1);
 
   openRequest.onsuccess = function(event) {
-  const db = event.target.result;
-  if (!db.objectStoreNames.contains("songs")) {
-    console.warn("Object store 'songs' does not exist, creating it now");
-    const newDb = event.target.result;
-    newDb.createObjectStore("songs", { keyPath: "name" });
-  }
-  const transaction = db.transaction(["songs"], "readwrite");
-  transaction.onerror = function(event) {
-    console.error("Transaction error:", event.target.error.message);
-  };
-  const objectStore = transaction.objectStore("songs");
-  objectStore.openCursor().onsuccess = function(event) {
-    const cursor = event.target.result;
-    if (cursor) {
-      songs.push(cursor.value.name);
-      cursor.continue();
-    } else {
-      let html = "";
-      for (let i = 0; i < songs.length; i++) {
-        const song = songs[i];
-        html += `<div class="song" onclick="playSong('${song}'); currentSongIndex = ${i};">${song.replace(
-          "_",
-          " "
-        )}</div>`;
+    const db = event.target.result;
+    const transaction = db.transaction(["songs"], "readonly");
+    const objectStore = transaction.objectStore("songs");
+
+    objectStore.openCursor().onsuccess = function(event) {
+      const cursor = event.target.result;
+      if (cursor) {
+        songs.push(cursor.value.name);
+        cursor.continue();
+      } else {
+        let html = "";
+        for (let i = 0; i < songs.length; i++) {
+          const song = songs[i];
+          html += `<div class="song" onclick="playSong('${song}'); currentSongIndex = ${i};">${song.replace(
+            "_",
+            " "
+          )}</div>`;
+        }
+        songData.innerHTML = html;
       }
-      songData.innerHTML = html;
-    }
+    };
+
+    transaction.onerror = function(event) {
+      console.error("Transaction error: ", event.target.errorCode);
+    };
   };
-};
-  
 
   openRequest.onerror = function(event) {
     console.error("IndexedDB error: ", event.target.errorCode);
-    alert('Error: Failed to open the database. Error code: ' + event.target.errorCode);
   };
+}
+
   document.getElementById("volumeControl").addEventListener("input", function(event) {
     if (aud) {
       aud.volume = event.target.value;
@@ -395,11 +391,6 @@ function displaySongs() {
       }
     }
   });
-
-  openRequest.onerror = function(event) {
-    console.error("IndexedDB error: ", event.target.errorCode);
-  };
-}
 let aud;
 let currentSongIndex = 0;
 let isPlaying = false;
