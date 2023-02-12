@@ -82,9 +82,23 @@ button {
 }
 
 .media-button-wrap {
-  margin-top: 7vh;
+  margin-top: 5vh;
   transition: 0.4s; 
 }
+
+@media only screen and (max-width: 1000px) {
+  .media-button-wrap {
+    margin-top: 0vh;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .media-button-wrap {
+    margin-top: 0vh;
+  }
+}
+
+
 
 .back-arrow-option {
   background: var(--media-skip-buttons);
@@ -250,6 +264,15 @@ button {
   margin-right: 1vw;
   transition: 0.4s; 
   margin-bottom: none;
+}
+
+.volumeSlide::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 3vh; /* Set a specific slider handle width */
+  height: 3vh; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
 }
 
 .mainLogo {

@@ -27,20 +27,49 @@ function scrollFunction() {
     _.setCSS("#mediaPlayerOuter", "height", "11vh");
     _.setCSS("#mediaPlayerOuter", "width", "20vw");
 
-    _.setCSS("#mediaPlayerWrap", "margin-top", "1vh");
+    function checkForSmall(x) {
+      if (x.matches) { // If media query matches
+        document.getElementById("mediaPlayerWrap").style.marginTop = "0vh";
+      } else {
+        document.getElementById("mediaPlayerWrap").style.marginTop = "1vh";
+      }
+    }
+    
+    var x = window.matchMedia("(max-width: 900px)");
+    checkForSmall(x);
+    x.addListener(checkForSmall);
 
-    _.setCSS("#backArrow", "height", "3vw");
-    _.setCSS("#backArrow", "width", "3vw");
-    _.setCSS("#backArrow", "border-radius", "3vh");
+    function lowerSize(x) {
+      if (x.matches) { // If media query matches
+        document.getElementById("backArrow").style.height = "2vw";
+        document.getElementById("backArrow").style.width = "2vw";
+        document.getElementById("backArrow").style.borderRadius = "2vh";
 
-    _.setCSS("#pause", "height", "3vw");
-    _.setCSS("#pause", "width", "3vw");
-    _.setCSS("#pause", "border-radius", "3vh");
+        document.getElementById("pause").style.height = "2vw";
+        document.getElementById("pause").style.width = "2vw";
+        document.getElementById("pause").style.borderRadius = "2vh";
 
-    _.setCSS("#forwardArrow", "height", "3vw");
-    _.setCSS("#forwardArrow", "width", "3vw");
-    _.setCSS("#forwardArrow", "border-radius", "3vh");
+        document.getElementById("forwardArrow").style.height = "2vw";
+        document.getElementById("forwardArrow").style.width = "2vw";
+        document.getElementById("forwardArrow").style.borderRadius = "2vh";
+      } else {
+        document.getElementById("backArrow").style.height = "3vw";
+        document.getElementById("backArrow").style.width = "3vw";
+        document.getElementById("backArrow").style.borderRadius = "3vh";
 
+        document.getElementById("pause").style.height = "3vw";
+        document.getElementById("pause").style.width = "3vw";
+        document.getElementById("pause").style.borderRadius = "3vh";
+
+        document.getElementById("forwardArrow").style.height = "3vw";
+        document.getElementById("forwardArrow").style.width = "3vw";
+        document.getElementById("forwardArrow").style.borderRadius = "3vh";
+      }
+    }
+    
+    var x = window.matchMedia("(max-width: 900px)");
+    lowerSize(x);
+    x.addListener(lowerSize);
     // Set Quick Setting Sizes
     _.setCSS("#quickSettingsOuter", "margin-top", "0vh");
     _.setCSS("#quickSettingsOuter", "margin-left", "74vw");
@@ -85,7 +114,17 @@ function scrollFunction() {
     _.setCSS("#mediaPlayerOuter", "margin-bottom", "20vh");
     _.setCSS("#mediaPlayerOuter", "margin-left", "70vw");
 
-    _.setCSS("#mediaPlayerWrap", "margin-top", "7vh");
+    function checkForBig(x) {
+      if (x.matches) { // If media query matches
+        document.getElementById("mediaPlayerWrap").style.marginTop = "1vh";
+      } else {
+        document.getElementById("mediaPlayerWrap").style.marginTop = "5vh";
+      }
+    }
+    
+    var x = window.matchMedia("(max-width: 1500px)");
+    checkForBig(x);
+    x.addListener(checkForBig);
 
     _.setCSS("#mediaPlayerOuter", "height", "18vh");
     _.setCSS("#mediaPlayerOuter", "width", "23vw");
