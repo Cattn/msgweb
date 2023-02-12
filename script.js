@@ -352,34 +352,35 @@ function displaySongs() {
   const openRequest = indexedDB.open("songs_db", 1);
 
   openRequest.onsuccess = function(event) {
-    const db = event.target.result;
-    if (!db.objectStoreNames.contains("songs")) {
-      console.error("Object store 'songs' does not exist");
-      return;
-    }
-    const transaction = db.transaction(["songs"], "readwrite");
-    transaction.onerror = function(event) {
-      console.error("Transaction error:", event.target.error.message);
-    };
-    const objectStore = transaction.objectStore("songs");
-    objectStore.openCursor().onsuccess = function(event) {
-      const cursor = event.target.result;
-      if (cursor) {
-        songs.push(cursor.value.name);
-        cursor.continue();
-      } else {
-        let html = "";
-        for (let i = 0; i < songs.length; i++) {
-          const song = songs[i];
-          html += `<div class="song" onclick="playSong('${song}'); currentSongIndex = ${i};">${song.replace(
-            "_",
-            " "
-          )}</div>`;
-        }
-        songData.innerHTML = html;
-      }
-    };
+  const db = event.target.result;
+  if (!db.objectStoreNames.contains("songs")) {
+    console.warn("Object store 'songs' does not exist, creating it now");
+    const newDb = event.target.result;
+    newDb.createObjectStore("songs", { keyPath: "name" });
+  }
+  const transaction = db.transaction(["songs"], "readwrite");
+  transaction.onerror = function(event) {
+    console.error("Transaction error:", event.target.error.message);
   };
+  const objectStore = transaction.objectStore("songs");
+  objectStore.openCursor().onsuccess = function(event) {
+    const cursor = event.target.result;
+    if (cursor) {
+      songs.push(cursor.value.name);
+      cursor.continue();
+    } else {
+      let html = "";
+      for (let i = 0; i < songs.length; i++) {
+        const song = songs[i];
+        html += `<div class="song" onclick="playSong('${song}'); currentSongIndex = ${i};">${song.replace(
+          "_",
+          " "
+        )}</div>`;
+      }
+      songData.innerHTML = html;
+    }
+  };
+};
   
 
   openRequest.onerror = function(event) {
