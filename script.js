@@ -166,7 +166,7 @@ function darkLightSwitch() {
 }
 
 function changeurl(url, title) {
-  var new_url = 'msgv3/' + url;
+  var new_url = '/' + url;
   if (location.href.includes("msgv3")) {
     window.history.pushState('data', title, new_url);
   } else {
@@ -177,9 +177,9 @@ function changeurl(url, title) {
 }
 
 function settingsChange() {
-  var url = "settings/";
+  var url = "msgv3/settings/";
   changeurl(url, "Settings"); 
-  getHTML( '/settings', function (response) {
+  getHTML( '../settings', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
     var otherSiteContent = response.querySelector( '#siteContent' );
     var children = otherSiteContent.querySelectorAll(".settings-container, .first-content");
@@ -200,9 +200,9 @@ function settingsChange() {
 }
 
 function homeChange() {
-  var url = "index.html";
+  var url = "msgv3/";
   changeurl(url, "Home"); 
-  getHTML( '../', function (response) {
+  getHTML( '../msgv3/', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
     var otherSiteContent = response.querySelector( '#siteContent' );
     var children = otherSiteContent.querySelectorAll("*");
@@ -224,9 +224,9 @@ function homeChange() {
 console.log(window.location.pathname + window.location.search + window.location.hash);
 
 function gameChange() {
-  var url = "games/";
+  var url = "msgv3/games/";
   changeurl(url, "Games"); 
-  getHTML( '/games', function (response) {
+  getHTML( '../games/', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
     var otherSiteContent = response.querySelector( '#siteContent' );
     var children = otherSiteContent.querySelectorAll("*");
