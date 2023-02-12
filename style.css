@@ -10,6 +10,17 @@ body {
   font-family: var(--body-family);
 }
 
+::-webkit-scrollbar {
+	width: 1vh;
+	border-radius: 1vh;;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	border-radius: 1vh;
+	-webkit-box-shadow: inset 0 0 0.8vh rgba(0, 0, 0, .3);
+	background-color: #555;
+  }
+
 button {
   padding: 15px;
   background-color: #E1E1E1;
