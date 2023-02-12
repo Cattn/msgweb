@@ -67,11 +67,25 @@
       <h1 class="title-text" id="pageTitle"> Welcome to MSGv3 </h1>
   </div>
   <div id="siteContent">  
-    <div id="games">
+    <div id="games"></div>
+    <div class="settings-container">
+      <div class="settings-card">
+        <h1 class="settings-title" onclick="gameChange();">Games!</h1>
+        <p class="settings-text">View our Games!</p>
+      </div>
+      <div class="settings-card">
+        <h1 class="settings-title">Proxy Viewer!</h1>
+        <p class="settings-text">Link the site with a proxy (WIP)</p>
+      </div>
+      <div class="settings-card" onclick="settingsChange();">
+        <h1 class="settings-title">Settings!</h1>
+        <p class="settings-text">View site Settings</p>
+      </div>
     </div>
   <div id="songDatas"></div>
   </div>
 </body>
+<h1> Your Library </h1>
 <div id="songData">
 </div>
 <input type="file" id="f">

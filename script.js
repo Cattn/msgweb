@@ -220,21 +220,23 @@ function settingsChange() {
   changeurl(url, "Settings"); 
   getHTML( '../settings/', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
-    var games = document.querySelector("#games");
     var otherSiteContent = response.querySelector( '#siteContent' );
     var children = otherSiteContent.querySelectorAll(".settings-container, .first-content");
     var pageTitle = document.querySelector("#pageTitle");
     pageTitle.innerHTML = "Settings";
+    [].forEach.call(siteContent.children, function (child) {
+      child.remove();
+    });
     [].forEach.call(children, function (child) {
       siteContent.appendChild(child.cloneNode(true));
     });
     settingsLoad();
-    games.remove();
   });
   [].forEach.call(siteContent.children, function (child) {
-    child.remove();
+    if (child.id != "games") {
+      child.remove();
+    }
 });
-
 }
 
 function homeChange() {
@@ -242,22 +244,23 @@ function homeChange() {
   changeurl(url, "Home"); 
   getHTML( '../msgv3/', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
+    var games = document.querySelectorAll("#games");
     var otherSiteContent = response.querySelector( '#siteContent' );
-    var children = otherSiteContent.querySelectorAll("*");
-    var games = document.querySelector("#games");
+    var children = otherSiteContent.querySelectorAll(".settings-container, .first-content, #games");
     var pageTitle = document.querySelector("#pageTitle");
     pageTitle.innerHTML = "Welcome to MSGv3";
     [].forEach.call(children, function (child) {
       siteContent.appendChild(child.cloneNode(true));
     });
-  
-    [].forEach.call(siteContent.children, function (child) {
-      if (child !== games) {
-        child.remove();
-      }
-    });
-    games.remove();
+  games.forEach(game => {
+    game.remove();
+   });
   });
+  [].forEach.call(siteContent.children, function (child) {
+    if (child.id != "games") {
+      child.remove();
+    }
+});
 }
 console.log(window.location.pathname + window.location.search + window.location.hash);
 
@@ -270,25 +273,24 @@ function gameChange() {
     var children = otherSiteContent.querySelectorAll("*");
     var pageTitle = document.querySelector("#pageTitle");
     pageTitle.innerHTML = "Games";
-    [].forEach.call(children, function (child) {
-      siteContent.appendChild(child.cloneNode(true));
-    });
+
+    var gamesDiv = document.querySelector("#games");
+    if (!gamesDiv) {
+      gamesDiv = document.createElement("div");
+      gamesDiv.id = "games";
+      siteContent.appendChild(gamesDiv);
+    } else {
+      while (gamesDiv.firstChild) {
+        gamesDiv.removeChild(gamesDiv.firstChild);
+      }
+    }
+
     games.forEach(game => {
-      /*
-      <div class="card">
-        <img src="img_avatar.png" alt="Avatar" style="width:100%">
-        <div class="card-content">
-          <h4><b>John Doe</b></h4>
-          <p>Architect & Engineer</p>
-        </div>
-      </div>
-      */
-    
-      var card = document.createElement("div")
-      var content = document.createElement("div")
-      var image = document.createElement("img")
-      var title = document.createElement("h1")
-      var desc = document.createElement("p")
+      var card = document.createElement("div");
+      var content = document.createElement("div");
+      var image = document.createElement("img");
+      var title = document.createElement("h1");
+      var desc = document.createElement("p");
     
       card.classList.add("card");
       image.src = game.image || "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg" // placeholder image
@@ -303,17 +305,17 @@ function gameChange() {
       content.appendChild(image)
       content.appendChild(desc)
       card.appendChild(content)
-      _.get("#games").appendChild(card)
+      gamesDiv.appendChild(card);
     
       _.on(card, "click", () => {
         location.href = game.file
       })
-      
-      
     })
   });
   [].forEach.call(siteContent.children, function (child) {
-    child.remove();
+    if (child.id != "games") {
+      child.remove();
+    }
 });
 }
 
