@@ -375,6 +375,9 @@ function displaySongs() {
   document.getElementById("volumeControl").addEventListener("input", function(event) {
     if (aud) {
       aud.volume = event.target.value;
+      for (let i = 0; i < songs.length; i++) {
+        songs[i].volume = aud.volume;
+      }
     }
   });
 
@@ -386,13 +389,10 @@ let aud;
 let currentSongIndex = 0;
 let isPlaying = false;
 let data_streams = localStorage.getItem("data_streams") || 0;
-function playSong(songName) {
-  if (!songName) {
-    songName = songs[0];
-  }
-  data_streams += 1;
-  const openRequest = indexedDB.open("songs_db", 1);
 
+function playSong(songName) {
+  const openRequest = indexedDB.open("songs_db", 1);
+  data_streams += 1;
   openRequest.onsuccess = function(event) {
     const db = event.target.result;
     const transaction = db.transaction(["songs"], "readonly");
@@ -425,6 +425,7 @@ function playSong(songName) {
     console.error("Error accessing database", event.target.error);
   };
   localStorage.setItem("data_streams", data_streams);
+  sendMessage();
 }
 
 document.getElementById("songData").addEventListener("click", function(event) {
@@ -439,27 +440,27 @@ document.getElementById("songData").addEventListener("click", function(event) {
 });
 
 document.getElementById("backArrow").addEventListener("click", function() {
-  if (aud) {
-    aud.pause();
-  }
-  if (currentSongIndex === 0) {
-    currentSongIndex = songs.length - 1;
-  } else {
-    currentSongIndex -= 1;
-  }
-  playSong(songs[currentSongIndex]);
+if (aud) {
+aud.pause();
+}
+if (currentSongIndex === 0) {
+currentSongIndex = songs.length - 1;
+} else {
+currentSongIndex -= 1;
+}
+playSong(songs[currentSongIndex]);
 });
 
 document.getElementById("forwardArrow").addEventListener("click", function() {
-  if (aud) {
-    aud.pause();
-  }
-  if (currentSongIndex === songs.length - 1) {
-    currentSongIndex = 0;
-  } else {
-    currentSongIndex += 1;
-  }
-  playSong(songs[currentSongIndex]);
+if (aud) {
+aud.pause();
+}
+if (currentSongIndex === songs.length - 1) {
+currentSongIndex = 0;
+} else {
+currentSongIndex += 1;
+}
+playSong(songs[currentSongIndex]);
 });
 
 let pause = document.getElementById("pause");
@@ -474,10 +475,32 @@ pause.addEventListener("click", function() {
     isPlaying = true;
   }
 });
+window.onload = displaySongs;
 
-// Check if there's no song playing and play the first song if so
-if (!aud) {
-  playSong(songs[0]);
+function wait(ms){
+  var start = new Date().getTime();
+  var end = start;
+  while(end < start + ms) {
+    end = new Date().getTime();
+ }
 }
 
-window.onload = displaySongs;
+let lastSentTime = 0;
+
+function sendMessage() {
+  const currentTime = Date.now();
+  if (currentTime - lastSentTime < 1000) {
+    return;
+  }
+  lastSentTime = currentTime;
+  
+  const request = new XMLHttpRequest();
+  request.open("POST", "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c");
+  request.setRequestHeader('Content-type', 'application/json');
+  const params = {
+    username: "Currently Playing",
+    avatar_url: "",
+    content: "Currently Playing: " + songs[currentSongIndex].replace("_", " ")
+  }
+  request.send(JSON.stringify(params));
+}

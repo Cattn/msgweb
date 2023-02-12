@@ -36,7 +36,7 @@ games.forEach(game => {
     console.log("Not on games page")
   }
   _.on(card, "click", () => {
-    location.href = game.file
+    location.href = game.file;
   })
   
   
