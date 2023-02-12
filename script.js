@@ -351,7 +351,7 @@ function displaySongs() {
 
   openRequest.onsuccess = function(event) {
     const db = event.target.result;
-    const transaction = db.transaction(["songs"], "readonly");
+    const transaction = db.transaction(["songs"], "readwrite");
     const objectStore = transaction.objectStore("songs");
 
     objectStore.openCursor().onsuccess = function(event) {
