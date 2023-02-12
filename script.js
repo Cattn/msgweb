@@ -552,8 +552,8 @@ function sendMessage() {
   } else if (localStorage.getItem("webhookUser") === "") {
     } else {
       console.log("work")
-      const webhookPic = "";
-      const webhookURL = "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c";
+      var webhookPic = "";
+      var webhookURL = "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c";
       if (localStorage.getItem("webhookPic") === null) {
       } else if (localStorage.getItem("webhookPic") === "") {
         } else {
