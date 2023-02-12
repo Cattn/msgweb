@@ -451,7 +451,7 @@ function displaySongs() {
 let aud;
 let currentSongIndex = 0;
 let isPlaying = false;
-let data_streams = localStorage.getItem("data_streams") || 0;
+var data_streams = localStorage.getItem("data_streams") || 0;
 
 function playSong(songName) {
   const openRequest = indexedDB.open("songs_db", 2);
