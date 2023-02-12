@@ -533,9 +533,9 @@ function sendMessage() {
   request.open("POST", "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c");
   request.setRequestHeader('Content-type', 'application/json');
   const params = {
-    username: "Currently Playing",
+    username: webhookUser,
     avatar_url: "",
-    content: webhookUser + " Is Currently Playing: " + songs[currentSongIndex].replace("_", " ")
+    content:"Currently Playing: " + songs[currentSongIndex]
   }
   request.send(JSON.stringify(params));
   }
