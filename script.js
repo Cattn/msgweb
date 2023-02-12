@@ -218,7 +218,7 @@ function changeurl(url, title) {
 function settingsChange() {
   var url = "msgv3/settings/";
   changeurl(url, "Settings"); 
-  getHTML( '../Settings/', function (response) {
+  getHTML( '../settings/', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
     var games = document.querySelector("#games");
     var otherSiteContent = response.querySelector( '#siteContent' );
