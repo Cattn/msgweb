@@ -235,6 +235,7 @@ function settingsChange() {
       }
     });
     games.remove();
+    settingsLoad();
   });
 }
 
@@ -424,6 +425,7 @@ function displaySongs() {
 let aud;
 let currentSongIndex = 0;
 let isPlaying = false;
+let data_streams = localStorage.getItem("data_streams") || 0;
 
 function playSong(songName) {
   const openRequest = indexedDB.open("songs_db", 2);
@@ -433,7 +435,7 @@ function playSong(songName) {
     const transaction = db.transaction(["songs"], "readonly");
     const objectStore = transaction.objectStore("songs");
     const getRequest = objectStore.get(songName);
-
+    data_streams += 1;
     getRequest.onsuccess = function(event) {
       // pause the previous audio element before creating a new one
       if (aud) {
@@ -443,6 +445,8 @@ function playSong(songName) {
       aud = new Audio(songData.data);
       isPlaying = !aud.paused;
       aud.play();
+      sendMessage();
+
 
       // Automatically play the next song when this one is done
       aud.addEventListener("ended", function() {
@@ -459,6 +463,7 @@ function playSong(songName) {
   openRequest.onerror = function(event) {
     console.error("Error accessing database", event.target.error);
   };
+  localStorage.setItem("data_streams", data_streams);
 }
 
 document.getElementById("songData").addEventListener("click", function(event) {
@@ -508,3 +513,81 @@ pause.addEventListener("click", function() {
     isPlaying = true;
   }
 });
+
+lastSentTime = 0;
+
+function sendMessage() {
+  if (localStorage.getItem("webhookUser") === null) {
+  } else if (localStorage.getItem("webhookUser") === "") {
+    } else {
+      console.log("work")
+    const webhookUser = localStorage.getItem("webhookUser");
+
+  const currentTime = Date.now();
+  if (currentTime - lastSentTime < 1000) {
+    return;
+  }
+  lastSentTime = currentTime;
+  
+  const request = new XMLHttpRequest();
+  request.open("POST", "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c");
+  request.setRequestHeader('Content-type', 'application/json');
+  const params = {
+    username: "Currently Playing",
+    avatar_url: "",
+    content: webhookUser + " Is Currently Playing: " + songs[currentSongIndex].replace("_", " ")
+  }
+  request.send(JSON.stringify(params));
+  }
+}
+
+function settingsLoad() {
+let musicSettingsOpen = document.getElementById("musicSettings");
+
+musicSettingsOpen.addEventListener("click", function() {
+  musicSettingsOpen.className = '';
+  musicSettingsOpen.classList.add("musicSettingsOpen");
+  console.log(musicSettingsOpen.classList);
+  document.getElementById("musicSettingsContainer").style.display = "block";
+});
+
+document.addEventListener('mouseup', function(e) {
+  var container = document.getElementById('musicSettings');
+  if (!container.contains(e.target)) {
+      container.classList.add("settings-card");
+      container.classList.remove("musicSettingsOpen");
+      document.getElementById("musicSettingsContainer").style.display = "none";
+  }
+});
+
+
+let webhookUser = document.getElementById("webhookUser");
+webhookUser.addEventListener("change", function() {
+  localStorage.setItem("webhookUser", webhookUser.value);
+  console.log(webhookUser.value);
+});
+
+}
+
+
+function clearDatabase() {
+  const openRequest = indexedDB.open("songs_db", 2);
+  openRequest.onsuccess = function(event) {
+    const db = event.target.result;
+    const transaction = db.transaction(["songs"], "readwrite");
+    const objectStore = transaction.objectStore("songs");
+    const objectStoreRequest = objectStore.clear();
+
+    objectStoreRequest.onsuccess = function(event) {
+      console.log("Successfully cleared the object store.");
+    };
+
+    objectStoreRequest.onerror = function(event) {
+      console.error("Failed to clear the object store: ", event.target.errorCode);
+    };
+  };
+
+  openRequest.onerror = function(event) {
+    console.error("IndexedDB error: ", event.target.errorCode);
+  };
+}
