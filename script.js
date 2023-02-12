@@ -322,28 +322,30 @@ f.onchange = e => {
     const fileName = f.files[0].name.replace(/\s/g, "_");
     const openRequest = indexedDB.open("songs_db", 1);
 
-    openRequest.onupgradeneeded = function(event) {
-      const db = event.target.result;
-      const objectStore = db.createObjectStore("songs", { keyPath: "name" });
-    };
-
-    openRequest.onsuccess = function(event) {
-      const db = event.target.result;
-      const transaction = db.transaction(["songs"], "readwrite");
-      const objectStore = transaction.objectStore("songs");
-      objectStore.add({ name: fileName, data: str });
-      console.log(str);
-      aud = new Audio(str);
-      displaySongs();
-    };
-
-    openRequest.onerror = function(event) {
-      console.error("IndexedDB error: ", event.target.errorCode);
-    };
-  };
-  reader.readAsDataURL(f.files[0]);
+openRequest.onupgradeneeded = function(event) {
+  const db = event.target.result;
+  const objectStore = db.createObjectStore("songs", { keyPath: "name" });
 };
 
+openRequest.onsuccess = function(event) {
+  const db = event.target.result;
+  const transaction = db.transaction(["songs"], "readwrite");
+  const objectStore = transaction.objectStore("songs");
+  objectStore.add({ name: fileName, data: str });
+  console.log(str);
+  aud = new Audio(str);
+  displaySongs();
+};
+
+openRequest.onerror = function(event) {
+  console.error("IndexedDB error: ", event.target.errorCode);
+};
+
+
+
+  reader.readAsDataURL(f.files[0]);
+};
+}
 const songs = [];
 
 function displaySongs() {
