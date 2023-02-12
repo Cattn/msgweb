@@ -271,8 +271,31 @@ button {
   text-align: center;
   width: 20%;
   margin-left: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   border-radius: 3vw;
 }
+
+.show-more {
+  color: var(--card-title-color);
+  font-size: 1.5vw;
+  font-family: var(--card-title-font);
+  margin-top: 1vh;
+  transition: 0.4s; 
+  background-color: var(--title-color);
+  text-align: center;
+  width: 20%;
+  margin-left: 40%;
+  border-radius: 3vw;
+}
+
+.show-more:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #000000 0px 0px 1vh 0px;
+}
+
 
 .song:hover {
   transform: scale(1.05);
