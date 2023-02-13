@@ -422,7 +422,7 @@ function displaySongs() {
           )}</div>`;
         }
         if (totalSongs > maxSongsToDisplay) {
-          html += `<button class="show-more" id="showMoreSongsBtn">Show More </button>`;
+          html += `<button class="show-more" id="showMoreSongsBtn">Show All </button>`;
         }
         songData.innerHTML = html;
         if (totalSongs > maxSongsToDisplay) {
