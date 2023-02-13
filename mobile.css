@@ -73,8 +73,8 @@ button {
       opacity: 1;
       display: block;
     position: inherit;
-    margin-left: 12vw;
-    margin-top: 10vh;
+    margin-left: 10vw;
+    margin-top: 5vh;
     transition: 0.4s; 
 }
 
@@ -90,8 +90,8 @@ button {
       opacity: 1;
       display: block;
     position: inherit;
-    margin-left: 12vw;
-    margin-top: 35vh;
+    margin-left: 10vw;
+    margin-top: 30vh;
     transition: 0.4s; 
 }
 
@@ -555,7 +555,7 @@ a {
   height: 6vh;
   text-align: center;
   border-radius: 4vh;
-  margin-left: 12vw;
+  margin-left: 10vw;
   transition: 0.4s;
   margin-top: 1vh;
 }
