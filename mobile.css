@@ -98,19 +98,19 @@ button {
 .musicSettingsOpen {
     margin: 1rem;
     padding: 1rem;
-    border-radius: 10vh;
+    border-radius: 5vh;
     font-family: Verdana;
     background-color: var(--card-color);
     transition: all 0.3s;
-    width: 60vw;
+    width: 80vw;
     height: auto;
     position: absolute;
     margin-left: 20vw;
     margin-top: 10vh;
     z-index: 100;
     transition: 0.4s;
-    top: 40%;
-    right: 17%;
+    top: 0%;
+    right: 2%;
     box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, .6);
 }
 
@@ -426,7 +426,7 @@ button {
 h1 {
   text-align: center;
   font-family: var(--card-title-font);
-  font-size: 2vw;
+  font-size: 8vw;
   color: var(--card-title-color);
 }
 
@@ -504,7 +504,7 @@ a {
   cursor: pointer;
   transition: all 0.3s;
   width: 80vw;
-  height: 10vh;
+  height: 5vh;
   margin-left: 5vw;
 }
 
@@ -513,14 +513,21 @@ a {
   transform: scale(1.05);
 }
 
+.settings-title {
+    font-size: 8vw;
+    margin: 0;
+    padding: 0;
+}
+
 .settings-text {
   color: var(--card-text-color);
+  margin: 0;
 }
 
 /* Games */
 @import url('https://fonts.googleapis.com/css2?family=Blinker:wght@700&display=swap');
 #games {
-  padding: 15px;
+  padding: 2vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -528,6 +535,11 @@ a {
 
 .game-image {
   width: 100%;
+}
+
+#siteContent {
+    height: 100%;
+    margin-bottom: 50vh;
 }
 
 .card {
@@ -539,7 +551,7 @@ a {
   padding: 1rem;
   margin: 1rem;
   text-align: left;
-  width: 20%;
+  width: 80%;
 }
 
 .card:hover {
