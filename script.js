@@ -656,19 +656,20 @@ function clearStreams() {
 
 let menuExpand = document.getElementById("menuExpand");
 let hamburgerMenu = document.getElementById("hamburgerMenu");
+let menuExpanded = document.getElementById("menuExpanded");
 let menuContent = document.getElementById("menuContent");
 let navBar = document.getElementById("nav");
 menuExpand.addEventListener("click", function() {
-  if (menuExpand.classList.contains("menuExpandOpen")) {
-    menuExpand.classList.remove("menuExpandOpen");
-    menuExpand.classList.add("menuExpandClosed");
-    hamburgerMenu.style.height = "";
-    hamburgerMenu.style.width = "";
+  if (menuExpanded.classList.contains("menuExpandOpen")) {
+    menuExpanded.classList.remove("menuExpandOpen");
+    menuExpanded.classList.add("menuExpandClosed");
+    menuExpanded.style.height = "";
+    menuExpanded.style.width = "";
     menuContent.style.display = "none";
     navBar.style.display = "none";
   } else {
-    menuExpand.classList.remove("menuExpandClosed");
-    menuExpand.classList.add("menuExpandOpen");
+    menuExpanded.classList.remove("menuExpandClosed");
+    menuExpanded.classList.add("menuExpandOpen");
     hamburgerMenu.style.height = "5vw";
     hamburgerMenu.style.width = "5vw";
     menuContent.style.display = "block";

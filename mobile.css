@@ -52,8 +52,8 @@ button {
   float: none;
   text-align: center;
 
-  height: 3vh;
-  background-color: transparent;
+  height: 7vh;
+  background-color: none;
   color: white;
   width: 100%;
   padding: 0 0; 
@@ -399,7 +399,7 @@ button {
     position: absolute;
     width: 10vw;
     height: 10vw;
-    z-index: 100;
+    z-index: 999;
     margin: 1vw;
     top: 0;
     color: white;
