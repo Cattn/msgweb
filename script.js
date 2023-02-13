@@ -3,6 +3,7 @@ const navLinks = document.querySelectorAll(".link");
 const linkBack = document.querySelectorAll(".linkBack");
 
 function scrollFunction() {
+  if (window.matchMedia("(max-width: 640px)").matches == false) {
   if (document.body.scrollTop > 235 || document.documentElement.scrollTop > 235) {
     _.setCSS("#nav", "padding", "2.5vw 0.3vw");
    navLinks.forEach(navLinks => {
@@ -166,6 +167,7 @@ function scrollFunction() {
     _.setCSS("#fullScreenSwitch", "border-radius", "2vh");
     _.setCSS("#fullScreenSwitch", "margin-right", "0.5vw");
   }
+}
 }
 
 function toggleFullScreen() {
@@ -651,3 +653,25 @@ function clearDatabase() {
 function clearStreams() {
   localStorage.setItem("data_streams", 0);
 }
+
+let menuExpand = document.getElementById("menuExpand");
+let hamburgerMenu = document.getElementById("hamburgerMenu");
+let menuContent = document.getElementById("menuContent");
+let navBar = document.getElementById("nav");
+menuExpand.addEventListener("click", function() {
+  if (menuExpand.classList.contains("menuExpandOpen")) {
+    menuExpand.classList.remove("menuExpandOpen");
+    menuExpand.classList.add("menuExpandClosed");
+    hamburgerMenu.style.height = "";
+    hamburgerMenu.style.width = "";
+    menuContent.style.display = "none";
+    navBar.style.display = "none";
+  } else {
+    menuExpand.classList.remove("menuExpandClosed");
+    menuExpand.classList.add("menuExpandOpen");
+    hamburgerMenu.style.height = "5vw";
+    hamburgerMenu.style.width = "5vw";
+    menuContent.style.display = "block";
+    navBar.style.display = "block";
+  }
+});

@@ -9,12 +9,13 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
   <link href="hover.min.css" rel="stylesheet" type="text/css" />
   <link href="games/themes.css" rel="stylesheet" type="text/css" />
+  <link href="mobile.css" rel="stylesheet" type="text/css" />
   <script src="quick.js"></script>
 </head>
 
 <body>
   <div class="navMain" id="nav">
-    <img class="mainLogo" id="logoMain" src="assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
+ <img class="mainLogo" id="logoMain" src="assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
 <div class="linkBack"><a class="link navlink" onclick="homeChange();">Home</a></div>
 <div class="linkBack"><a class="link navlink " onclick="gameChange();">Games</a></div>
 <div class="linkBack"><a class="link navlink" >Search</a></div>
@@ -61,38 +62,49 @@
  </div>
 </div>
 </div>
+<div class="hamburger-menu mobile menuExpandClosed" id="menuExpand">
+<svg id="hamburgerMenu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+</svg>
+<div id="menuContent" class="menuContent">
+  
+</div>
+
+</div>
   <div class="space-make"><p> space </p></div>
   
   <div class="first-content">
       <h1 class="title-text" id="pageTitle"> Welcome to MSGv3 </h1>
+      <h1 class="title-text mobile" id="pageTitle"> Math Study </h1>
   </div>
   <div id="siteContent">  
     <div id="games"></div>
     <div class="settings-container">
       <div class="settings-card">
-        <h1 class="settings-title" onclick="gameChange();">Games!</h1>
+        <h1 class="settings-title mobileSize-h2" onclick="gameChange();">Games!</h1>
         <p class="settings-text">View our Games!</p>
       </div>
       <div class="settings-card">
-        <h1 class="settings-title">Proxy Viewer!</h1>
+        <h1 class="settings-title mobileSize-h2">Proxy Viewer!</h1>
         <p class="settings-text">Link the site with a proxy (WIP)</p>
       </div>
       <div class="settings-card" onclick="settingsChange();">
-        <h1 class="settings-title">Settings!</h1>
+        <h1 class="settings-title mobileSize-h2">Settings!</h1>
         <p class="settings-text">View site Settings</p>
       </div>
     </div>
   <div id="songDatas"></div>
   </div>
 </body>
-<h1> Your Library </h1>
+<div class="mobile spaceMobile"></div>
+<h1 class="mobileSize-h1"> Your Library </h1>
 <label for="f" class="custom-file-upload">
   Upload Music
 </label>
 <input id="f" type="file"/>
 <div id="songData">
 </div>
-<h1> Copyright Math Study - 2023.</h1>
+<h1 class="mobileSize-h5"> Copyright Math Study - 2023.</h1>
 <script src="script.js"></script>
 <script src="games/games.js"></script>
 <script src="games/loadgames.js"></script>

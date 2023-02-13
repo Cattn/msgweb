@@ -1,22 +1,24 @@
- /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@700&display=swap');
-@import url('https://fonts.cdnfonts.com/css/baloo-da');
+     /* Fonts */
+     @import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Blinker:wght@700&display=swap');
+     @import url('https://fonts.cdnfonts.com/css/baloo-da');
 
+/* For Mobile Phones Portrait or Landscape View */
+@media screen and (max-device-width: 640px) {
 html {
-  background-color: var(--bg-color);
+  background-color: var(--mobile-bg);
 }
 body {
   font-family: var(--body-family);
 }
 
+.mobile {
+    display: block !important;
+}
+
 ::-webkit-scrollbar {
 	width: 1vh;
 	border-radius: 1vh;;
-  }
-
-  .mobile {
-    display: none;
   }
   
   ::-webkit-scrollbar-thumb {
@@ -35,47 +37,44 @@ button {
 .link {
   text-decoration: none;
   color: inherit;
-  font-size: 2vw;
-  float: right;
-  color: black;
+  font-size: 10vw;
+  float: none;
+  color: var(--card-text-color);
   transition: 0.4s;
   font-weight: bold;
   height: 5vh;
   width: 10vw;
-  padding-top: 2vh;
 }
 
 #nav {
-  display: flex;
+  display: none;
   align-items: center;
-  float: right;
+  float: none;
   text-align: center;
-  
-  top: 0;
-  left: 0;
+
   height: 3vh;
-  background-color: #7a7a7a;
+  background-color: transparent;
   color: white;
   width: 100%;
-  padding: 10vw 2vw; 
+  padding: 0 0; 
   transition: 0.4s; 
   position: fixed;
-  z-index: 100;
+  z-index: 120;
 }
 
 .media-player-wrap {
   background: url(assets/a9362e9d1ae13b2f90f29a61c1ad526b.1000x1000x1.png), #4F4D4D;
   border-radius: 2vw;
-  height: 18vh;
-  width: 23vw;
+  height: 20vh;
+  width: 80vw;
   background-repeat:no-repeat;
     background-position: center center;
    background-size: cover;
       opacity: 1;
       display: block;
     position: inherit;
-    margin-left: 70vw;
-    margin-bottom: 20vh;
+    margin-left: 12vw;
+    margin-top: 10vh;
     transition: 0.4s; 
 }
 
@@ -83,16 +82,16 @@ button {
 .quick-settings-wrap {
   background: var(--bg-color);
   border-radius: 2vw;
-  height: 18vh;
-  width: 23vw;
+  height: 20vh;
+  width: 80vw;
   background-repeat:no-repeat;
     background-position: center center;
    background-size: cover;
-      opacity: 0.75;
+      opacity: 1;
       display: block;
     position: inherit;
-    margin-left: 70vw;
-    margin-top: 22vh;
+    margin-left: 12vw;
+    margin-top: 35vh;
     transition: 0.4s; 
 }
 
@@ -123,18 +122,33 @@ button {
   display: none;
 }
 
+.mobileSize-h1 {
+    font-size: 12vw;
+    margin: 2vh;
+}
+
+.mobileSize-h5 {
+    font-size: 5vw;
+    margin: 2vh;
+}
+
+
 .custom-file-upload {
-  color: var(--card-title-color);
-  font-size: 1.5vw;
-  font-family: var(--card-title-font);
-  margin-top: 3vh;
-  transition: 0.4s; 
-  background-color: var(--alt-bg-color);
-  text-align: center;
-  width: 20%;
-  display: block;
-  margin-left: 40%;
-  border-radius: 3vw;
+    color: var(--card-title-color);
+    font-size: 8vw;
+    font-family: var(--card-title-font);
+    margin-top: 1vh;
+    transition: 0.4s; 
+    background-color: var(--alt-bg-color);
+    text-align: center;
+    margin-left: 10%;
+    width: 80vw;
+    font-weight: normal;
+    height: 13vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 3vw;
 }
 
 .custom-file-upload:hover {
@@ -157,31 +171,19 @@ button {
   transition: 0.4s; 
 }
 
-@media only screen and (max-width: 1000px) {
-  .media-button-wrap {
-    margin-top: 0vh;
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .media-button-wrap {
-    margin-top: 0vh;
-  }
-}
-
 
 
 .back-arrow-option {
   background: var(--media-skip-buttons);
   color: var(--media-icon-color);
-  height: 4vw;
-  width: 4vw;
+  height: 17vw;
+  width: 17vw;
   background-repeat:no-repeat;
     background-position: center center;
    background-size: cover;
   margin-left: 0;
   border-radius: 2vh;
-  margin-right: 4vw;
+  margin-right: 6vw;
   display: inline-block;
   transition: 0.4s; 
 }
@@ -193,17 +195,18 @@ button {
 }
 
 .pause-play-option {
-  background: var(--media-play-buttons);
-  color: var(--media-icon-color);
-  height: 4vw;
-  width: 4vw;
-  background-repeat:no-repeat;
-    background-position: center center;
-   background-size: cover;
-  display: inline-block;
-  border-radius: 2vh;
-  margin-right: 4vw;
-  transition: 0.4s; 
+    background: var(--media-play-buttons);
+    color: var(--media-icon-color);
+    height: 17vw;
+    width: 17vw;
+    background-repeat:no-repeat;
+      background-position: center center;
+     background-size: cover;
+    margin-left: 0;
+    border-radius: 2vh;
+    margin-right: 6vw;
+    display: inline-block;
+    transition: 0.4s; 
 }
 
 .pause-play-option:hover {
@@ -213,18 +216,18 @@ button {
 }
 
 .forward-arrow-option {
-  background: var(--media-skip-buttons);
-  color: var(--media-icon-color);
-  height: 4vw;
-  width: 4vw;
-  background-repeat:no-repeat;
-    background-position: center center;
-   background-size: cover;
-  margin-left: 0;
-  border-radius: 2vh;
-  display: inline-block;
-  margin-right: 0vw;
-  transition: 0.4s; 
+    background: var(--media-skip-buttons);
+    color: var(--media-icon-color);
+    height: 17vw;
+    width: 17vw;
+    background-repeat:no-repeat;
+      background-position: center center;
+     background-size: cover;
+    margin-left: 0;
+    border-radius: 2vh;
+    margin-right: 0vw;
+    display: inline-block;
+    transition: 0.4s; 
 }
 
 .forward-arrow-option:hover {
@@ -236,15 +239,15 @@ button {
 /* Quick Settings */
 
 .quick-button-wrap {
-  margin-top: 3vh;
+  margin-top: 5vh;
   transition: 0.4s; 
 }
 
 .night-button-option {
   background: var(--card-color);
   color: var(--card-title-color); 
-  height: 6vw;
-  width: 6vw;
+  height: 20vw;
+  width: 20vw;
   background-repeat:no-repeat;
     background-position: center center;
    background-size: cover;
@@ -262,18 +265,18 @@ button {
 }
 
 .refresh-button-option {
-  background: var(--card-color);
-  color: var(--card-title-color); 
-  height: 6vw;
-  width: 6vw;
-  background-repeat:no-repeat;
-    background-position: center center;
-   background-size: cover;
-  margin-left: 0;
-  border-radius: 2vh;
-  display: inline-block;
-  margin-right: 0.5vw;
-  transition: 0.4s; 
+    background: var(--card-color);
+    color: var(--card-title-color); 
+    height: 20vw;
+    width: 20vw;
+    background-repeat:no-repeat;
+      background-position: center center;
+     background-size: cover;
+    margin-left: 0;
+    border-radius: 2vh;
+    display: inline-block;
+    margin-right: 0.5vw;
+    transition: 0.4s; 
 }
 
 .refresh-button-option:hover {
@@ -283,18 +286,18 @@ button {
 }
 
 .fullscreen-button-option {
-  background: var(--card-color);
-  color: var(--card-title-color); 
-  height: 6vw;
-  width: 6vw;
-  background-repeat:no-repeat;
-    background-position: center center;
-   background-size: cover;
-  margin-left: 0;
-  border-radius: 2vh;
-  display: inline-block;
-  margin-right: 0.5vw;
-  transition: 0.4s; 
+    background: var(--card-color);
+    color: var(--card-title-color); 
+    height: 20vw;
+    width: 20vw;
+    background-repeat:no-repeat;
+      background-position: center center;
+     background-size: cover;
+    margin-left: 0;
+    border-radius: 2vh;
+    display: inline-block;
+    margin-right: 0.5vw;
+    transition: 0.4s; 
 }
 
 .fullscreen-button-option:hover {
@@ -303,16 +306,23 @@ button {
   box-shadow: #000000 0px 0px 1vh 0px;
 }
 
+.space-make {
+    display: none;
+}
+
+/* Mobile song */
 .song {
   color: var(--card-title-color);
-  font-size: 1.5vw;
+  font-size: 8vw;
   font-family: var(--card-title-font);
   margin-top: 1vh;
   transition: 0.4s; 
   background-color: var(--card-color);
   text-align: center;
-  width: 20%;
-  margin-left: 40%;
+  margin-left: 10%;
+  width: 80vw;
+  font-weight: normal;
+  height: 13vw;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -320,16 +330,21 @@ button {
 }
 
 .show-more {
-  color: var(--card-title-color);
-  font-size: 1.5vw;
-  font-family: var(--card-title-font);
-  margin-top: 1vh;
-  transition: 0.4s; 
-  background-color: var(--title-color);
-  text-align: center;
-  width: 20%;
-  margin-left: 40%;
-  border-radius: 3vw;
+    color: var(--card-title-color);
+    font-size: 8vw;
+    font-family: var(--card-title-font);
+    margin-top: 1vh;
+    transition: 0.4s; 
+    background-color: var(--title-color);
+    text-align: center;
+    margin-left: 10%;
+    width: 80vw;
+    font-weight: normal;
+    height: 13vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 3vw;
 }
 
 .show-more:hover {
@@ -354,7 +369,7 @@ button {
   opacity: 0.9;
   -webkit-transition: .2s;
   transition: opacity .2s;
-  margin-top: 1vh;
+  margin-top: 3vh;
   margin-right: 1vw;
   transition: 0.4s; 
   margin-bottom: none;
@@ -370,6 +385,7 @@ button {
 }
 
 .mainLogo {
+    display: none;
    transition: 0.4s;
   height: 15vw;
   float: right;
@@ -378,15 +394,29 @@ button {
 }
 .navlink { margin: 0 1vw; }
 
+.hamburger-menu {
+    display: block;
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    z-index: 100;
+    margin: 1vw;
+    top: 0;
+    color: white;
+    cursor: pointer;
+}
+
 .first-content {
   text-align: center;
-  margin-top: 45vh;
+  margin-top: 10vh;
 }
+
 
 .title-text {
   color: var(--title-color);
-  font-size: 6vw;
-  font-family: var(--title-family);
+  font-size: 15vw;
+  font-family: 'Baloo Da';
+  display: none;
 }
 
 .theme-value {
@@ -411,24 +441,65 @@ a {
   cursor: pointer;
 }
 
+.spaceMobile {
+    margin-top: 50vh;
+}
+
+.mobileSize-h2 {
+    font-size: 10vw;
+    margin: 1vh;
+}
+
+
 .settings-container {
-  display: flex;
-  background-color: var(--settings-container);
-  width: 70vw;
-  justify-content: center;
+    background-color: transparent;
+  width: 100vw;
+  height: 40vh;
   text-align: center;
-  padding-left: 15vw;
+  position: absolute;
+  display: block;
+  padding-left: 0vw;
+}
+
+.menuExpandClosed {
+    color: var(--card-text-color);
+}
+
+.menuExpandOpen {
+    color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    border-radius: 10vh;
+    font-family: Verdana;
+    background-color: transparent;
+    transition: all 0.3s;
+    width: 100vw;
+    height: auto;
+    position: absolute;
+    margin-left: 20vw;
+    margin-top: 0;
+    z-index: 100;
+    transition: 0.4s;
+    top: 0;
+    right: 0;
+    box-shadow: 0 0 0 max(100vh, 100vw) rgba(24, 24, 24, 1);
+    overflow: hidden;
+}
+
+.menuContent {
+    display: none;
 }
 
 .settings-card {
-  margin: 1rem;
-  padding: 1rem;
+    position: relative;
   border-radius: 3vh;
   font-family: Verdana;
   background-color: var(--card-color);
   cursor: pointer;
   transition: all 0.3s;
-  width: 20%;
+  width: 80vw;
+  height: 10vh;
+  margin-left: 5vw;
 }
 
 .settings-card:hover {
@@ -438,7 +509,6 @@ a {
 
 .settings-text {
   color: var(--card-text-color);
-  
 }
 
 /* Games */
@@ -481,15 +551,13 @@ a {
 
 .linkBack {
   background-color: var(--card-color);
-  width: 12%;
-  height: 9vh;
+  width: 80%;
+  height: 6vh;
+  text-align: center;
   border-radius: 4vh;
-  margin-left: 1vw;
+  margin-left: 12vw;
   transition: 0.4s;
+  margin-top: 1vh;
 }
 
-.linkBack:hover {
-  transform: scale(1.05);
-  transition: 0.1s;
-  box-shadow: #000000 0px 0px 1vh 0px;
-}
+  }
