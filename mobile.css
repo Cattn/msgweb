@@ -441,6 +441,10 @@ a {
   cursor: pointer;
 }
 
+.spaceMobile2 {
+    margin-top: 10vh;
+}
+
 .spaceMobile {
     margin-top: 50vh;
 }
