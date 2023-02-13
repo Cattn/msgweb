@@ -57,7 +57,7 @@ button {
   color: white;
   width: 100%;
   padding: 0 0; 
-  transition: 0.4s; 
+  transition: 0.6s; 
   position: fixed;
   z-index: 120;
 }
@@ -92,7 +92,7 @@ button {
     position: inherit;
     margin-left: 10vw;
     margin-top: 30vh;
-    transition: 0.4s; 
+    transition: 0.4s;
 }
 
 .musicSettingsOpen {
@@ -397,8 +397,8 @@ button {
 .hamburger-menu {
     display: block;
     position: absolute;
-    width: 10vw;
-    height: 10vw;
+    width: 12vw;
+    height: 12vw;
     z-index: 999;
     margin: 1vw;
     top: 0;
@@ -467,6 +467,7 @@ a {
 
 .menuExpandClosed {
     color: var(--card-text-color);
+    transition: 0.4s;
 }
 
 .menuExpandOpen {
@@ -492,6 +493,7 @@ a {
 
 .menuContent {
     display: none;
+    transition: 0.4s;
 }
 
 .settings-card {

@@ -670,8 +670,8 @@ menuExpand.addEventListener("click", function() {
   } else {
     menuExpanded.classList.remove("menuExpandClosed");
     menuExpanded.classList.add("menuExpandOpen");
-    hamburgerMenu.style.height = "5vw";
-    hamburgerMenu.style.width = "5vw";
+    hamburgerMenu.style.height = "";
+    hamburgerMenu.style.width = "";
     menuContent.style.display = "block";
     navBar.style.display = "block";
   }
