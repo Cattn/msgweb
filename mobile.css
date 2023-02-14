@@ -375,6 +375,10 @@ button {
   margin-bottom: none;
 }
 
+.desktop {
+  display: none;
+}
+
 .volumeSlide::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;

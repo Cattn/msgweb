@@ -1,6 +1,6 @@
 :root {
     --title-color: #962c2c;
-    --bg-color: #c2c2c2;
+    --bg-color: #d4d4d4;
     --title-family: 'Blinker', sans-serif;
     --body-family: 'DM Sans';
     --card-color: #43b4ab;
@@ -10,19 +10,20 @@
     --card-text-weight: bold;
     --p-text-color: black;
     --link-decoration: none;
-    --settings-container: #c2c2c2;
+    --settings-container: #d4d4d4;
     --media-skip-buttons: rgba(189, 116, 116, 0.7);
     --media-play-buttons: rgba(223, 192, 113, 0.7);
     --media-icon-color: white;
     --alt-bg-color: #33c263;
     --mobile-bg: #343434;
+    --nav-bar-bg: #1e1e1e;
   /* Unfinished!! */
 }
 
 /* Placeholder values!! */
 [data-theme="dark"] {
-  --title-color: #962c2c;
-  --bg-color: #111111;  
+  --title-color: #c03535;
+  --bg-color: #121212;  
   --title-family: 'Blinker', sans-serif;
   --body-family: 'DM Sans';
   --card-color: #4b64a8;
@@ -37,4 +38,6 @@
   --media-play-buttons: rgba(128, 105, 46, 0.7);
   --media-icon-color: black;
   --alt-bg-color: #33c263;
+  --mobile-bg: #343434;
+  --nav-bar-bg: #c1c1c1;
 }

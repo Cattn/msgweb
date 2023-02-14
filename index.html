@@ -15,14 +15,15 @@
 
 <body>
   <div class="navMain" id="nav">
- <img class="mainLogo" id="logoMain" src="assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
+ <img class="mainLogo" style="display: none;" id="logoMain" src="assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
 <div class="mobile spaceMobile2"></div>
+<div class="desktop spaceDesktop2" id="spaceDesktop2"></div>
  <div class="linkBack"><a class="link navlink" onclick="homeChange();">Home</a></div>
 <div class="linkBack"><a class="link navlink " onclick="gameChange();">Games</a></div>
 <div class="linkBack"><a class="link navlink" >Search</a></div>
 <div class="linkBack"><a class="link navlink" onclick="settingsChange();">Settings</a></div>
 
-
+<!--
 <div class="media-player-wrap" id="mediaPlayerOuter">
   <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" class="volumeSlide">
  <div class="media-button-wrap" id="mediaPlayerWrap">
@@ -43,6 +44,7 @@
    </div>
  </div>
 </div>
+-->
 <div class="quick-settings-wrap" id="quickSettingsOuter"> 
  <div class="quick-button-wrap" id="quickSettingsWrap">
    <div class="night-button-option" onclick="darkLightSwitch();" id="themeSwitch">
@@ -100,12 +102,14 @@
   </div>
 </body>
 <div class="mobile spaceMobile"></div>
+<div class="library-container">
 <h1 class="mobileSize-h1"> Your Library </h1>
 <label for="f" class="custom-file-upload">
   Upload Music
 </label>
 <input id="f" type="file"/>
 <div id="songData">
+</div>
 </div>
 <h1 class="mobileSize-h5"> Copyright Math Study - 2023.</h1>
 <script src="script.js"></script>
