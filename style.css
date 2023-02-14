@@ -257,7 +257,7 @@ button {
 
 .night-button-option {
   background: var(--card-color);
-  color: var(--card-title-color); 
+  color: var(--bg-color); 
   height: 4vw;
   width: 4vw;
   background-repeat:no-repeat;
@@ -278,7 +278,7 @@ button {
 
 .refresh-button-option {
   background: var(--card-color);
-  color: var(--card-title-color); 
+  color: var(--bg-color); 
   height: 4vw;
   width: 4vw;
   background-repeat:no-repeat;
@@ -299,7 +299,7 @@ button {
 
 .fullscreen-button-option {
   background: var(--card-color);
-  color: var(--card-title-color); 
+  color: var(--bg-color); 
   height: 4vw;
   width: 4vw;
   background-repeat:no-repeat;

@@ -1,15 +1,15 @@
 :root {
     --title-color: #2a3238;
-    --h1-color: #2e2e2e;
+    --h1-color: black;
     --bg-color: #F0F5F9;
     --title-family: 'Blinker', sans-serif;
     --body-family: 'DM Sans';
     --card-color: #5a6a74;
     --card-title-font: 'Blinker', sans-serif;
-    --card-title-color: #999ea1;
-    --card-text-color: #C9D6DF;
+    --card-title-color: white;
+    --card-text-color: white;
     --card-text-weight: bold;
-    --p-text-color: white;
+    --p-text-color: rgb(255, 255, 255);
     --link-decoration: none;
     --settings-container: #F0F5F9;
     --media-skip-buttons: rgba(189, 116, 116, 0.7);
@@ -25,11 +25,11 @@
 /* Placeholder values!! */
 [data-theme="dark"] {
   --title-color: #14FFEC;
-  --h1-color: #d0d0d0;
-  --bg-color: rgb(33, 33, 33);  
+  --h1-color: white;
+  --bg-color: #212121;  
   --title-family: 'Blinker', sans-serif;
   --body-family: 'DM Sans';
-  --card-color: rgb(13, 115, 119);
+  --card-color: #0d7377;
   --card-title-font: 'Blinker', sans-serif;
   --card-title-color: rgb(255, 255, 255);
   --card-text-color: rgb(255, 255, 255);
@@ -48,7 +48,7 @@
 
 [data-theme="lavender"] {
   --title-color: #674188;
-  --h1-color: #d0d0d0;
+  --h1-color: #4c4352;
   --bg-color: #F7EFE5;
   --title-family: 'Blinker', sans-serif;
   --body-family: 'DM Sans';
@@ -66,6 +66,6 @@
   --alt-bg-color: #33c263;
   --mobile-bg: #343434;
   --nav-bar-bg: #C3ACD0;
-  --bg-image: url(assets/Mountain.svg);
+  --bg-image: url(assets/Mountain_Lavenderer.svg);
 /* Unfinished!! */
 }
