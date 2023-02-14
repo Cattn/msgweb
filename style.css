@@ -87,13 +87,13 @@ button {
 
 .quick-settings-wrap {
   border-radius: 2vw;
+  display: none;
   height: 18vh;
   width: 23vw;
   background-repeat:no-repeat;
     background-position: center center;
    background-size: cover;
       opacity: 0.75;
-      display: block;
     position: inherit;
     margin-left: 75vw;
     margin-top: 4vh;
@@ -121,7 +121,7 @@ button {
 
 .spaceDesktop2 {
   height: 10vh;
-  width: 20%;
+  width: 23%;
   display: block;
   transition: 0.4s;
 }

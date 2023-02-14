@@ -6,23 +6,29 @@ function scrollFunction() {
   if (window.matchMedia("(max-width: 640px)").matches == false) {
   if (document.body.scrollTop > 235 || document.documentElement.scrollTop > 100) {
     _.setCSS("#nav", "padding", "1vw 0.1vw");
+    _.setCSS("#nav", "width", "42%");
+    _.setCSS("#nav", "left", "62vh");
+    document.getElementById("nav").style.filter = "brightness(60%)";
    navLinks.forEach(navLinks => {
-     navLinks.style.fontSize = "1vw"
+     navLinks.style.fontSize = "2vw"
      navLinks.style.height = "1vw"
       navLinks.style.width = "7vw"
-      navLinks.style.paddingTop = "0.3vw"
+      navLinks.style.paddingBottom = "0vw"
+      navLinks.style.paddingTop = "0vw"
       navLinks.style.marginLeft = "0.3vw"
 
    })
    linkBack.forEach(linkBack => {
-    linkBack.style.height = "2vw"
+    linkBack.style.height = "2.5vw"
     linkBack.style.width = "9vw"
   })
     _.setCSS("#logoMain", "display", "none");
     _.setCSS("#logoMain", "margin-left", "5vw");
-    _.setCSS("#spaceDesktop2", "width", "28%");
+    _.setCSS("#spaceDesktop2", "width", "30%");
     
     // Set Quick Setting Sizes
+    _.setCSS("#quickSettingsOuter", "display", "none");
+
     _.setCSS("#quickSettingsOuter", "margin-top", "0vh");
     _.setCSS("#quickSettingsOuter", "margin-left", "80vw");
 
@@ -48,6 +54,9 @@ function scrollFunction() {
     _.setCSS("#fullScreenSwitch", "margin-right", "1vw");
   } else {
     _.setCSS("#nav", "padding", "2vw 0.5vw");
+    _.setCSS("#nav", "width", "100%");
+    _.setCSS("#nav", "left", "0vh");
+    document.getElementById("nav").style.filter = "brightness(100%)";
     navLinks.forEach(navLinks => {
      navLinks.style.fontSize = "2vw"
      navLinks.style.height = "5vw"
@@ -61,11 +70,14 @@ function scrollFunction() {
  })
    _.setCSS("#logoMain", "display", "none");
    _.setCSS("#logoMain", "margin-left", "1vw");
-   _.setCSS("#spaceDesktop2", "width", "20%");
+   _.setCSS("#spaceDesktop2", "width", "23%");
 
     // Re-Size Quick Setting Sizes
+    _.setCSS("#quickSettingsOuter", "display", "none");
+
     _.setCSS("#quickSettingsOuter", "margin-top", "4vh");
     _.setCSS("#quickSettingsOuter", "margin-left", "75vw");
+
 
 
     _.setCSS("#quickSettingsOuter", "height", "18vh");
