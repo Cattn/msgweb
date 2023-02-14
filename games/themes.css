@@ -1,43 +1,71 @@
 :root {
-    --title-color: #962c2c;
-    --bg-color: #d4d4d4;
+    --title-color: #2a3238;
+    --h1-color: #2e2e2e;
+    --bg-color: #F0F5F9;
     --title-family: 'Blinker', sans-serif;
     --body-family: 'DM Sans';
-    --card-color: #43b4ab;
+    --card-color: #5a6a74;
     --card-title-font: 'Blinker', sans-serif;
-    --card-title-color: black;
-    --card-text-color: black;
+    --card-title-color: #999ea1;
+    --card-text-color: #C9D6DF;
     --card-text-weight: bold;
-    --p-text-color: black;
+    --p-text-color: white;
     --link-decoration: none;
-    --settings-container: #d4d4d4;
+    --settings-container: #F0F5F9;
     --media-skip-buttons: rgba(189, 116, 116, 0.7);
     --media-play-buttons: rgba(223, 192, 113, 0.7);
     --media-icon-color: white;
     --alt-bg-color: #33c263;
     --mobile-bg: #343434;
-    --nav-bar-bg: #1e1e1e;
+    --nav-bar-bg: #52616B;
+    --bg-image: url(assets/Mountain_Lighter.svg);
   /* Unfinished!! */
 }
 
 /* Placeholder values!! */
 [data-theme="dark"] {
-  --title-color: #c03535;
-  --bg-color: #121212;  
+  --title-color: #14FFEC;
+  --h1-color: #d0d0d0;
+  --bg-color: rgb(33, 33, 33);  
   --title-family: 'Blinker', sans-serif;
   --body-family: 'DM Sans';
-  --card-color: #4b64a8;
+  --card-color: rgb(13, 115, 119);
   --card-title-font: 'Blinker', sans-serif;
   --card-title-color: rgb(255, 255, 255);
   --card-text-color: rgb(255, 255, 255);
   --card-text-weight: bold;
   --p-text-color: rgb(255, 255, 255);
   --link-decoration: none;
-  --settings-container: #111111;
+  --settings-container: #212121;
   --media-skip-buttons: rgba(102, 40, 40, 0.7);
   --media-play-buttons: rgba(128, 105, 46, 0.7);
   --media-icon-color: black;
   --alt-bg-color: #33c263;
   --mobile-bg: #343434;
-  --nav-bar-bg: #c1c1c1;
+  --nav-bar-bg: #0D7377;
+  --bg-image: url(assets/Mountain_Darker.svg);
+}
+
+[data-theme="lavender"] {
+  --title-color: #674188;
+  --h1-color: #d0d0d0;
+  --bg-color: #F7EFE5;
+  --title-family: 'Blinker', sans-serif;
+  --body-family: 'DM Sans';
+  --card-color: #C3ACD0;
+  --card-title-font: 'Blinker', sans-serif;
+  --card-title-color: black;
+  --card-text-color: black;
+  --card-text-weight: bold;
+  --p-text-color: black;
+  --link-decoration: none;
+  --settings-container: #F7EFE5;
+  --media-skip-buttons: rgba(189, 116, 116, 0.7);
+  --media-play-buttons: rgba(223, 192, 113, 0.7);
+  --media-icon-color: white;
+  --alt-bg-color: #33c263;
+  --mobile-bg: #343434;
+  --nav-bar-bg: #C3ACD0;
+  --bg-image: url(assets/Mountain.svg);
+/* Unfinished!! */
 }

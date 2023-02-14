@@ -20,7 +20,7 @@ function scrollFunction() {
   })
     _.setCSS("#logoMain", "display", "none");
     _.setCSS("#logoMain", "margin-left", "5vw");
-    _.setCSS("#spaceDesktop2", "width", "30%");
+    _.setCSS("#spaceDesktop2", "width", "28%");
     
     // Set Quick Setting Sizes
     _.setCSS("#quickSettingsOuter", "margin-top", "0vh");

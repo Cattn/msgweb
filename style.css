@@ -4,7 +4,13 @@
 @import url('https://fonts.cdnfonts.com/css/baloo-da');
 
 html {
-  background-color: var(--bg-color);
+  background: var(--bg-image) no-repeat center center fixed;
+  transition: 1s; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 body {
   font-family: var(--body-family);
@@ -133,7 +139,7 @@ button {
 }
 
 .custom-file-upload {
-  color: var(--card-title-color);
+  color: var(--title-color);
   font-size: 1.5vw;
   font-family: var(--card-title-font);
   margin-top: 3vh;
@@ -313,7 +319,7 @@ button {
 }
 
 .song {
-  color: var(--card-title-color);
+  color: var(--p-text-color);
   font-size: 1.5vw;
   filter: brightness(75%);
   font-family: var(--card-title-font);
@@ -407,7 +413,7 @@ h1 {
   text-align: center;
   font-family: var(--card-title-font);
   font-size: 2vw;
-  color: var(--card-title-color);
+  color: var(--h1-color);
 }
 
 p {
@@ -423,7 +429,7 @@ a {
 
 .settings-container {
   display: flex;
-  background-color: var(--settings-container);
+  background-color: transparent;
   width: 70vw;
   justify-content: center;
   text-align: center;
@@ -436,9 +442,11 @@ a {
   border-radius: 3vh;
   font-family: Verdana;
   background-color: var(--card-color);
+  filter: brightness(95%);
   cursor: pointer;
   transition: all 0.3s;
   width: 20%;
+  color: var(--card-title-color) !important;
 }
 
 .settings-card:hover {
@@ -448,7 +456,6 @@ a {
 
 .settings-text {
   color: var(--card-text-color);
-  
 }
 
 /* Games */
