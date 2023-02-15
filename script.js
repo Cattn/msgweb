@@ -309,6 +309,8 @@ function playSong(songName) {
       aud.play();
       getID3Data(songData);
       sendMessage();
+      progressBar();
+      logCurrentTime();
 
 
       // Automatically play the next song when this one is done
@@ -402,25 +404,27 @@ muted.addEventListener("click", function() {
   }
 });
 
-if (isPlaying) {
-  aud.addEventListener("timeupdate", function() {
-    for (let i = 0; i < aud.buffered.length; i++) {
-      if (aud.buffered.start(aud.buffered.length - 1 - i) < aud.currentTime) {
-        document.getElementById("bufferBar").style.width =
-          (aud.buffered.end(aud.buffered.length - 1 - i) / aud.duration) *
-            100 +
-          "%";
-        break;
-      }
-    }
-  });
-  
+
+function progressBar() {
+  if (!isPlaying) {
+    setInterval(function() {
+      const currentTime = aud.currentTime;
+      const duration = aud.duration;
+      const progress = (currentTime / duration) * 100;
+      document.getElementById("progressBar").style.width = `${progress}%`;
+    }, 1000); // update the progress bar every 1000 milliseconds (1 second)
+  }
+}
+
+function logCurrentTime() {
+  let timeDiv = document.getElementById("currentTime");
   setInterval(function() {
-    var progressBar = document.getElementById("progressBar");
-    var progress = Math.floor((aud.currentTime / aud.duration) * 100);
-    progressBar.style.width = progress + "%";
-    console.log("Progress: " + progress + "%");
-  }, 1000);
+    const currentTime = aud.currentTime;
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = Math.floor(currentTime % 60);
+    const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    timeDiv.innerHTML = timeString;
+  }, 1000); // update the log every 1000 milliseconds (1 second)
 }
 
 lastSentTime = 0;
