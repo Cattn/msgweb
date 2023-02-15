@@ -420,12 +420,17 @@ function logCurrentTime() {
   let timeDiv = document.getElementById("currentTime");
   setInterval(function() {
     const currentTime = aud.currentTime;
-    const minutes = Math.floor(currentTime / 60);
-    const seconds = Math.floor(currentTime % 60);
-    const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    const duration = aud.duration;
+    const elapsedMinutes = Math.floor(currentTime / 60);
+    const elapsedSeconds = Math.floor(currentTime % 60);
+    const totalMinutes = Math.floor(duration / 60);
+    const totalSeconds = Math.floor(duration % 60);
+    const timeString = `${elapsedMinutes.toString().padStart(2, '0')}:${elapsedSeconds.toString().padStart(2, '0')}/` +
+                       `${totalMinutes.toString().padStart(2, '0')}:${totalSeconds.toString().padStart(2, '0')}`;
     timeDiv.innerHTML = timeString;
   }, 1000); // update the log every 1000 milliseconds (1 second)
 }
+
 
 lastSentTime = 0;
 
@@ -637,3 +642,48 @@ hamburgerSidebar.addEventListener("click", function() {
   sidebar.style.width = "20vw";
   }
 });
+
+
+
+// Handle to the picture-in-picture window.
+let pipWindow = null;
+
+function enterPiP() {
+  const player = document.querySelector('#player');
+
+  // Set the aspect ratio so the window is properly sized to the video.
+  const pipOptions = {
+    initialAspectRatio: player.clientWidth / player.clientHeight,
+    copyStyleSheets: true
+  };
+
+  documentPictureInPicture.requestWindow(pipOptions).then((pipWin) => {
+    pipWindow = pipWin;
+
+    // Style remaining container to imply the player is in PiP.
+    playerContainer.classList.add('pip-mode');
+
+    // Add player to the PiP window.
+    pipWindow.document.body.append(player);
+
+    // Listen for the PiP closing event to put the video back.
+    pipWindow.addEventListener('unload', onLeavePiP.bind(pipWindow), { once: true });
+  });
+}
+
+// Called when the PiP window has closed.
+function onLeavePiP() {
+  if (this !== pipWindow) {
+    return;
+  }
+
+  // Remove PiP styling from the container.
+  const playerContainer = document.querySelector('#player-container');
+  playerContainer.classList.remove('pip-mode');
+
+  // Add the player back to the main window.
+  const player = pipWindow.document.querySelector('#player');
+  playerContainer.append(player);
+
+  pipWindow = null;
+}
