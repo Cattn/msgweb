@@ -308,9 +308,10 @@ function playSong(songName) {
       isPlaying = !aud.paused;
       aud.play();
       getID3Data(songData);
-      sendMessage();
+      webhookSend();
       progressBar();
       logCurrentTime();
+
 
 
       // Automatically play the next song when this one is done
@@ -416,6 +417,14 @@ function progressBar() {
   }
 }
 
+function wait(ms){
+  var start = new Date().getTime();
+  var end = start;
+  while(end < start + ms) {
+    end = new Date().getTime();
+ }
+}
+
 function logCurrentTime() {
   let timeDiv = document.getElementById("currentTime");
   setInterval(function() {
@@ -434,7 +443,7 @@ function logCurrentTime() {
 
 lastSentTime = 0;
 
-function sendMessage() {
+function sendMessage(songData) {
   if (localStorage.getItem("webhookUser") === null) {
   } else if (localStorage.getItem("webhookUser") === "") {
     } else {
@@ -459,17 +468,115 @@ function sendMessage() {
     return;
   }
   lastSentTime = currentTime;
+}
+}
+
+function webhookSend() {
+/*
+  if (localStorage.getItem("webhookUser") === null) {
+  } else if (localStorage.getItem("webhookUser") === "") {
+    } else {
+      console.log("work")
+      var webhookPic = "";
+      var webhookURL = "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c";
+      let songLength = "reall";
+  let songTitle = "Don't Fence Me In";
+  let songArtist = "Michael Wyckoff";
+  let songAlbum = "The Bonelab OST";
+  let songArt = "https://f4.bcbits.com/img/a3783174096_10.jpg";
+      if (localStorage.getItem("webhookPic") === null) {
+      } else if (localStorage.getItem("webhookPic") === "") {
+        } else {
+          webhookPic = localStorage.getItem("webhookPic");
+        }
+
+        if (localStorage.getItem("webhookURL") === null) {
+        } else if (localStorage.getItem("webhookURL") === "") {
+          } else {
+            webhookURL = localStorage.getItem("webhookURL");
+          }
+          if (localStorage.getItem("songTitle") === null) {
+          } else if (localStorage.getItem("songTitle") === "") {
+            } else {
+              songTitle = localStorage.getItem("songTitle");
+            }
+        
+            if (localStorage.getItem("songArtist") === null) {
+            } else if (localStorage.getItem("songArtist") === "") {
+              } else {
+                songArtist = localStorage.getItem("songArtist");
+              }
+        
+              if (localStorage.getItem("songAlbum") === null) {
+              } else if (localStorage.getItem("songAlbum") === "") {
+                } else {
+                  songAlbum = localStorage.getItem("songAlbum");
+                }
+        
+                if (localStorage.getItem("songArt") === null) {
+                } else if (localStorage.getItem("songArt") === "") {
+                  } else {
+                    songArt = localStorage.getItem("songArt");
+                  }
+        
+    const webhookUser = localStorage.getItem("webhookUser");
   
+  */
   const request = new XMLHttpRequest();
-  request.open("POST", webhookURL);
+  request.open("POST", "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c");
   request.setRequestHeader('Content-type', 'application/json');
   const params = {
-    username: webhookUser,
-    avatar_url: webhookPic,
-    content:"Currently Playing: " + songs[currentSongIndex]
+    "embeds": [
+      {
+          "color": 4321431,
+          "timestamp": "2023-02-15T21:30:58.894Z",
+          "url": "https://discord.com",
+          "author": {
+              "name": "Author name",
+              "url": "https://discord.com"
+          },
+          "thumbnail": {
+              "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+          },
+          "footer": {
+              "text": "Footer text",
+              "icon_url": "https://cdn.discordapp.com/embed/avatars/0.png"
+          },
+          "fields": [
+              {
+                  "value": "Field value"
+              },
+              {
+                  "name": "Field 2",
+                  "inline": false
+              },
+              {
+                  "name": "Inline field",
+                  "value": "Fields can be inline",
+                  "inline": true
+              },
+              {
+                  "name": "Inline field",
+                  "value": "*Lorem ipsum*",
+                  "inline": true
+              },
+              {
+                  "name": "Inline field",
+                  "value": "value",
+                  "inline": true
+              },
+              {
+                  "name": "Another field",
+                  "value": "> Nope, didn't forget about this",
+                  "inline": false
+              }
+          ]
+      }
+  ]
   }
   request.send(JSON.stringify(params));
-  }
+  console.log(params);
+  //}
 }
 
 function settingsLoad() {
@@ -569,23 +676,42 @@ function getID3Data(songData) {
       console.log(tag);
       const title = tag.tags.title || "Unknown Title";
       const artist = tag.tags.artist || "Unknown Artist";
+      const album = tag.tags.album || "Unknown Album";
       let picture = tag.tags.picture;
 
       let songTitle = document.getElementById("songTitle");
       if (title === null) {
         title = "Unknown Title";
+        localStorage.setItem("songTitle", title);
       } else if (title === "") {
         title = "Unknown Title";
+        localStorage.setItem("songTitle", title);
       } else {
       songTitle.innerHTML = title;
+      localStorage.setItem("songTitle", title);
       }
       let songArtist = document.getElementById("songArtist");
       if (artist === null) {
         artist = "Unknown Artist";
+        localStorage.setItem("songArtist", artist);
       } else if (artist === "") {
         artist = "Unknown Artist";
+        localStorage.setItem("songArtist", artist);
       } else {
       songArtist.innerHTML = artist;
+      localStorage.setItem("songArtist", artist);
+      }
+
+      let songAlbum;
+      if (album === null) {
+        album = "Unknown Album";
+        localStorage.setItem("songAlbum", album);
+      } else if (album === "") {
+        album = "Unknown Album";
+        localStorage.setItem("songAlbum", album);
+      } else {
+      songAlbum = album;
+      localStorage.setItem("songAlbum", album);
       }
       let songPhoto = document.getElementById("songPhoto");
       if (picture) {
@@ -596,6 +722,7 @@ function getID3Data(songData) {
         let base64 = "data:" + picture.format + ";base64," +
           window.btoa(base64String);
         songPhoto.src = base64;
+        localStorage.setItem("songArt", base64);
       } else {
         console.log("No picture found.");
       }
@@ -640,5 +767,12 @@ hamburgerSidebar.addEventListener("click", function() {
     sidebar.style.width = "0vw";
   } else {
   sidebar.style.width = "20vw";
+  }
+});
+
+// Listen for CTRL + Spacebar then do something
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.code == 'Space') {
+    console.log("CTRL + Spacebar pressed");
   }
 });

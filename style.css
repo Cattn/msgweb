@@ -519,7 +519,7 @@ a {
 
 /* SIDEBAR */
 .sidebar-wrap {
-  height: 100%;
+  height: calc(100vh - 60px);
   width: 0;
   position: fixed;
   z-index: 10;
@@ -608,7 +608,7 @@ a {
 
 
 .volume-container {
-  top: 60vh;
+  margin-top: calc(52vh - 1vh);
   margin-left: 8.2vw;
   background: #000000;
   border-radius: 3vh;
@@ -628,7 +628,7 @@ a {
   height: 5vh;
   width: 5vh;
   margin-left: 8vh;
-  margin-top: 52vh;
+  margin-top: calc(50vh - 1vh);
   position: absolute;
 }
 
@@ -655,14 +655,15 @@ a {
 
 .song-title-container {
   width: 100%;
-  margin-top: 60vh;
+  margin-top: 55vh;
 }
 
 .song-title {
   font-size: 2em;
   text-overflow: ellipsis;
   width: 90%;
-  height: 40px;
+  margin: 0;
+  padding: 0;
   text-align: right;
   text-overflow: ellipsis;
   display: block;
@@ -698,8 +699,6 @@ a {
   background-color: #000000;
   border: 0.4vh solid #000000;
   margin-left: 18vh;
-  margin-top: 0vh;
-  position: absolute;
 }
 
 .photo-style {
