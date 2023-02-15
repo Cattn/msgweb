@@ -5,6 +5,7 @@
     --title-family: 'Blinker', sans-serif;
     --body-family: 'DM Sans';
     --card-color: #5a6a74;
+    --card-color-darker: #2f383d;
     --card-title-font: 'Blinker', sans-serif;
     --card-title-color: white;
     --card-text-color: white;
@@ -30,6 +31,7 @@
   --title-family: 'Blinker', sans-serif;
   --body-family: 'DM Sans';
   --card-color: #0d7377;
+  --card-color-darker: #0a4446;
   --card-title-font: 'Blinker', sans-serif;
   --card-title-color: rgb(255, 255, 255);
   --card-text-color: rgb(255, 255, 255);

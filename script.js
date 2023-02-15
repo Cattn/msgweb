@@ -1,107 +1,8 @@
-window.onscroll = function() {scrollFunction()};
 const navLinks = document.querySelectorAll(".link");
 const linkBack = document.querySelectorAll(".linkBack");
-
-function scrollFunction() {
-  if (window.matchMedia("(max-width: 640px)").matches == false) {
-  if (document.body.scrollTop > 235 || document.documentElement.scrollTop > 100) {
-    _.setCSS("#nav", "padding", "1vw 0.1vw");
-    _.setCSS("#nav", "width", "42%");
-    _.setCSS("#nav", "left", "62vh");
-    document.getElementById("nav").style.filter = "brightness(60%)";
-   navLinks.forEach(navLinks => {
-     navLinks.style.fontSize = "2vw"
-     navLinks.style.height = "1vw"
-      navLinks.style.width = "7vw"
-      navLinks.style.paddingBottom = "0vw"
-      navLinks.style.paddingTop = "0vw"
-      navLinks.style.marginLeft = "0.3vw"
-
-   })
-   linkBack.forEach(linkBack => {
-    linkBack.style.height = "2.5vw"
-    linkBack.style.width = "9vw"
-  })
-    _.setCSS("#logoMain", "display", "none");
-    _.setCSS("#logoMain", "margin-left", "5vw");
-    _.setCSS("#spaceDesktop2", "width", "30%");
-    
-    // Set Quick Setting Sizes
-    _.setCSS("#quickSettingsOuter", "display", "none");
-
-    _.setCSS("#quickSettingsOuter", "margin-top", "0vh");
-    _.setCSS("#quickSettingsOuter", "margin-left", "80vw");
+var jsmediatags = window.jsmediatags;
 
 
-    _.setCSS("#quickSettingsOuter", "height", "8vh");
-    _.setCSS("#quickSettingsOuter", "width", "20vw");
-
-    _.setCSS("#quickSettingsWrap", "margin-top", "1vh");
-
-    _.setCSS("#themeSwitch", "height", "2.8vw");
-    _.setCSS("#themeSwitch", "width", "2.8vw");
-    _.setCSS("#themeSwitch", "border-radius", "2vh");
-    _.setCSS("#themeSwitch", "margin-right", "1vw");
-
-    _.setCSS("#reloadSwitch", "height", "2.8vw");
-    _.setCSS("#reloadSwitch", "width", "2.8vw");
-    _.setCSS("#reloadSwitch", "border-radius", "2vh");
-    _.setCSS("#reloadSwitch", "margin-right", "1vw");
-
-    _.setCSS("#fullScreenSwitch", "height", "2.8vw");
-    _.setCSS("#fullScreenSwitch", "width", "2.8vw");
-    _.setCSS("#fullScreenSwitch", "border-radius", "2vh");
-    _.setCSS("#fullScreenSwitch", "margin-right", "1vw");
-  } else {
-    _.setCSS("#nav", "padding", "2vw 0.5vw");
-    _.setCSS("#nav", "width", "100%");
-    _.setCSS("#nav", "left", "0vh");
-    document.getElementById("nav").style.filter = "brightness(100%)";
-    navLinks.forEach(navLinks => {
-     navLinks.style.fontSize = "2vw"
-     navLinks.style.height = "5vw"
-      navLinks.style.width = "10vw"
-    navLinks.style.paddingTop = "2vh"
-     navLinks.style.marginLeft = "0vw"
-   })
-  linkBack.forEach(linkBack => {
-   linkBack.style.height = "9vh"
-   linkBack.style.width = "12%"
- })
-   _.setCSS("#logoMain", "display", "none");
-   _.setCSS("#logoMain", "margin-left", "1vw");
-   _.setCSS("#spaceDesktop2", "width", "23%");
-
-    // Re-Size Quick Setting Sizes
-    _.setCSS("#quickSettingsOuter", "display", "none");
-
-    _.setCSS("#quickSettingsOuter", "margin-top", "4vh");
-    _.setCSS("#quickSettingsOuter", "margin-left", "75vw");
-
-
-
-    _.setCSS("#quickSettingsOuter", "height", "18vh");
-    _.setCSS("#quickSettingsOuter", "width", "23vw");
-
-    _.setCSS("#quickSettingsWrap", "margin-top", "3vh");
-
-    _.setCSS("#themeSwitch", "height", "4vw");
-    _.setCSS("#themeSwitch", "width", "4vw");
-    _.setCSS("#themeSwitch", "border-radius", "2vh");
-    _.setCSS("#themeSwitch", "margin-right", "0.5vw");
-
-    _.setCSS("#reloadSwitch", "height", "4vw");
-    _.setCSS("#reloadSwitch", "width", "4vw");
-    _.setCSS("#reloadSwitch", "border-radius", "2vh");
-    _.setCSS("#reloadSwitch", "margin-right", "0.5vw");
-
-    _.setCSS("#fullScreenSwitch", "height", "4vw");
-    _.setCSS("#fullScreenSwitch", "width", "4vw");
-    _.setCSS("#fullScreenSwitch", "border-radius", "2vh");
-    _.setCSS("#fullScreenSwitch", "margin-right", "0.5vw");
-  }
-}
-}
 
 function toggleFullScreen() {
   if (!document.fullscreenElement &&    // alternative standard method
@@ -402,10 +303,11 @@ function playSong(songName) {
       if (aud) {
         aud.pause();
       }
-      const songData = event.target.result;
-      aud = new Audio(songData.data);
+      const songData = event.target.result.data;
+      aud = new Audio(songData);
       isPlaying = !aud.paused;
       aud.play();
+      getID3Data(songData);
       sendMessage();
 
 
@@ -438,7 +340,7 @@ document.getElementById("songData").addEventListener("click", function(event) {
   playSong(songs[currentSongIndex]);
 });
 
-/*
+
 document.getElementById("volumeControl").addEventListener("input", function(event) {
   if (aud) {
     aud.volume = event.target.value;
@@ -480,7 +382,47 @@ pause.addEventListener("click", function() {
     isPlaying = true;
   }
 });
-*/
+
+let mute = document.getElementById("mute");
+let muted = document.getElementById("muted");
+
+mute.addEventListener("click", function() {
+  if (aud && !aud.muted) {
+    aud.muted = true;
+    muted.style.display = "block";
+    mute.style.display = "none";
+  }
+});
+
+muted.addEventListener("click", function() {
+  if (aud && aud.muted) {
+    aud.muted = false;
+    mute.style.display = "block";
+    muted.style.display = "none";
+  }
+});
+
+if (isPlaying) {
+  aud.addEventListener("timeupdate", function() {
+    for (let i = 0; i < aud.buffered.length; i++) {
+      if (aud.buffered.start(aud.buffered.length - 1 - i) < aud.currentTime) {
+        document.getElementById("bufferBar").style.width =
+          (aud.buffered.end(aud.buffered.length - 1 - i) / aud.duration) *
+            100 +
+          "%";
+        break;
+      }
+    }
+  });
+  
+  setInterval(function() {
+    var progressBar = document.getElementById("progressBar");
+    var progress = Math.floor((aud.currentTime / aud.duration) * 100);
+    progressBar.style.width = progress + "%";
+    console.log("Progress: " + progress + "%");
+  }, 1000);
+}
+
 lastSentTime = 0;
 
 function sendMessage() {
@@ -608,5 +550,86 @@ menuExpand.addEventListener("click", function() {
     hamburgerMenu.style.width = "";
     menuContent.style.display = "block";
     navBar.style.display = "block";
+  }
+});
+
+function getID3Data(songData) {
+  let x = dataURItoBlob(songData);
+  jsmediatags.read(x, {
+    onSuccess: function(tag) {
+      console.log(tag);
+      const title = tag.tags.title || "Unknown Title";
+      const artist = tag.tags.artist || "Unknown Artist";
+      let picture = tag.tags.picture;
+
+      let songTitle = document.getElementById("songTitle");
+      if (title === null) {
+        title = "Unknown Title";
+      } else if (title === "") {
+        title = "Unknown Title";
+      } else {
+      songTitle.innerHTML = title;
+      }
+      let songArtist = document.getElementById("songArtist");
+      if (artist === null) {
+        artist = "Unknown Artist";
+      } else if (artist === "") {
+        artist = "Unknown Artist";
+      } else {
+      songArtist.innerHTML = artist;
+      }
+      let songPhoto = document.getElementById("songPhoto");
+      if (picture) {
+        let base64String = "";
+        for (let i = 0; i < picture.data.length; i++) {
+          base64String += String.fromCharCode(picture.data[i]);
+        }
+        let base64 = "data:" + picture.format + ";base64," +
+          window.btoa(base64String);
+        songPhoto.src = base64;
+      } else {
+        console.log("No picture found.");
+      }
+      console.log("Title: " + title + ", Artist: " + artist);
+    },
+    onError: function(error) {
+      console.log(error);
+    }
+  });
+}
+
+function dataURItoBlob(dataURI) {
+  // convert base64 to raw binary data held in a string
+  // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+  var byteString = atob(dataURI.split(',')[1]);
+
+  // separate out the mime component
+  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+  // write the bytes of the string to an ArrayBuffer
+  var ab = new ArrayBuffer(byteString.length);
+
+  // create a view into the buffer
+  var ia = new Uint8Array(ab);
+
+  // set the bytes of the buffer to the correct values
+  for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+  }
+
+  // write the ArrayBuffer to a blob, and you're done
+  var blob = new Blob([ab], {type: mimeString});
+  return blob;
+
+}
+
+let hamburgerSidebar = document.getElementById("hamburgerSidebar");
+
+hamburgerSidebar.addEventListener("click", function() {
+  let sidebar = document.getElementById("sidebarWrap");
+  if (sidebar.style.width === "20vw") {
+    sidebar.style.width = "0vw";
+  } else {
+  sidebar.style.width = "20vw";
   }
 });

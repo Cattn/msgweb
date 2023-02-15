@@ -363,26 +363,30 @@ button {
 
 .volumeSlide {
   -webkit-appearance: none;
-  width: 80%;
-  height: 0.5vh;
+  width: 100%;
+  height: 1vh;
   background: var(--card-color);
   outline: none;
   opacity: 0.9;
   -webkit-transition: .2s;
   transition: opacity .2s;
-  margin-top: 1vh;
-  margin-right: 1vw;
+  margin-top: 0vh;
+  margin-right: 0vw;
   transition: 0.4s; 
+  border-radius: 1vh;
   margin-bottom: none;
+  transform: rotate(180deg);
+  position: inherit;
 }
 
 .volumeSlide::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  width: 3vh; /* Set a specific slider handle width */
-  height: 3vh; /* Slider handle height */
-  background: #04AA6D; /* Green background */
+  width: 2vh; /* Set a specific slider handle width */
+  height: 2vh; /* Slider handle height */
+  background: var(--alt-bg-color); /* Green background */
   cursor: pointer; /* Cursor on hover */
+  border-radius: 2vh;
 }
 
 .mainLogo {
@@ -507,4 +511,200 @@ a {
   transform: scale(1.05);
   transition: 0.1s;
   box-shadow: #000000 0px 0px 1vh 0px;
+}
+
+
+
+
+/* SIDEBAR */
+.sidebar-wrap {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: var(--card-color-darker);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.hamburger-sidebar {
+  height: 5vw;
+  width: 5vw;
+  position: absolute;
+  z-index: 100;
+  margin: 0;
+  top: 0.5%;
+  left: 1%;
+  cursor: pointer;
+}
+
+#hamburgerSidebar {
+  transition: 0.4s;
+}
+
+.progress-container {
+  top: 35vh;
+  margin-left: 8vw;
+  background: #000000;
+  border-radius: 3vh;
+  height: 1vh;
+  width: 100%;
+  transform: rotate(90deg);
+  position: absolute;
+}
+
+.progress-bar {
+  background: var(--alt-bg-color);
+  border-radius: 3vh;
+  height: 1vh;
+  width: 0%;
+}
+
+.back-arrow {
+  height: 10vh;
+  width: 10vh;
+  margin-left: 15vh;
+  margin-top: 10vh;
+  position: absolute;
+}
+
+.back-arrow:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #000000 0px 0px 1vh 0px;
+}
+
+.pause-play {
+  height: 10vh;
+  width: 10vh;
+  margin-left: 15vh;
+  margin-top: 22.5vh;
+  position: absolute;
+}
+
+.pause-play:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #000000 0px 0px 1vh 0px;
+}
+
+.forward-arrow {
+  height: 10vh;
+  width: 10vh;
+  margin-left: 15vh;
+  margin-top: 35vh;
+  position: absolute;
+}
+
+.forward-arrow:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #000000 0px 0px 1vh 0px;
+}
+
+
+.volume-container {
+  top: 60vh;
+  margin-left: 8.2vw;
+  background: #000000;
+  border-radius: 3vh;
+  height: 1vh;
+  width: 50%;
+  position: absolute;
+}
+
+.volume-bar {
+  background: var(--alt-bg-color);
+  border-radius: 3vh;
+  height: 1vh;
+  width: 10%;
+}
+
+.volume-icon {
+  height: 5vh;
+  width: 5vh;
+  margin-left: 8vh;
+  margin-top: 52vh;
+  position: absolute;
+}
+
+.volume-icon:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #000000 0px 0px 1vh 0px;
+}
+
+.volume-icon-mute {
+  display: none;
+  height: 5vh;
+  width: 5vh;
+  margin-left: 8vh;
+  margin-top: 52vh;
+  position: absolute;
+}
+
+.volume-icon-mute:hover {
+  transform: scale(1.05);
+  transition: 0.1s;
+  box-shadow: #000000 0px 0px 1vh 0px;
+}
+
+.song-title-container {
+  width: 100%;
+  margin-top: 60vh;
+}
+
+.song-title {
+  font-size: 2em;
+  text-overflow: ellipsis;
+  width: 90%;
+  height: 40px;
+  text-align: right;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+}
+
+.song-title:hover {
+  filter: brightness(80%);
+  text-decoration: underline;
+}
+
+.song-artist {
+  font-size: 1em;
+  text-overflow: ellipsis;
+  width: 90%;
+  height: 40px;
+  text-align: right;
+  text-overflow: ellipsis;
+  display: block;
+  overflow: hidden;
+  filter: brightness(70%);
+}
+
+.song-artist:hover {
+  filter: brightness(80%);
+  text-decoration: underline;
+}
+
+.song-photo {
+  height: 20vh;
+  width: 20vh;
+  border-radius: 2vh;
+  background-color: #000000;
+  border: 0.4vh solid #000000;
+  margin-left: 18vh;
+  margin-top: 0vh;
+  position: absolute;
+}
+
+.photo-style {
+  border-radius: 2vh;
+  height: 20vh;
+  width: 20vh;
+  margin: 0;
+  padding: 0;
 }
