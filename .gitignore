@@ -1,3 +1,5 @@
 .replit
 replit.nix
 .config/
+.vscode/
+```

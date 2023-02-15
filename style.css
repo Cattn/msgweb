@@ -451,6 +451,7 @@ a {
   transition: all 0.3s;
   width: 20%;
   color: var(--card-title-color) !important;
+  border: white 0.2vw solid;
 }
 
 .settings-card:hover {
