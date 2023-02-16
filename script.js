@@ -630,6 +630,49 @@ menuExpand.addEventListener("click", function() {
   }
 });
 
+function returnID3Data(songData, cursor) {
+  let title = "Unknown Title";
+  let artist = "Unknown Artist";
+  let album = "Unknown Album";
+  let year = "Unknown Year";
+  let picture = "Unknown Picture";
+
+  let x = dataURItoBlob(songData);
+  jsmediatags.read(x, {
+    onSuccess: function(tag) {
+      title = tag.tags.title || "Unknown Title";
+      artist = tag.tags.artist || "Unknown Artist";
+      album = tag.tags.album || "Unknown Album";
+      year = tag.tags.year || "Unknown Year";
+      picture = tag.tags.picture || "Unknown Picture";
+
+      if (picture) {
+        let base64String = "";
+        for (let i = 0; i < picture.data.length; i++) {
+          base64String += String.fromCharCode(picture.data[i]);
+        }
+        let base64 = "data:" + picture.format + ";base64," + window.btoa(base64String);
+        songPhoto.src = base64;
+      }
+
+      const aud = new Audio(songData);
+      aud.addEventListener("loadedmetadata", function() {
+        const songDuration = formatTime(this.duration);
+        const songTile = `
+          <div class="song" onclick="playSong('${cursor.value.name}'); currentSongIndex = ${cursor.key};">
+            <div class="song-title">${title}</div>
+            <div class="song-duration">${songDuration}</div>
+            <div class="song-date">${year}</div>
+          </div>
+        `;
+        document.getElementById("song-tiles").innerHTML += songTile;
+      });
+    }
+  });
+}
+
+      
+
 function getID3Data(songData) {
   let x = dataURItoBlob(songData);
   jsmediatags.read(x, {
@@ -740,3 +783,66 @@ document.addEventListener('keydown', function(event) {
     console.log("CTRL + Spacebar pressed");
   }
 });
+
+
+function createSongTiles() {
+  const openRequest = indexedDB.open("songs_db", 2);
+
+  openRequest.onsuccess = function(event) {
+    const db = event.target.result;
+    const transaction = db.transaction(["songs"], "readonly");
+    const objectStore = transaction.objectStore("songs");
+
+    objectStore.openCursor().onsuccess = function(event) {
+      const cursor = event.target.result;
+      if (cursor) {
+        const songName = cursor.value.name.replace("_", " ");
+        const songData = cursor.value.data;
+        const aud = new Audio(songData);
+        let title, artist, album, year, picture;
+        returnID3Data(songData).then(data => {
+          [title, artist, album, year, picture] = data;
+          console.log(title, artist, album, year, picture);
+          aud.addEventListener("loadedmetadata", function() {
+            const songDuration = formatTime(this.duration);
+            const songTile = `
+              <div class="song" onclick="playSong('${cursor.value.name}'); currentSongIndex = ${cursor.key};">
+                <div class="song-title">${title || 'Unknown Title'}</div>
+                <div class="song-duration">${songDuration}</div>
+                <div class="song-date">${year || 'Unknown Year'}</div>
+              </div>
+            `;
+            document.getElementById("song-tiles").innerHTML += songTile;
+          });
+        });
+        cursor.continue();
+      }
+    };
+  };
+
+  openRequest.onerror = function(event) {
+    console.error("IndexedDB error: ", event.target.errorCode);
+  };
+}
+
+
+function padTime(num) {
+  return (num < 10) ? "0" + num : num;
+}
+
+// format time in seconds to mm:ss format
+function formatTime(time) {
+  if (typeof time !== 'number') {
+    return '--:--';
+  }
+
+  const hours = Math.floor(time / 3600);
+  const minutes = Math.floor((time % 3600) / 60);
+  const seconds = Math.floor(time % 60);
+
+  if (hours > 0) {
+    return `${hours}:${padTime(minutes)}:${padTime(seconds)}`;
+  } else {
+    return `${minutes}:${padTime(seconds)}`;
+  }
+}

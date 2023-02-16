@@ -333,7 +333,7 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
   border-radius: 3vw;
-  border: white 0.1vw solid;
+  border: white 0.2vw solid;
 }
 
 .show-more {
@@ -452,7 +452,7 @@ a {
   transition: all 0.3s;
   width: 20%;
   color: var(--card-title-color) !important;
-  border: white 0.2vw solid;
+  border: white 0.3vw solid;
 }
 
 .settings-card:hover {
@@ -709,4 +709,91 @@ a {
   width: 20vh;
   margin: 0;
   padding: 0;
+}
+
+
+/* ONBOARDING */
+
+.onboard-Start {
+  transition: 0.4s;
+  background: var(--bg-color);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--title-color);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s linear;
+}
+
+.onboard-fs {
+  transition: 0.4s;
+  background: var(--bg-color);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--title-color);
+  visibility: visible;
+  animation: 1s fadeIn;
+  animation-fill-mode: forwards;
+  
+  visibility: hidden;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.onboard-question {
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  margin-top: 15vh;
+  color: var(--title-color);
+  font-size: 4em;
+  transition: 0.4s;
+}
+
+.onboard-answer-container {
+  margin-top: 10vh;
+  transition: 0.4s;
+}
+
+.onboard-answer {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5vh;
+  width: 40%;
+  height: 30%;
+  margin-top: 25vh;
+  display: inline-block;
+  padding: 10vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  transition: 0.4s;
+  border-radius: 3vh;
+}
+
+.onboard-answer:hover {
+  filter: brightness(80%);
+  text-decoration: underline;
 }

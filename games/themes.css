@@ -55,6 +55,7 @@
   --title-family: 'Blinker', sans-serif;
   --body-family: 'DM Sans';
   --card-color: #C3ACD0;
+  --card-color-darker: #826e8e;
   --card-title-font: 'Blinker', sans-serif;
   --card-title-color: black;
   --card-text-color: black;
@@ -67,7 +68,7 @@
   --media-icon-color: white;
   --alt-bg-color: #33c263;
   --mobile-bg: #343434;
-  --nav-bar-bg: #C3ACD0;
+  --nav-bar-bg: #9d89a9;
   --bg-image: url(assets/Mountain_Lavenderer.svg);
 /* Unfinished!! */
 }
