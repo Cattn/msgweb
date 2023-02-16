@@ -442,7 +442,7 @@ function logCurrentTime() {
 
 lastSentTime = 0;
 
-function webhookSend(songTitle, songArtist, songAlbum, songLength) {
+function webhookSend(songTitle, songArtist, songAlbum, songLength, lyrics) {
   console.log(songTitle, songArtist, songAlbum, songLength);
   if (localStorage.getItem("webhookUser") === null) {
   } else if (localStorage.getItem("webhookUser") === "") {
@@ -485,6 +485,7 @@ function webhookSend(songTitle, songArtist, songAlbum, songLength) {
           }
     const webhookUser = localStorage.getItem("webhookUser");
 
+
   const currentTime = Date.now();
   if (currentTime - lastSentTime < 1000) {
     return;
@@ -506,6 +507,11 @@ function webhookSend(songTitle, songArtist, songAlbum, songLength) {
               },
               "fields": [
                   {
+                  "name": "Release Date:",
+                  "value": "*" + lyrics + "*",
+                  "inline": true
+                  },
+                  {
                       "name": "Song Name:",
                       "value": "*" + songTitle + "*",
                       "inline": true
@@ -522,11 +528,11 @@ function webhookSend(songTitle, songArtist, songAlbum, songLength) {
                   },
                   {
                       "name": "Song Length:",
-                      "value": " <@&1075573879793254421> __**" + songLength + "**__",
+                      "value": "__**" + songLength + "s**__",
                       "inline": false
                   }
               ],
-              "title": "Has Starting Listening to:"
+              "title": webhookUser + " Has Starting Listening to:"
           }
       ]
     }
@@ -632,6 +638,7 @@ function getID3Data(songData) {
       const title = tag.tags.title || "Unknown Title";
       const artist = tag.tags.artist || "Unknown Artist";
       const album = tag.tags.album || "Unknown Album";
+      const year = tag.tags.year || "Unknown Year";
       let picture = tag.tags.picture;
 
       let songTitle = document.getElementById("songTitle");
@@ -683,7 +690,7 @@ function getID3Data(songData) {
         console.log("No picture found.");
       }
       console.log("Title: " + title + ", Artist: " + artist);
-      webhookSend(title, artist, album, duration);
+      webhookSend(title, artist, album, duration, year);
     },
     onError: function(error) {
       console.log(error);
