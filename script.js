@@ -308,7 +308,6 @@ function playSong(songName) {
       isPlaying = !aud.paused;
       aud.play();
       getID3Data(songData);
-      webhookSend();
       progressBar();
       logCurrentTime();
 
@@ -443,11 +442,34 @@ function logCurrentTime() {
 
 lastSentTime = 0;
 
-function sendMessage(songData) {
+function webhookSend(songTitle, songArtist, songAlbum, songLength) {
+  console.log(songTitle, songArtist, songAlbum, songLength);
   if (localStorage.getItem("webhookUser") === null) {
   } else if (localStorage.getItem("webhookUser") === "") {
     } else {
+    }
       console.log("work")
+      var webhookPic = "";
+      var webhookURL = "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c";
+      if (localStorage.getItem("webhookPic") === null) {
+      } else if (localStorage.getItem("webhookPic") === "") {
+        } else {
+          webhookPic = localStorage.getItem("webhookPic");
+        }
+
+        if (localStorage.getItem("webhookURL") === null) {
+        } else if (localStorage.getItem("webhookURL") === "") {
+          } else {
+            webhookURL = localStorage.getItem("webhookURL");
+          }
+                              
+    const webhookUser = localStorage.getItem("webhookUser");
+  
+
+  if (localStorage.getItem("webhookUser") === null) {
+  } else if (localStorage.getItem("webhookUser") === "") {
+    } else {
+      console.log("work !! !")
       var webhookPic = "";
       var webhookURL = "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c";
       if (localStorage.getItem("webhookPic") === null) {
@@ -468,115 +490,48 @@ function sendMessage(songData) {
     return;
   }
   lastSentTime = currentTime;
-}
-}
-
-function webhookSend() {
-/*
-  if (localStorage.getItem("webhookUser") === null) {
-  } else if (localStorage.getItem("webhookUser") === "") {
-    } else {
-      console.log("work")
-      var webhookPic = "";
-      var webhookURL = "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c";
-      let songLength = "reall";
-  let songTitle = "Don't Fence Me In";
-  let songArtist = "Michael Wyckoff";
-  let songAlbum = "The Bonelab OST";
-  let songArt = "https://f4.bcbits.com/img/a3783174096_10.jpg";
-      if (localStorage.getItem("webhookPic") === null) {
-      } else if (localStorage.getItem("webhookPic") === "") {
-        } else {
-          webhookPic = localStorage.getItem("webhookPic");
-        }
-
-        if (localStorage.getItem("webhookURL") === null) {
-        } else if (localStorage.getItem("webhookURL") === "") {
-          } else {
-            webhookURL = localStorage.getItem("webhookURL");
-          }
-          if (localStorage.getItem("songTitle") === null) {
-          } else if (localStorage.getItem("songTitle") === "") {
-            } else {
-              songTitle = localStorage.getItem("songTitle");
-            }
-        
-            if (localStorage.getItem("songArtist") === null) {
-            } else if (localStorage.getItem("songArtist") === "") {
-              } else {
-                songArtist = localStorage.getItem("songArtist");
-              }
-        
-              if (localStorage.getItem("songAlbum") === null) {
-              } else if (localStorage.getItem("songAlbum") === "") {
-                } else {
-                  songAlbum = localStorage.getItem("songAlbum");
-                }
-        
-                if (localStorage.getItem("songArt") === null) {
-                } else if (localStorage.getItem("songArt") === "") {
-                  } else {
-                    songArt = localStorage.getItem("songArt");
-                  }
-        
-    const webhookUser = localStorage.getItem("webhookUser");
   
-  */
   const request = new XMLHttpRequest();
-  request.open("POST", "https://discord.com/api/webhooks/1074185746644209675/UN1iui7rUNN2Ak50xJ1UVlcYWruvgOXyMvsMf_Atn1nuuKHeqsxzTNWkRNzBrDLKDg4c");
+  request.open("POST", webhookURL);
   request.setRequestHeader('Content-type', 'application/json');
-  const params = {
-    "embeds": [
-      {
-          "color": 4321431,
-          "timestamp": "2023-02-15T21:30:58.894Z",
-          "url": "https://discord.com",
-          "author": {
-              "name": "Author name",
-              "url": "https://discord.com"
-          },
-          "thumbnail": {
-              "url": "https://cdn.discordapp.com/embed/avatars/0.png"
-          },
-          "footer": {
-              "text": "Footer text",
-              "icon_url": "https://cdn.discordapp.com/embed/avatars/0.png"
-          },
-          "fields": [
-              {
-                  "value": "Field value"
+  const params = 
+    {
+      "embeds": [
+          {
+              "color": 15879747,
+              "timestamp": "2023-02-15T21:30:58.894Z",
+              "footer": {
+                  "text": "Powered By: MSGv3",
+                  "icon_url": "https://i.ibb.co/mHkm064/MSG-Logo-3.png"
               },
-              {
-                  "name": "Field 2",
-                  "inline": false
-              },
-              {
-                  "name": "Inline field",
-                  "value": "Fields can be inline",
-                  "inline": true
-              },
-              {
-                  "name": "Inline field",
-                  "value": "*Lorem ipsum*",
-                  "inline": true
-              },
-              {
-                  "name": "Inline field",
-                  "value": "value",
-                  "inline": true
-              },
-              {
-                  "name": "Another field",
-                  "value": "> Nope, didn't forget about this",
-                  "inline": false
-              }
-          ]
-      }
-  ]
-  }
+              "fields": [
+                  {
+                      "name": "Song Name:",
+                      "value": "*" + songTitle + "*",
+                      "inline": true
+                  },
+                  {
+                      "name": "Artist:",
+                      "value": "*" + songArtist + "*",
+                      "inline": true
+                  },
+                  {
+                      "name": "Album",
+                      "value": "*" + songAlbum + "*",
+                      "inline": true
+                  },
+                  {
+                      "name": "Song Length:",
+                      "value": " <@&1075573879793254421> __**" + songLength + "**__",
+                      "inline": false
+                  }
+              ],
+              "title": "Has Starting Listening to:"
+          }
+      ]
+    }
   request.send(JSON.stringify(params));
-  console.log(params);
-  //}
+}
 }
 
 function settingsLoad() {
@@ -713,6 +668,7 @@ function getID3Data(songData) {
       songAlbum = album;
       localStorage.setItem("songAlbum", album);
       }
+      let duration = aud.duration;
       let songPhoto = document.getElementById("songPhoto");
       if (picture) {
         let base64String = "";
@@ -727,6 +683,7 @@ function getID3Data(songData) {
         console.log("No picture found.");
       }
       console.log("Title: " + title + ", Artist: " + artist);
+      webhookSend(title, artist, album, duration);
     },
     onError: function(error) {
       console.log(error);

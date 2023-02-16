@@ -333,6 +333,7 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
   border-radius: 3vw;
+  border: white 0.1vw solid;
 }
 
 .show-more {
@@ -529,6 +530,7 @@ a {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  border-right: var(--title-color) 0.3vw solid;
 }
 
 .hamburger-sidebar {
