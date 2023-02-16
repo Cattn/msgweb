@@ -71,3 +71,27 @@
   --bg-image: url(assets/Mountain_Lavenderer.svg);
 /* Unfinished!! */
 }
+
+[data-theme="AMOLED"] {
+  --title-color: #ffffff;
+  --h1-color: #ffffff;
+  --bg-color: #ffffff;
+  --title-family: 'Blinker', sans-serif;
+  --body-family: 'DM Sans';
+  --card-color: #000000;
+  --card-color-darker: #111111;
+  --card-title-font: 'Blinker', sans-serif;
+  --card-title-color: rgb(255, 255, 255);
+  --card-text-color: rgb(255, 255, 255);
+  --card-text-weight: bold;
+  --p-text-color: #ffffff;
+  --link-decoration: none;
+  --settings-container: #000000;
+  --media-skip-buttons: rgba(255, 255, 255, 0.7);
+  --media-play-buttons: rgba(255, 255, 255, 0.7);
+  --media-icon-color: #ffffff;
+  --alt-bg-color: #801c1c;
+  --mobile-bg: #000000;
+  --nav-bar-bg: #000000;
+  --bg-image: url(assets/Mountain_Darker.svg);
+}
