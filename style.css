@@ -797,3 +797,19 @@ a {
   filter: brightness(80%);
   text-decoration: underline;
 }
+
+.onboard-input {
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5vh;
+  width: 40%;
+  height: 30%;
+  margin-top: 25vh;
+  display: inline-block;
+  padding: 10vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  transition: 0.4s;
+  border-radius: 3vh;
+}

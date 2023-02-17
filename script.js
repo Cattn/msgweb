@@ -846,3 +846,11 @@ function formatTime(time) {
     return `${minutes}:${padTime(seconds)}`;
   }
 }
+
+
+let nameTitle = document.getElementById("nameTitle");
+if (localStorage.getItem("referredName") === null) {
+  nameTitle.innerHTML = "Good Evening, User";
+} else {
+    nameTitle.innerHTML = ("Good Evening, " + localStorage.getItem("referredName"));
+}
