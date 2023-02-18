@@ -15,33 +15,20 @@
 
 <body>
   <div class="navMain" id="nav">
-    <img class="mainLogo" id="logoMain" src="../assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
-<div class="linkBack"><a class="link navlink" onclick="homeChange();">Home</a></div>
-<div class="linkBack"><a class="link navlink " onclick="gameChange();">Games</a></div>
-<div class="linkBack"><a class="link navlink" >Search</a></div>
+ <img class="mainLogo" style="display: none;" id="logoMain" src="assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
+<div class="mobile spaceMobile2"></div>
+<div class="desktop spaceDesktop3" id="spaceDesktop3"></div> <!-- Remove after completing the bottom bar. -->
+ <div class="title-nav"><a class="title-link navlink" onclick="">MSGV3</a></div>
+<div class="linkBack"><a class="link navlink " onclick="homeChange();">Home</a></div>
+<div class="linkBack"><a class="link navlink" onclick="gameChange();" >Games</a></div>
+<div class="linkBack"><a class="link navlink" onclick="">Music</a></div>
 <div class="linkBack"><a class="link navlink" onclick="settingsChange();">Settings</a></div>
-
-
-<div class="media-player-wrap" id="mediaPlayerOuter">
-  <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" class="volumeSlide">
- <div class="media-button-wrap" id="mediaPlayerWrap">
-   <div class="back-arrow-option" id="backArrow">
-     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-       <path stroke-linecap="round" stroke-linejoin="round" d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
-     </svg>        
-   </div>
-   <div class="pause-play-option" id="pause">
-     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-       <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5V18M15 7.5V18M3 16.811V8.69c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 010 1.954l-7.108 4.061A1.125 1.125 0 013 16.811z" />
-     </svg>        
-   </div>
-   <div class="forward-arrow-option" id="forwardArrow">
-     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-       <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
-     </svg>                  
-   </div>
- </div>
-</div>
+<div class="desktop spaceDesktop2" id="spaceDesktop2"></div>
+<div class="hamburger-sidebar desktop">
+  <svg id="hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+  </svg>
+  </div>
 <div class="quick-settings-wrap" id="quickSettingsOuter"> 
  <div class="quick-button-wrap" id="quickSettingsWrap">
    <div class="night-button-option" onclick="darkLightSwitch();" id="themeSwitch">
@@ -61,12 +48,78 @@
    </div>
  </div>
 </div>
+<div class="desktop spaceDesktop1" id="spaceDesktop1"></div>
+<div class="desktop spaceDesktop2"></div>
+<h1 class="time-clock" id="time"> Test </p>
+</div>
+<div class="mobile menuExpandClosed" id="menuExpanded"></div>
+<div class="hamburger-menu mobile" id="menuExpand">
+<svg id="hamburgerMenu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+</svg>
+</div>
+<div id="menuContent" class="menuContent">
+  
+</div>
+<div class="bottom-wrap desktop" id="sidebarWrap">
+  
+  <div class="song-photo">
+    <img src="assets/a3783174096_10.jpg" class="photo-style" alt="Song Photo" id="songPhoto">
+  </div>
+
+  <div class="song-title-container">
+    <p class="song-artist" id="songArtist">Uknown Artist</p>
+    <h1 class="song-title" id="songTitle"> Unknown Song</h1>
+    </div>
+
+  <div class="back-arrow" id="backArrow">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="color:white;" class="w-6 h-6">
+      <path d="M9.195 18.44c1.25.713 2.805-.19 2.805-1.629v-2.34l6.945 3.968c1.25.714 2.805-.188 2.805-1.628V8.688c0-1.44-1.555-2.342-2.805-1.628L12 11.03v-2.34c0-1.44-1.555-2.343-2.805-1.629l-7.108 4.062c-1.26.72-1.26 2.536 0 3.256l7.108 4.061z" />
+    </svg> 
+   </div>
+
+   <div class="pause-play" id="pause">
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="color:white;" fill="currentColor" class="w-6 h-6">
+    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM9 8.25a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75H9zm5.25 0a.75.75 0 00-.75.75v6c0 .414.336.75.75.75H15a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75h-.75z" clip-rule="evenodd" />
+  </svg>
+  </div>
+
+
+  <div class="forward-arrow" id="forwardArrow">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="color:white;" class="w-6 h-6">
+    <path d="M5.055 7.06c-1.25-.714-2.805.189-2.805 1.628v8.123c0 1.44 1.555 2.342 2.805 1.628L12 14.471v2.34c0 1.44 1.555 2.342 2.805 1.628l7.108-4.061c1.26-.72 1.26-2.536 0-3.256L14.805 7.06C13.555 6.346 12 7.25 12 8.688v2.34L5.055 7.06z" />
+  </svg>
+</div>
+
+<div class="progress-container">
+  <p style="position: absolute; margin-left: 7.2vh; font-size: 1.5vh;" id="currentTime">00:00/00:00</p>
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="volume-icon" id="mute">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+  <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
+  <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
+</svg>
+</div>
+
+<div class="volume-icon-mute" id="muted">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+  <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
+</svg>
+</div>
+
+
+<div class="volume-container">
+  <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" class="volumeSlide">
+</div>
+</div>
+
 </div>
   <div class="space-make"><p> space </p></div>
   <div class="first-content">
     <h1 class="title-text" id="pageTitle"> Games </h1>
   </div>
-  <div id="siteContent">  
+  <div class="styleish" id="siteContent">  
     <div id="games">
     </div>
   </div>

@@ -18,10 +18,11 @@
   <div class="navMain" id="nav">
  <img class="mainLogo" style="display: none;" id="logoMain" src="assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
 <div class="mobile spaceMobile2"></div>
-<div class="desktop spaceDesktop2" id="spaceDesktop2"></div>
- <div class="linkBack"><a class="link navlink" onclick="homeChange();">Home</a></div>
-<div class="linkBack"><a class="link navlink " onclick="gameChange();">Games</a></div>
-<div class="linkBack"><a class="link navlink" >Search</a></div>
+<div class="desktop spaceDesktop3" id="spaceDesktop3"></div> <!-- Remove after completing the bottom bar. -->
+ <div class="title-nav"><a class="title-link navlink" onclick="">MSGV3</a></div>
+<div class="linkBack"><a class="link navlink " onclick="homeChange();">Home</a></div>
+<div class="linkBack"><a class="link navlink" onclick="gameChange();" >Games</a></div>
+<div class="linkBack"><a class="link navlink" onclick="">Music</a></div>
 <div class="linkBack"><a class="link navlink" onclick="settingsChange();">Settings</a></div>
 <div class="desktop spaceDesktop2" id="spaceDesktop2"></div>
 <div class="hamburger-sidebar desktop">
@@ -48,6 +49,9 @@
    </div>
  </div>
 </div>
+<div class="desktop spaceDesktop1" id="spaceDesktop1"></div>
+<div class="desktop spaceDesktop2"></div>
+<h1 class="time-clock" id="time"> Test </p>
 </div>
 <div class="mobile menuExpandClosed" id="menuExpanded"></div>
 <div class="hamburger-menu mobile" id="menuExpand">
@@ -58,8 +62,17 @@
 <div id="menuContent" class="menuContent">
   
 </div>
-<div class="sidebar-wrap desktop" id="sidebarWrap">
+<div class="bottom-wrap desktop" id="sidebarWrap">
   
+  <div class="song-photo">
+    <img src="assets/a3783174096_10.jpg" class="photo-style" alt="Song Photo" id="songPhoto">
+  </div>
+
+  <div class="song-title-container">
+    <p class="song-artist" id="songArtist">Uknown Artist</p>
+    <h1 class="song-title" id="songTitle"> Unknown Song</h1>
+    </div>
+
   <div class="back-arrow" id="backArrow">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="color:white;" class="w-6 h-6">
       <path d="M9.195 18.44c1.25.713 2.805-.19 2.805-1.629v-2.34l6.945 3.968c1.25.714 2.805-.188 2.805-1.628V8.688c0-1.44-1.555-2.342-2.805-1.628L12 11.03v-2.34c0-1.44-1.555-2.343-2.805-1.629l-7.108 4.062c-1.26.72-1.26 2.536 0 3.256l7.108 4.061z" />
@@ -80,7 +93,7 @@
 </div>
 
 <div class="progress-container">
-  <p style="position: absolute; margin-left: 8vw; font-size: 1.5vh;" id="currentTime">00:00/00:00</p>
+  <p style="position: absolute; margin-left: 7.2vh; font-size: 1.5vh;" id="currentTime">00:00/00:00</p>
   <div class="progress-bar" id="progressBar"></div>
 </div>
 <div class="volume-icon" id="mute">
@@ -95,20 +108,11 @@
   <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
 </svg>
 </div>
-
+<div id="musicSettings" class="hide"></div>
 
 <div class="volume-container">
   <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" class="volumeSlide">
 </div>
-
-<div class="song-title-container">
-  <h1 class="song-title" id="songTitle"> Unknown Song</h1>
-  <p class="song-artist" id="songArtist">Uknown Artist</p>
-  </div>
-
-  <div class="song-photo">
-    <img src="assets/a3783174096_10.jpg" class="photo-style" alt="Song Photo" id="songPhoto">
-  </div>
 </div>
 
 </div>
@@ -119,7 +123,8 @@
       <h1 class="title-text mobile" id="pageTitle"> Math Study </h1>
   </div>
   <div id="siteContent">  
-    <div id="games"></div>
+    <div id="testycontent" class="testy12">
+    <!--<div id="games"></div>
     <div class="settings-container">
       <div class="settings-card">
         <h1 class="settings-title mobileSize-h2" onclick="gameChange();">Games!</h1>
@@ -135,17 +140,38 @@
       </div>
     </div>
   <div id="songDatas"></div>
+  -->
+  <h1 class="title-text2"> Featured Items </h1>
+  <div class="home-tile-container">
+    <div class="home-tile" onclick="gameChange();">
+      <h1 class="home-tile-title">Games!</h1>
+      <p class="home-tile-text">View our Games!</p>
+    </div>
+    <div class="home-tile">
+      <h1 class="home-tile-title">Proxy Viewer!</h1>
+      <p class="home-tile-text">Link the site with a proxy (WIP)</p>
+    </div>
+    <div class="home-tile" onclick="settingsChange();">
+      <h1 class="home-tile-title">Settings!</h1>
+      <p class="home-tile-text">View site Settings</p>
+    </div>
+  </div>
+  <br>
+  <h1 class="title-text2"> Jump Back In! </h1>
+  <div class="recentlyPlayed" id="recentlyPlayed"></div>
+  <h1 class="title-text2 desktop"> Your Library </h1>
+  <label for="f" class="custom-file-upload">
+    Upload Music
+  </label>
+  <div class="song-container" id="songData">
+  </div>
+</div>
   </div>
 </body>
 <div class="mobile spaceMobile"></div>
 <div class="library-container">
-<h1 class="mobileSize-h1"> Your Library </h1>
-<label for="f" class="custom-file-upload">
-  Upload Music
-</label>
+<h1 class="mobileSize-h1 mobile"> Your Library </h1>
 <input id="f" type="file"/>
-<div id="songData">
-</div>
 </div>
 
 <div id="song-tiles"></div>

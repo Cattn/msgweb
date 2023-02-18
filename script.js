@@ -78,25 +78,11 @@ function settingsChange() {
 function homeChange() {
   var url = "msgv3/";
   changeurl(url, "Home"); 
-  getHTML( '../msgv3/', function (response) {
-    var siteContent = document.querySelector( '#siteContent' );
-    var games = document.querySelectorAll("#games");
-    var otherSiteContent = response.querySelector( '#siteContent' );
-    var children = otherSiteContent.querySelectorAll(".settings-container, .first-content, #games");
-    var pageTitle = document.querySelector("#pageTitle");
-    pageTitle.innerHTML = "Welcome to MSGv3";
-    [].forEach.call(children, function (child) {
-      siteContent.appendChild(child.cloneNode(true));
-    });
-  games.forEach(game => {
-    game.remove();
-   });
+  getHTML( '/msgv3/', function (response) {
+    document.documentElement.innerHTML = response.documentElement.innerHTML;
+    displaySongs();
+    timeSet();
   });
-  [].forEach.call(siteContent.children, function (child) {
-    if (child.id != "games") {
-      child.remove();
-    }
-});
 }
 console.log(window.location.pathname + window.location.search + window.location.hash);
 
@@ -228,7 +214,12 @@ if (localStorage.getItem("loaded") === "1") {
 const songs = [];
 function displaySongs() {
   const songData = document.getElementById("songData");
+  const recentlyPlayedData = document.getElementById("recentlyPlayed");
+
+  // Open the indexedDB
   const openRequest = indexedDB.open("songs_db", 2);
+
+  // Array to hold all songs
 
   openRequest.onsuccess = function(event) {
     const db = event.target.result;
@@ -250,15 +241,28 @@ function displaySongs() {
             : totalSongs;
         for (let i = 0; i < songsToDisplay; i++) {
           const song = songs[i];
-          html += `<div class="song" onclick="playSong('${song}'); currentSongIndex = ${i};">${song.replace(
+          html += `<div class="song" onclick="playSong('${song}'); currentSongIndex = 0;">${song.replace(
             "_",
             " "
           )}</div>`;
         }
         if (totalSongs > maxSongsToDisplay) {
-          html += `<button class="show-more" id="showMoreSongsBtn">Show All </button>`;
+          html += `<button class="show-more" id="showMoreSongsBtn">Show All</button>`;
         }
         songData.innerHTML = html;
+
+        // Load recently played songs from local storage
+        let recentlyPlayed = JSON.parse(localStorage.getItem("recentlyPlayed")) || [];
+        let recentlyPlayedHtml = "";
+        for (let i = 0; i < recentlyPlayed.length; i++) {
+          const song = recentlyPlayed[i];
+          recentlyPlayedHtml += `<div class="song-tile" onclick="playSong('${song}');"><p class="song-text">${song.replace(
+            "_",
+            " "
+          )}</p></div>`;
+        }
+        recentlyPlayedData.innerHTML = recentlyPlayedHtml;
+
         if (totalSongs > maxSongsToDisplay) {
           const showMoreSongsBtn = document.getElementById(
             "showMoreSongsBtn"
@@ -288,7 +292,7 @@ let aud;
 let currentSongIndex = 0;
 let isPlaying = false;
 var data_streams = localStorage.getItem("data_streams") || 0;
-
+let recentSongs = [];
 function playSong(songName) {
   const openRequest = indexedDB.open("songs_db", 2);
 
@@ -296,6 +300,9 @@ function playSong(songName) {
     const db = event.target.result;
     const transaction = db.transaction(["songs"], "readonly");
     const objectStore = transaction.objectStore("songs");
+    console.log(event);
+    console.log(objectStore);
+    console.log(objectStore.get(songName));
     const getRequest = objectStore.get(songName);
     data_streams ++;
     getRequest.onsuccess = function(event) {
@@ -310,6 +317,15 @@ function playSong(songName) {
       getID3Data(songData);
       progressBar();
       logCurrentTime();
+      let recentlyPlayed = JSON.parse(localStorage.getItem("recentlyPlayed")) || [];
+      if (!recentlyPlayed.includes(songName)) {
+        recentlyPlayed.unshift(songName);
+      }
+      // Save the recently played array to localStorage, with a maximum length of 5
+      localStorage.setItem(
+        "recentlyPlayed",
+        JSON.stringify(recentlyPlayed.slice(0, 5))
+      );
 
 
 
@@ -357,6 +373,7 @@ currentSongIndex = songs.length - 1;
 } else {
 currentSongIndex -= 1;
 }
+console.log(songs);
 playSong(songs[currentSongIndex]);
 });
 
@@ -369,6 +386,7 @@ currentSongIndex = 0;
 } else {
 currentSongIndex += 1;
 }
+console.log(songs);
 playSong(songs[currentSongIndex]);
 });
 
@@ -484,58 +502,59 @@ function webhookSend(songTitle, songArtist, songAlbum, songLength, lyrics) {
             webhookURL = localStorage.getItem("webhookURL");
           }
     const webhookUser = localStorage.getItem("webhookUser");
-
+    let date = new Date();
 
   const currentTime = Date.now();
   if (currentTime - lastSentTime < 1000) {
     return;
   }
   lastSentTime = currentTime;
-  
+
   const request = new XMLHttpRequest();
   request.open("POST", webhookURL);
   request.setRequestHeader('Content-type', 'application/json');
   const params = 
-    {
-      "embeds": [
+  {
+    "embeds": [
+        {
+            "color": 3092790,
+            "timestamp": "2023-02-15T21:30:58.894Z",
+            "footer": {
+                "text": "Powered by MSGv3",
+                "icon_url": "https://i.ibb.co/mHkm064/MSG-Logo-3.png"
+            },
+            "fields": [
+                
+                {
+                    "name": "Song Name:",
+                    "value": "*" + songTitle + "*",
+                    "inline": true
+                },
           {
-              "color": 15879747,
-              "timestamp": "2023-02-15T21:30:58.894Z",
-              "footer": {
-                  "text": "Powered By: MSGv3",
-                  "icon_url": "https://i.ibb.co/mHkm064/MSG-Logo-3.png"
-              },
-              "fields": [
-                  {
-                  "name": "Release Date:",
-                  "value": "*" + lyrics + "*",
-                  "inline": true
-                  },
-                  {
-                      "name": "Song Name:",
-                      "value": "*" + songTitle + "*",
-                      "inline": true
-                  },
-                  {
-                      "name": "Artist:",
-                      "value": "*" + songArtist + "*",
-                      "inline": true
-                  },
-                  {
-                      "name": "Album",
-                      "value": "*" + songAlbum + "*",
-                      "inline": true
-                  },
-                  {
-                      "name": "Song Length:",
-                      "value": "__**" + songLength + "s**__",
-                      "inline": false
-                  }
-              ],
-              "title": webhookUser + " Has Starting Listening to:"
-          }
-      ]
-    }
+                    "name": "Album",
+                    "value": "*" + songAlbum + "*",
+                    "inline": true
+                },
+                {
+                    "name": "Artist:",
+                    "value": "*" + songArtist + "*",
+                    "inline": true
+                },
+                {
+                    "name": "Song Length:",
+                    "value": "__**" + songLength + "s**__",
+                    "inline": true
+                },
+          {
+                "name": "Release Date:",
+                "value": "*" + lyrics + "*",
+                "inline": true
+                }
+            ],
+            "title": webhookUser + " started listening to a song!"
+        }
+    ]
+  }
   request.send(JSON.stringify(params));
 }
 }
@@ -770,10 +789,10 @@ let hamburgerSidebar = document.getElementById("hamburgerSidebar");
 
 hamburgerSidebar.addEventListener("click", function() {
   let sidebar = document.getElementById("sidebarWrap");
-  if (sidebar.style.width === "20vw") {
-    sidebar.style.width = "0vw";
+  if (sidebar.style.height === "22vw") {
+    sidebar.style.height = "0vw";
   } else {
-  sidebar.style.width = "20vw";
+  sidebar.style.height = "22vw";
   }
 });
 
@@ -850,7 +869,22 @@ function formatTime(time) {
 
 let nameTitle = document.getElementById("nameTitle");
 if (localStorage.getItem("referredName") === null) {
-  nameTitle.innerHTML = "Good Evening, User";
+  nameTitle.innerHTML = "Hello User!";
 } else {
-    nameTitle.innerHTML = ("Good Evening, " + localStorage.getItem("referredName"));
+    nameTitle.innerHTML = ("Hello " + localStorage.getItem("referredName") + "!");
 }
+
+function timeSet() {
+var time;
+var d = new Date();
+time = d.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+document.getElementById("time").innerHTML = time;
+console.log(time);
+}
+
+function updateTime() {
+  console.log("Updating time...");
+  setInterval(timeSet, 1000*60); //<---prints the time 
+}  
+timeSet();
+updateTime();
