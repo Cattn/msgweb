@@ -563,8 +563,7 @@ function webhookSend(songTitle, songArtist, songAlbum, songLength, lyrics) {
 }
 
 function settingsLoad() {
-let musicSettingsOpen = document.getElementById("musicSettings");
-
+  let musicSettingsOpen = document.getElementById("musicSettings");
 musicSettingsOpen.addEventListener("click", function() {
   musicSettingsOpen.className = '';
   musicSettingsOpen.classList.add("musicSettingsOpen");
@@ -572,37 +571,43 @@ musicSettingsOpen.addEventListener("click", function() {
   document.getElementById("musicSettingsContainer").style.display = "block";
 });
 
-document.addEventListener('mouseup', function(e) {
-  var container = document.getElementById('musicSettings');
-  if (!container.contains(e.target)) {
-      container.classList.add("settings-card");
-      container.classList.remove("musicSettingsOpen");
-      document.getElementById("musicSettingsContainer").style.display = "none";
-  }
-});
-
-
-let webhookUser = document.getElementById("webhookUser");
-webhookUser.addEventListener("change", function() {
-  localStorage.setItem("webhookUser", webhookUser.value);
-  console.log(webhookUser.value);
-});
-
-let webhookPic = document.getElementById("webhookPic");
-webhookPic.addEventListener("change", function() {
-  localStorage.setItem("webhookPic", webhookPic.value);
-  console.log(webhookPic.value);
-});
-
-let webhookURL = document.getElementById("webhookURL");
-webhookURL.addEventListener("change", function() {
-  localStorage.setItem("webhookURL", webhookURL.value);
-  console.log(webhookURL.value);
-});
-
 }
 
 
+function musicSettings() {
+  let musicSettingsOpen = document.getElementById("musicSettings");
+  musicSettingsOpen.className = '';
+  musicSettingsOpen.classList.add("musicSettingsOpen");
+  console.log(musicSettingsOpen.classList);
+  document.getElementById("musicSettingsContainer").style.display = "block";
+  console.log(document.getElementById("musicSettingsContainer").style.display);
+  }
+/*
+    var container = document.getElementById('musicSettings');
+        container.classList.add("settings-card");
+        container.classList.remove("musicSettingsOpen");
+        document.getElementById("musicSettingsContainer").style.display = "none";
+  
+  let webhookUser = document.getElementById("webhookUser");
+  webhookUser.addEventListener("change", function() {
+    localStorage.setItem("webhookUser", webhookUser.value);
+    console.log(webhookUser.value);
+  });
+  
+  let webhookPic = document.getElementById("webhookPic");
+  webhookPic.addEventListener("change", function() {
+    localStorage.setItem("webhookPic", webhookPic.value);
+    console.log(webhookPic.value);
+  });
+  
+  let webhookURL = document.getElementById("webhookURL");
+  webhookURL.addEventListener("change", function() {
+    localStorage.setItem("webhookURL", webhookURL.value);
+    console.log(webhookURL.value);
+  });
+  console.log("Clicked")
+
+*/
 function clearDatabase() {
   const openRequest = indexedDB.open("songs_db", 2);
   openRequest.onsuccess = function(event) {
