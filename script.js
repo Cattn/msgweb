@@ -674,6 +674,12 @@ menuExpand.addEventListener("click", function() {
     navBar.style.display = "block";
   }
 });
+let nameTitle = document.getElementById("nameTitle");
+if (localStorage.getItem("referredName") === null) {
+  nameTitle.innerHTML = "Hello User!";
+} else {
+    nameTitle.innerHTML = ("Hello " + localStorage.getItem("referredName") + "!");
+}
 }
 createEventListeners();
 function returnID3Data(songData, cursor) {
