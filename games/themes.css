@@ -5,6 +5,7 @@
     --title-family: 'Blinker', sans-serif;
     --body-family: 'DM Sans';
     --card-color: #5a6a74;
+    --card-color-music: #1c2124;
     --card-color-darker: #2f383d;
     --card-title-font: 'Blinker', sans-serif;
     --card-title-color: white;
@@ -51,12 +52,13 @@
 
 [data-theme="lavender"] {
   --title-color: #674188;
-  --h1-color: #4c4352;
+  --h1-color: #4e2e61;
   --bg-color: #F7EFE5;
   --title-family: 'Blinker', sans-serif;
   --body-family: 'DM Sans';
   --card-color: #C3ACD0;
   --card-color-darker: #826e8e;
+  --card-color-music: #7d6a88;
   --card-title-font: 'Blinker', sans-serif;
   --card-title-color: black;
   --card-text-color: black;
@@ -83,7 +85,7 @@
   --card-color: #000000;
   --card-color-darker: #111111;
   --card-title-font: 'Blinker', sans-serif;
-  --card-title-color: rgb(255, 255, 255);
+  --card-title-color: rgb(163, 163, 163);
   --card-text-color: rgb(255, 255, 255);
   --card-text-weight: bold;
   --p-text-color: #ffffff;
