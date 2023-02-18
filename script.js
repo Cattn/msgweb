@@ -571,6 +571,23 @@ musicSettingsOpen.addEventListener("click", function() {
   document.getElementById("musicSettingsContainer").style.display = "block";
 });
 
+let webhookUser = document.getElementById("webhookUser");
+webhookUser.addEventListener("change", function() {
+  localStorage.setItem("webhookUser", webhookUser.value);
+  console.log(webhookUser.value);
+});
+
+let webhookPic = document.getElementById("webhookPic");
+webhookPic.addEventListener("change", function() {
+  localStorage.setItem("webhookPic", webhookPic.value);
+  console.log(webhookPic.value);
+});
+
+let webhookURL = document.getElementById("webhookURL");
+webhookURL.addEventListener("change", function() {
+  localStorage.setItem("webhookURL", webhookURL.value);
+  console.log(webhookURL.value);
+});
 }
 
 
