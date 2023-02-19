@@ -15,7 +15,7 @@
     height: fit-content;
     position: relative;
     margin-top: 4vh;
-    margin-left: 20vw;
+    margin-left: 16vw;
   }
   .input-search{
     height: 1vh;
@@ -71,7 +71,7 @@
   .search-question {
     width: 3vw;
     height: 3vw;
-    color: white;
+    color: var(--h1-color);
     margin-top: 3.2vh;
     margin-left: 28vw;
   }
@@ -79,15 +79,23 @@
   .theme-mode {
     width: 3vw;
     height: 3vw;
-    color: white;
+    color: var(--h1-color);
     margin-top: 3.2vh;
   }
 
   .settings-mode {
     width: 3vw;
     height: 3vw;
-    color: white;
+    color: var(--h1-color);
     margin-top: 3.2vh;
+  }
+
+  .upload-button {
+    width: 3vw;
+    height: 3vw;
+    color: var(--h1-color);
+    margin-top: 3.2vh;
+    margin-left: 1vw;
   }
 
   .subheading {
@@ -97,6 +105,11 @@
     padding-left: 1vw;
     margin-top: 1vh;
     margin-bottom: 0;
+  }
+
+  .upload-button:hover {
+    color: #22a6b3;
+    transform: scale(1.1);
   }
 
   .theme-mode:hover {

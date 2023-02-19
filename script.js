@@ -554,7 +554,7 @@ function webhookSend(songTitle, songArtist, songAlbum, songLength, lyrics) {
     return;
   }
   lastSentTime = currentTime;
-
+  
   const request = new XMLHttpRequest();
   request.open("POST", webhookURL);
   request.setRequestHeader('Content-type', 'application/json');
@@ -563,7 +563,7 @@ function webhookSend(songTitle, songArtist, songAlbum, songLength, lyrics) {
     "embeds": [
         {
             "color": 3092790,
-            "timestamp": "2023-02-15T21:30:58.894Z",
+            "timestamp": date,
             "footer": {
                 "text": "Powered by MSGv3",
                 "icon_url": "https://i.ibb.co/mHkm064/MSG-Logo-3.png"
