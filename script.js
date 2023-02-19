@@ -358,7 +358,7 @@ function playSong(songName) {
       localStorage.setItem(
         "recentlyPlayed",
         JSON.stringify(recentlyPlayed.slice(0, 10))
-      );
+      );  
 /*
         // Store the start time of the song in localStorage
       const startTime = new Date().getTime();
@@ -377,8 +377,10 @@ function playSong(songName) {
         //clearInterval(updateTimer);
         if (currentSongIndex === songs.length - 1) {
           currentSongIndex = 0;
+          console.log(currentSongIndex);
         } else {
           currentSongIndex += 1;
+          console.log(currentSongIndex);
         }
         playSong(songs[currentSongIndex]);
       });
@@ -408,10 +410,15 @@ document.getElementById("volumeControl").addEventListener("input", function(even
     aud.volume = event.target.value;
   }
 });
-function goBack() {
+function goBack(albumSongName) {
 if (aud) {
 aud.pause();
 }
+if (albumSongName) {
+  playSong(albumSongName);
+  console.log(currentSongIndex);
+  console.log(albumSongName);
+} else {
 if (currentSongIndex === 0) {
 currentSongIndex = songs.length - 1;
 } else {
@@ -419,12 +426,18 @@ currentSongIndex -= 1;
 }
 console.log(songs);
 playSong(songs[currentSongIndex]);
+  }
 }
 
-function goForward() {
+function goForward(albumSongName) {
 if (aud) {
 aud.pause();
 }
+if (albumSongName) {
+  playSong(albumSongName);
+  console.log(currentSongIndex);
+  console.log(albumSongName);
+} else {
 if (currentSongIndex === songs.length - 1) {
 currentSongIndex = 0;
 } else {
@@ -432,6 +445,7 @@ currentSongIndex += 1;
 }
 console.log(songs);
 playSong(songs[currentSongIndex]);
+} 
 }
 
 function pausePlay() {

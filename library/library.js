@@ -1,5 +1,5 @@
 
-function displayAllSongs() {
+function displayAllSongs(isMore) {
     const openRequest = indexedDB.open("songs_db", 2);
   
     openRequest.onupgradeneeded = function(event) {
@@ -17,7 +17,35 @@ function displayAllSongs() {
       objectStore.getAll().onsuccess = function(event) {
         const allSongs = event.target.result;
         const songsDiv = document.getElementById("songsDiv");
-        allSongs.forEach(function(song) {
+        if (isMore) {
+          songsDiv.innerHTML = "";
+          allSongs.forEach(function(song) {
+            const songDiv = document.createElement("div");
+            songDiv.classList.add("songDiv");
+            if (song.name == "Unknown Title") {
+              songName = song.filename;
+            } else {
+              songName = song.name;
+            }
+            if (song.artist == "Unknown Artist") {
+              song.artist = "";
+              }
+              if (song.album == "Unknown Album") {
+              song.album = "";
+              }
+              if (song.year == "Unknown Year") {
+              song.year = "";
+              }
+            songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playSong('${song.name}'); currentSongIndex = 0;">
+                              <div class="songTitle">${songName}</div>
+                                 <div class="songArtist">${song.artist || ''}</div>
+                                 <div class="songAlbum">${song.album || ''}</div>
+                                 <div class="songYear">${song.year || ''}</div>
+                                 <div class="expand-song" onclick="showMore('${song.name}')">Song Info</div>`;
+            songsDiv.appendChild(songDiv);
+          });
+        } else {
+        allSongs.slice(0, 14).forEach(function(song) {
           const songDiv = document.createElement("div");
           songDiv.classList.add("songDiv");
           if (song.name == "Unknown Title") {
@@ -42,6 +70,13 @@ function displayAllSongs() {
                                <div class="expand-song" onclick="showMore('${song.name}')">Song Info</div>`;
           songsDiv.appendChild(songDiv);
         });
+        if (allSongs.length > 14) {
+          const moreSongsDiv = document.createElement("div");
+          moreSongsDiv.classList.add("moreSongsDiv");
+          moreSongsDiv.innerHTML = `<div class="show-moreSongs" onclick="displayAllSongs(true)">Show All Songs</div>`;
+          songsDiv.appendChild(moreSongsDiv);
+        }
+      }
       };
     };
   
@@ -51,7 +86,7 @@ function displayAllSongs() {
   }
 
   function showMore(songName) {
-    let url = window.location.href + "songInfo.html?songName=" + songName;
+    let url = "songInfo.html?songName=" + songName;
     window.open(url, '_blank').focus();
   }
 
@@ -266,3 +301,67 @@ function resizeGrid() {
     
   
 }
+
+function showAlbums() {
+  const openRequest = indexedDB.open("songs_db", 2);
+  openRequest.onerror = (event) => {
+    console.log("Failed to open database");
+  };
+  openRequest.onsuccess = (event) => {
+    const db = event.target.result;
+    const transaction = db.transaction("songs", "readonly");
+    const objectStore = transaction.objectStore("songs");
+    const request = objectStore.getAll();
+
+    request.onsuccess = (event) => {
+      const songs = event.target.result;
+      const albumCounts = {};
+
+      songs.forEach((song) => {
+        const album = song.album;
+        if (album) {
+          if (albumCounts[album]) {
+            albumCounts[album]++;
+          } else {
+            albumCounts[album] = 1;
+          }
+        }
+      });
+
+      const albums = Object.keys(albumCounts).filter(
+        (album) => albumCounts[album] > 1
+      );
+
+      const albumList = document.getElementById("albumsDiv");
+      albumList.innerHTML = "";
+
+      albums.forEach((album) => {
+        const albumDiv = document.createElement("div");
+        albumDiv.classList.add("album");
+
+        const albumArt = document.createElement("img");
+        albumArt.classList.add("album-art");
+        albumArt.src = songs.find((song) => song.album === album).image;
+        // Add onclick that will link to albuminfo.html with query of ?album=albumName
+        albumArt.onclick = () => {
+          window.location.href = `albuminfo.html?album=${album}`;
+        };
+
+        const albumName = document.createElement("p");
+        albumName.classList.add("album-name");
+        albumName.textContent = album;
+
+        albumDiv.appendChild(albumArt);
+        albumDiv.appendChild(albumName);
+
+        albumList.appendChild(albumDiv);
+      });
+    };
+
+    request.onerror = (event) => {
+      console.log("Failed to get songs");
+    };
+  };
+}
+
+showAlbums();

@@ -2,6 +2,7 @@ async function showSongInfo() {
     // Get the song name from the URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const songName = urlParams.get('songName');
+    document.title = songName;
   
     // Decode any encoded characters in the song name
     const decodedSongName = decodeURIComponent(songName);

@@ -115,6 +115,16 @@
     margin-bottom: 0;
   }
 
+  .subheading-2 {
+    text-align: center;
+    font-size: 4vw;
+    padding-top: 0vh;
+    padding-left: 1vw;
+    margin-top: 1vh;
+    transition: 0.2s;
+    margin-bottom: 0;
+  }
+
   .grid-size:hover {
     color: #22a6b3;
     transform: scale(1.1);
@@ -152,6 +162,18 @@
     transition: 0.2s;
 }
 
+.album-art {
+  width: 10vw;
+    height: 10vw;
+    border-radius: 10%;
+    margin-top: 2vh;
+    margin-left: 0vw;
+    margin-right: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
 .song-container {
 
 }
@@ -164,6 +186,28 @@
   overflow-x: auto; /* add this line to enable vertical scrollbar */
   overflow-y: hidden;
 
+}
+
+.show-moreSongs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+  margin-left: 40vw;
+  margin-bottom: 2vh;
+  padding: 1vw;
+  overflow-y: auto; /* add this line to enable vertical scrollbar */
+  background-color: var(--card-color-music);
+  color: var(--card-text-color);
+  border-radius: 1vw;
+  width: 10vw;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.show-moreSongs:hover {
+  background-color: #22a6b3;
+  color: #fff;
+  transform: scale(1.1);
 }
 
 .stylish {
@@ -195,16 +239,58 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; /* add this line to wrap content */
+  margin-top: 0vh;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+  overflow-x: auto;
+}
+
+#albumsDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* add this line to wrap content */
   margin-top: 2vh;
   margin-left: 1vw;
   margin-bottom: 2vh;
   overflow-x: auto;
 }
 
-.songsDiv {
+#albumsDivs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* add this line to wrap content */
+  margin-top: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+  overflow-x: auto;
+}
+
+.album {
   display: flex;
   flex-direction: column;
   margin-top: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+  padding: 1vw;
+  overflow-y: auto; /* add this line to enable vertical scrollbar */
+  background-color: var(--card-color-music);
+  color: var(--card-text-color);
+  border-radius: 1vw;
+  width: 10vw;
+}
+
+.album:hover {
+  background-color: #22a6b3;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+
+
+.songsDiv {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0vh;
   margin-left: 1vw;
   margin-bottom: 2vh;
   padding: 1vw;
