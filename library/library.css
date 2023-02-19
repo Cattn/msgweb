@@ -1,0 +1,237 @@
+.top-page-bar-title {
+    text-align: left;
+    font-size: 4vw;
+    padding-top: 0vh;
+    padding-left: 1vw;
+    margin-top: 1vh;
+}
+
+.top-page-bar {
+    display: flex;
+}
+
+.search-box{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    margin-top: 4vh;
+    margin-left: 20vw;
+  }
+  .input-search{
+    height: 1vh;
+    width: 20vw;
+    border-style: none;
+    padding: 1vw;
+    font-size: 2vh;
+    letter-spacing: 0.2vw;
+    outline: none;
+    border-radius: 3vh;
+    transition: all .5s ease-in-out;
+    background-color: #22a6b3;
+    padding-right: 3vw;
+    color:#fff;
+  }
+  .input-search::placeholder{
+    color:rgba(255,255,255,.5);
+    font-size: 2vh;
+    letter-spacing: 2px;
+    font-weight: 100;
+  }
+  .btn-search{
+    width: 20vw;
+    height: 1vh;
+    border-style: none;
+    font-size: 2vh;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    color:#ffffff ;
+    background-color:transparent;
+    pointer-events: painted;  
+  }
+  .btn-search:focus ~ .input-search{
+    width: 20vw;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+  }
+  .input-search:focus{
+    width: 20vw;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+  }
+
+
+  .search-question {
+    width: 3vw;
+    height: 3vw;
+    color: white;
+    margin-top: 3.2vh;
+    margin-left: 28vw;
+  }
+
+  .theme-mode {
+    width: 3vw;
+    height: 3vw;
+    color: white;
+    margin-top: 3.2vh;
+  }
+
+  .settings-mode {
+    width: 3vw;
+    height: 3vw;
+    color: white;
+    margin-top: 3.2vh;
+  }
+
+  .subheading {
+    text-align: left;
+    font-size: 6vw;
+    padding-top: 0vh;
+    padding-left: 1vw;
+    margin-top: 1vh;
+    margin-bottom: 0;
+  }
+
+  .theme-mode:hover {
+    color: #22a6b3;
+    transform: scale(1.1);
+  }
+
+    .settings-mode:hover {
+        color: #22a6b3;
+        transform: scale(1.1);
+    }
+
+    .search-question:hover {
+        color: #22a6b3;
+        transform: scale(1.1);
+    }
+
+.song-image {
+    width: 10vw;
+    height: 10vw;
+    border-radius: 10%;
+    margin-top: 2vh;
+    margin-left: 1vw;
+    margin-right: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.song-container {
+
+}
+
+#recentlyPlayedv2 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0vh;
+  margin-left: 1vw;
+  overflow-x: auto; /* add this line to enable vertical scrollbar */
+  overflow-y: hidden;
+}
+
+.stylish {
+  margin-top: 0;
+}
+
+.song-image:hover {
+  transform: scale(1.1);
+}
+
+#songsDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* add this line to wrap content */
+  margin-top: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+  overflow-x: auto;
+}
+
+
+.songDiv {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+  padding: 1vw;
+  overflow-y: auto; /* add this line to enable vertical scrollbar */
+  background-color: var(--card-color-music);
+  color: var(--card-text-color);
+  border-radius: 1vw;
+  width: 10vw;
+}
+
+.songDiv:hover {
+  transform: scale(1.05);
+}
+
+.song-Title {
+  font-size: 0.8vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 1vw;
+  margin-right: 0;
+  padding: 0;
+  background-color: var(--card-color);
+  height: 1vw;
+  width: 10vw;
+  text-align: center;
+  border-radius: 1vw;
+}
+
+.songTitle {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 1vw;
+  text-align: center;
+  border-radius: 1vw;
+}
+
+.songArtist {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 1vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.5);
+}
+
+.songAlbum {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 0.6vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.8);
+}
+
+.songYear {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 0.6vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.8);
+}

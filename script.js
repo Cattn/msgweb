@@ -86,6 +86,19 @@ function homeChange() {
     createEventListeners();
   });
 }
+
+function musicChange() {
+  var url = "msgv3/library/";
+  changeurl(url, "Home"); 
+  getHTML( '../library/', function (response) {
+    document.documentElement.innerHTML = response.documentElement.innerHTML;
+    console.log(response.documentElement.innerHTML);
+    timeSet();
+    displayAllSongs();
+    displayRecentSongs();
+    createEventListeners();
+  });
+}
 console.log(window.location.pathname + window.location.search + window.location.hash);
 
 function gameChange() {
@@ -179,44 +192,56 @@ f.onchange = e => {
     console.warn('not an audio file');
     return;
   }
+
   const reader = new FileReader();
   reader.onload = function() {
-    var str = this.result;
-    // Get the name of the audio file
+    const str = this.result;
     const fileName = f.files[0].name.replace(/\s/g, "_");
-    const openRequest = indexedDB.open("songs_db", 2);
-openRequest.onupgradeneeded = function(event) {
-const db = event.target.result;
-if (!db.objectStoreNames.contains("songs")) {
-db.createObjectStore("songs", { keyPath: "name" });
-}
-};
 
-    openRequest.onsuccess = function(event) {
-      const db = event.target.result;
-      const transaction = db.transaction(["songs"], "readwrite");
-      const objectStore = transaction.objectStore("songs");
-      objectStore.add({ name: fileName, data: str });
-      console.log(str);
-      aud = new Audio(str);
-      localStorage.setItem("loaded", "1")
-    };
+    // Get the ID3 data for the song
+    getID3Data(str, true, fileName, function(id3Data) {
+      // Add the song data and ID3 data to indexedDB
+      const openRequest = indexedDB.open("songs_db", 2);
+      openRequest.onupgradeneeded = function(event) {
+        const db = event.target.result;
+        if (!db.objectStoreNames.contains("songs")) {
+          db.createObjectStore("songs", { keyPath: "name" });
+        }
+      };
 
-    openRequest.onerror = function(event) {
-      console.error("IndexedDB error: ", event.target.errorCode);
-    };
+      openRequest.onsuccess = function(event) {
+        const db = event.target.result;
+        const transaction = db.transaction(["songs"], "readwrite");
+        const objectStore = transaction.objectStore("songs");
+        objectStore.add({ name: fileName, data: str, id3Data: id3Data });
+        aud = new Audio(str);
+        localStorage.setItem("loaded", "1")
+      };
+
+      openRequest.onerror = function(event) {
+        console.error("IndexedDB error: ", event.target.errorCode);
+      };
+    });
   };
+
   reader.readAsDataURL(f.files[0]);
 };
 
-if (localStorage.getItem("loaded") === "1") {
-  displaySongs();
-}
+
+displaySongs();
 
 const songs = [];
 function displaySongs() {
   const songData = document.getElementById("songData");
   const recentlyPlayedData = document.getElementById("recentlyPlayed");
+  var recentlyPlayedQuestion;
+  if (recentlyPlayedData === null) {
+    recentlyPlayedQuestion = "no";
+    console.log("no")
+  } else {
+    recentlyPlayedQuestion = "yes";
+    console.log("yes")
+  }
 
   // Open the indexedDB
   const openRequest = indexedDB.open("songs_db", 2);
@@ -253,6 +278,7 @@ function displaySongs() {
         }
         songData.innerHTML = html;
 
+        if (recentlyPlayedQuestion === "yes") {
         // Load recently played songs from local storage
         let recentlyPlayed = JSON.parse(localStorage.getItem("recentlyPlayed")) || [];
         let recentlyPlayedHtml = "";
@@ -264,7 +290,7 @@ function displaySongs() {
           )}</p></div>`;
         }
         recentlyPlayedData.innerHTML = recentlyPlayedHtml;
-
+      }
         if (totalSongs > maxSongsToDisplay) {
           const showMoreSongsBtn = document.getElementById(
             "showMoreSongsBtn"
@@ -319,6 +345,11 @@ function playSong(songName) {
       getID3Data(songData);
       progressBar();
       logCurrentTime();
+      let sidebar = document.getElementById("sidebarWrap");
+      if (sidebar.style.height === "22vw") {
+      } else {
+        raiseSidebar();
+      }
       let recentlyPlayed = JSON.parse(localStorage.getItem("recentlyPlayed")) || [];
       if (!recentlyPlayed.includes(songName)) {
         recentlyPlayed.unshift(songName);
@@ -326,7 +357,7 @@ function playSong(songName) {
       // Save the recently played array to localStorage, with a maximum length of 5
       localStorage.setItem(
         "recentlyPlayed",
-        JSON.stringify(recentlyPlayed.slice(0, 5))
+        JSON.stringify(recentlyPlayed.slice(0, 10))
       );
 
 
@@ -725,27 +756,61 @@ function returnID3Data(songData, cursor) {
 
       
 
-function getID3Data(songData) {
+function getID3Data(songData, isUpload, fileName) {
   let x = dataURItoBlob(songData);
   jsmediatags.read(x, {
     onSuccess: function(tag) {
       console.log(tag);
-      const title = tag.tags.title || "Unknown Title";
-      const artist = tag.tags.artist || "Unknown Artist";
-      const album = tag.tags.album || "Unknown Album";
-      const year = tag.tags.year || "Unknown Year";
+      const title = tag.tags.title || fileName;
+      const artist = tag.tags.artist || "";
+      const album = tag.tags.album || "";
+      const year = tag.tags.year || "";
       let picture = tag.tags.picture;
+
+      let imageStr = null;
+      if (picture) {
+        let base64String = "";
+        for (let i = 0; i < picture.data.length; i++) {
+          base64String += String.fromCharCode(picture.data[i]);
+        }
+        let base64 = "data:" + picture.format + ";base64," +
+          window.btoa(base64String);
+        imageStr = base64;
+      }
+
+      if (isUpload) {
+        const openRequest = indexedDB.open("songs_db", 2);
+        openRequest.onupgradeneeded = function(event) {
+          const db = event.target.result;
+          if (!db.objectStoreNames.contains("songs")) {
+            db.createObjectStore("songs", { keyPath: "name" });
+          }
+        };
+
+        openRequest.onsuccess = function(event) {
+          const db = event.target.result;
+          const transaction = db.transaction(["songs"], "readwrite");
+          const objectStore = transaction.objectStore("songs");
+          objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName });
+          console.log(songData);
+          localStorage.setItem("loaded", "1")
+        };
+
+        openRequest.onerror = function(event) {
+          console.error("IndexedDB error: ", event.target.errorCode);
+        };
+      }
 
       let songTitle = document.getElementById("songTitle");
       if (title === null) {
-        title = "Unknown Title";
+        title = fileName;
         localStorage.setItem("songTitle", title);
       } else if (title === "") {
-        title = "Unknown Title";
+        title = fileName;
         localStorage.setItem("songTitle", title);
       } else {
-      songTitle.innerHTML = title;
-      localStorage.setItem("songTitle", title);
+        songTitle.innerHTML = title;
+        localStorage.setItem("songTitle", title);
       }
       let songArtist = document.getElementById("songArtist");
       if (artist === null) {
@@ -755,8 +820,8 @@ function getID3Data(songData) {
         artist = "Unknown Artist";
         localStorage.setItem("songArtist", artist);
       } else {
-      songArtist.innerHTML = artist;
-      localStorage.setItem("songArtist", artist);
+        songArtist.innerHTML = artist;
+        localStorage.setItem("songArtist", artist);
       }
 
       let songAlbum;
@@ -767,31 +832,29 @@ function getID3Data(songData) {
         album = "Unknown Album";
         localStorage.setItem("songAlbum", album);
       } else {
-      songAlbum = album;
-      localStorage.setItem("songAlbum", album);
+        songAlbum = album;
+        localStorage.setItem("songAlbum", album);
       }
-      let duration = aud.duration;
       let songPhoto = document.getElementById("songPhoto");
-      if (picture) {
-        let base64String = "";
-        for (let i = 0; i < picture.data.length; i++) {
-          base64String += String.fromCharCode(picture.data[i]);
-        }
-        let base64 = "data:" + picture.format + ";base64," +
-          window.btoa(base64String);
-        songPhoto.src = base64;
-        localStorage.setItem("songArt", base64);
+      if (imageStr) {
+        songPhoto.src = imageStr;
+        localStorage.setItem("songArt", imageStr);
       } else {
         console.log("No picture found.");
       }
       console.log("Title: " + title + ", Artist: " + artist);
-      webhookSend(title, artist, album, duration, year);
+      if (!isUpload) {
+        let duration = aud.duration;
+        webhookSend(title, artist, album, duration, year);
+      }
     },
     onError: function(error) {
       console.log(error);
     }
   });
 }
+
+
 
 function dataURItoBlob(dataURI) {
   // convert base64 to raw binary data held in a string
@@ -940,3 +1003,4 @@ function updateTime() {
 }  
 timeSet();
 updateTime();
+
