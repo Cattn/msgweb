@@ -772,10 +772,10 @@ function getID3Data(songData, isUpload, fileName) {
   jsmediatags.read(x, {
     onSuccess: function(tag) {
       console.log(tag);
-      const title = tag.tags.title || fileName;
-      const artist = tag.tags.artist || "";
-      const album = tag.tags.album || "";
-      const year = tag.tags.year || "";
+      let title = tag.tags.title || fileName;
+      let artist = tag.tags.artist || "";
+      let album = tag.tags.album || "";
+      let year = tag.tags.year || "";
       let picture = tag.tags.picture;
 
       let imageStr = null;
@@ -787,6 +787,8 @@ function getID3Data(songData, isUpload, fileName) {
         let base64 = "data:" + picture.format + ";base64," +
           window.btoa(base64String);
         imageStr = base64;
+      } else {
+        imageStr = "../assets/defaultSong.jpg";
       }
 
       if (isUpload) {
