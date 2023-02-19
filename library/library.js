@@ -38,7 +38,8 @@ function displayAllSongs() {
                             <div class="songTitle">${songName}</div>
                                <div class="songArtist">${song.artist || ''}</div>
                                <div class="songAlbum">${song.album || ''}</div>
-                               <div class="songYear">${song.year || ''}</div>`;
+                               <div class="songYear">${song.year || ''}</div>
+                               <div class="expand-song" onclick="showMore('${song.name}')">Song Info</div>`;
           songsDiv.appendChild(songDiv);
         });
       };
@@ -48,6 +49,13 @@ function displayAllSongs() {
       console.error("IndexedDB error: ", event.target.errorCode);
     };
   }
+
+  function showMore(songName) {
+    let url = window.location.href + "songInfo.html?songName=" + songName;
+    window.open(url, '_blank').focus();
+  }
+
+  
   displayAllSongs();
   async function displayRecentSongs() {
     const songData = document.getElementById("songData");

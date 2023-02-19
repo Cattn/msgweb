@@ -359,11 +359,22 @@ function playSong(songName) {
         "recentlyPlayed",
         JSON.stringify(recentlyPlayed.slice(0, 10))
       );
+/*
+        // Store the start time of the song in localStorage
+      const startTime = new Date().getTime();
+      localStorage.setItem(`${songName}_start_time`, startTime);
 
-
-
+      // Update the total listening time every second
+      const updateTimer = setInterval(() => {
+        const currentTime = new Date().getTime();
+        const elapsedTime = currentTime - startTime;
+        let minSec = formatMs(elapsedTime);
+        localStorage.setItem(`${songName}_time_listened`, minSec);
+      }, 1000);
+*/
       // Automatically play the next song when this one is done
       aud.addEventListener("ended", function() {
+        //clearInterval(updateTimer);
         if (currentSongIndex === songs.length - 1) {
           currentSongIndex = 0;
         } else {
@@ -979,6 +990,12 @@ function formatTime(time) {
   } else {
     return `${minutes}:${padTime(seconds)}`;
   }
+}
+
+function formatMs(time) {
+  const minutes = Math.floor(time / 60000);
+  const seconds = ((time % 60000) / 1000).toFixed(0);
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
 

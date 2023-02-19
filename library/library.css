@@ -146,6 +146,13 @@
   transform: scale(1.1);
 }
 
+.songs-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 #songsDiv {
   display: flex;
   flex-direction: row;
@@ -154,6 +161,30 @@
   margin-left: 1vw;
   margin-bottom: 2vh;
   overflow-x: auto;
+}
+
+#songsDivs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* add this line to wrap content */
+  margin-top: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+  overflow-x: auto;
+}
+
+.songsDiv {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+  padding: 1vw;
+  overflow-y: auto; /* add this line to enable vertical scrollbar */
+  background-color: var(--card-color-music);
+  color: var(--card-text-color);
+  border-radius: 1vw;
+  width: 30vw;
 }
 
 
@@ -234,4 +265,136 @@
   text-align: center;
   border-radius: 1vw;
   filter: brightness(0.8);
+}
+
+.expand-song {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 1vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.8);
+  background-color: var(--card-color);
+  cursor: pointer;
+}
+
+.expand-song:hover {
+  transform: scale(1.05);
+}
+
+
+.songImageExpanded {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 10%;
+  margin-top: 2vh;
+  margin-left: 1vw;
+  margin-right: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.songTitleExpanded {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 1vw;
+  text-align: center;
+  border-radius: 1vw;
+}
+
+.songArtistExpanded {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 1vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.5);
+}
+
+.songAlbumExpanded {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 0.6vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.8);
+}
+
+.songYearExpanded {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 0.6vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.8);
+}
+
+.songsArtist {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 3vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.5);
+}
+
+.songsAlbum {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 1.5vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.8);
+}
+
+.songsYear {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 0;
+  padding: 0;
+  font-size: 1.5vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.8);
+}
+
+.side-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0vw;
+  margin-right: 20vw;
+  padding: 0;
+  width: 30vw;
+  font-size: 1vw;
+  text-align: center;
+  border-radius: 1vw;
+  filter: brightness(0.8);
+  background-color: var(--card-color);
+  cursor: pointer;
 }
