@@ -72,7 +72,14 @@
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 3.2vh;
+    margin-top: 4vh;
+  }
+
+  .grid-size {
+    width: 3vw;
+    height: 3vw;
+    color: var(--h1-color);
+    margin-top: 4vh;
     margin-left: 28vw;
   }
 
@@ -80,21 +87,21 @@
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 3.2vh;
+    margin-top: 4vh;
   }
 
   .settings-mode {
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 3.2vh;
+    margin-top: 4vh;
   }
 
   .upload-button {
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 3.2vh;
+    margin-top: 4vh;
     margin-left: 1vw;
   }
 
@@ -104,7 +111,13 @@
     padding-top: 0vh;
     padding-left: 1vw;
     margin-top: 1vh;
+    transition: 0.2s;
     margin-bottom: 0;
+  }
+
+  .grid-size:hover {
+    color: #22a6b3;
+    transform: scale(1.1);
   }
 
   .upload-button:hover {
@@ -136,6 +149,7 @@
     margin-right: 0;
     margin-bottom: 0;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .song-container {
@@ -149,6 +163,7 @@
   margin-left: 1vw;
   overflow-x: auto; /* add this line to enable vertical scrollbar */
   overflow-y: hidden;
+
 }
 
 .stylish {
@@ -231,6 +246,7 @@
   width: 10vw;
   text-align: center;
   border-radius: 1vw;
+  transition: 0.2s;
 }
 
 .songTitle {
@@ -242,6 +258,7 @@
   font-size: 1vw;
   text-align: center;
   border-radius: 1vw;
+  transition: 0.2s;
 }
 
 .songArtist {
@@ -254,6 +271,7 @@
   text-align: center;
   border-radius: 1vw;
   filter: brightness(0.5);
+  transition: 0.2s;
 }
 
 .songAlbum {
@@ -266,6 +284,7 @@
   text-align: center;
   border-radius: 1vw;
   filter: brightness(0.8);
+  transition: 0.2s;
 }
 
 .songYear {
@@ -278,6 +297,7 @@
   text-align: center;
   border-radius: 1vw;
   filter: brightness(0.8);
+  transition: 0.2s;
 }
 
 .expand-song {
@@ -294,6 +314,7 @@
   filter: brightness(0.8);
   background-color: var(--card-color);
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .expand-song:hover {
@@ -369,6 +390,7 @@
   text-align: center;
   border-radius: 1vw;
   filter: brightness(0.5);
+  transition: 0.2s;
 }
 
 .songsAlbum {
@@ -381,6 +403,7 @@
   text-align: center;
   border-radius: 1vw;
   filter: brightness(0.8);
+  transition: 0.2s;
 }
 
 .songsYear {
@@ -393,6 +416,7 @@
   text-align: center;
   border-radius: 1vw;
   filter: brightness(0.8);
+  transition: 0.2s;
 }
 
 .side-info {
@@ -410,4 +434,5 @@
   filter: brightness(0.8);
   background-color: var(--card-color);
   cursor: pointer;
+  transition: 0.2s;
 }

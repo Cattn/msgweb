@@ -184,3 +184,85 @@ function displayAllSongs() {
   
 displayRecentSongs();
 
+
+
+function resizeGrid() {
+    let subheadings = document.getElementsByClassName("subheading");
+    if (subheadings[0].style.fontSize === "2vw") {
+      // Revert all back to default values
+      for (let i = 0; i < subheadings.length; i++) {
+        subheadings[i].style.fontSize = "";
+      }
+      let songTitles = document.getElementsByClassName("song-Title");
+      for (let i = 0; i < songTitles.length; i++) {
+        songTitles[i].style.display = "";
+      }
+      let songImages = document.getElementsByClassName("song-image");
+      for (let i = 0; i < songImages.length; i++) {
+        songImages[i].style.width = "";
+        songImages[i].style.height = "";
+      }
+      let songImage = document.getElementsByClassName("songImage");
+      for (let i = 0; i < songImage.length; i++) {
+        songImage[i].style.width = "10vw";
+        songImage[i].style.height = "10vw";
+        songImage[i].style.marginLeft = "";
+      }
+      // Get all elements with songArtist, songAlbum, songYear and display them
+      let songArtist = document.getElementsByClassName("songArtist");
+      for (let i = 0; i < songArtist.length; i++) {
+        songArtist[i].style.display = "";
+      }
+      let songAlbum = document.getElementsByClassName("songAlbum");
+      for (let i = 0; i < songAlbum.length; i++) {
+        songAlbum[i].style.display = "";
+      }
+      let songYear = document.getElementsByClassName("songYear");
+      for (let i = 0; i < songYear.length; i++) {
+        songYear[i].style.display = "";
+      }
+      let resizeColor = document.getElementById("resizeColor");
+      resizeColor.style.color = "var(--h1-color)";
+    } else {
+    //For each subheading change font size to 2vw
+    for (let i = 0; i < subheadings.length; i++) {
+      subheadings[i].style.fontSize = "2vw";
+    }
+    // Get all elements with the class song-Title and don't display them
+    let songTitles = document.getElementsByClassName("song-Title");
+    for (let i = 0; i < songTitles.length; i++) {
+      songTitles[i].style.display = "none";
+    }
+    // Get all elements with the class song-Image and change their width to 10vw
+    let songImages = document.getElementsByClassName("song-image");
+    for (let i = 0; i < songImages.length; i++) {
+      songImages[i].style.width = "5vw";
+      songImages[i].style.height = "5vw";
+    }
+    // Get all elements with the name songImage and change their width and height to 4vw
+    let songImage = document.getElementsByClassName("songImage");
+    for (let i = 0; i < songImage.length; i++) {
+      songImage[i].style.width = "4vw";
+      songImage[i].style.height = "4vw";
+      songImage[i].style.marginLeft = "3vw";
+    }
+
+    // Get all elements with songTitle, songArtist, songAlbum, songYear and don't display them
+    let songArtist = document.getElementsByClassName("songArtist");
+    for (let i = 0; i < songArtist.length; i++) {
+      songArtist[i].style.display = "none";
+    }
+    let songAlbum = document.getElementsByClassName("songAlbum");
+    for (let i = 0; i < songAlbum.length; i++) {
+      songAlbum[i].style.display = "none";
+    }
+    let songYear = document.getElementsByClassName("songYear");
+    for (let i = 0; i < songYear.length; i++) {
+      songYear[i].style.display = "none";
+    }
+    let resizeColor = document.getElementById("resizeColor");
+      resizeColor.style.color = "var(--media-icon-color)";
+  }
+    
+  
+}
