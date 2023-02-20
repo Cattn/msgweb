@@ -555,12 +555,6 @@ function webhookSend(songTitle, songArtist, songAlbum, songLength, lyrics) {
         } else {
           webhookPic = localStorage.getItem("webhookPic");
         }
-
-        if (localStorage.getItem("webhookURL") === null) {
-        } else if (localStorage.getItem("webhookURL") === "") {
-          } else {
-            webhookURL = localStorage.getItem("webhookURL");
-          }
     const webhookUser = localStorage.getItem("webhookUser");
     let date = new Date();
 
@@ -781,107 +775,146 @@ function returnID3Data(songData, cursor) {
 }
 
       
-
 function getID3Data(songData, isUpload, fileName) {
-  let x = dataURItoBlob(songData);
-  jsmediatags.read(x, {
-    onSuccess: function(tag) {
-      console.log(tag);
-      let title = tag.tags.title || fileName;
-      let artist = tag.tags.artist || "";
-      let album = tag.tags.album || "";
-      let year = tag.tags.year || "";
-      let picture = tag.tags.picture;
+  try {
+    let x = dataURItoBlob(songData);
+    jsmediatags.read(x, {
+      onSuccess: function(tag) {
+        console.log(tag);
+        let title = tag.tags.title || fileName;
+        let artist = tag.tags.artist || "";
+        let album = tag.tags.album || "";
+        let year = tag.tags.year || "";
+        let picture = tag.tags.picture;
 
-      let imageStr = null;
-      if (picture) {
-        let base64String = "";
-        for (let i = 0; i < picture.data.length; i++) {
-          base64String += String.fromCharCode(picture.data[i]);
-        }
-        let base64 = "data:" + picture.format + ";base64," +
-          window.btoa(base64String);
-        imageStr = base64;
-      } else {
-        imageStr = "../assets/defaultSong.jpg";
-      }
-
-      if (isUpload) {
-        const openRequest = indexedDB.open("songs_db", 2);
-        openRequest.onupgradeneeded = function(event) {
-          const db = event.target.result;
-          if (!db.objectStoreNames.contains("songs")) {
-            db.createObjectStore("songs", { keyPath: "name" });
+        let imageStr = null;
+        if (picture) {
+          let base64String = "";
+          for (let i = 0; i < picture.data.length; i++) {
+            base64String += String.fromCharCode(picture.data[i]);
           }
-        };
+          let base64 = "data:" + picture.format + ";base64," +
+            window.btoa(base64String);
+          imageStr = base64;
+        } else {
+          imageStr = "../assets/defaultSong.jpg";
+        }
 
-        openRequest.onsuccess = function(event) {
-          const db = event.target.result;
-          const transaction = db.transaction(["songs"], "readwrite");
-          const objectStore = transaction.objectStore("songs");
-          objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName });
-          console.log(songData);
-          localStorage.setItem("loaded", "1")
-        };
+        if (isUpload) {
+          const openRequest = indexedDB.open("songs_db", 2);
+          openRequest.onupgradeneeded = function(event) {
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains("songs")) {
+              db.createObjectStore("songs", { keyPath: "name" });
+            }
+          };
 
-        openRequest.onerror = function(event) {
-          console.error("IndexedDB error: ", event.target.errorCode);
-        };
-      }
+          openRequest.onsuccess = function(event) {
+            const db = event.target.result;
+            const transaction = db.transaction(["songs"], "readwrite");
+            const objectStore = transaction.objectStore("songs");
+            objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName });
+            console.log(songData);
+            localStorage.setItem("loaded", "1")
+          };
 
-      let songTitle = document.getElementById("songTitle");
-      if (title === null) {
-        title = fileName;
-        localStorage.setItem("songTitle", title);
-      } else if (title === "") {
-        title = fileName;
-        localStorage.setItem("songTitle", title);
-      } else {
-        songTitle.innerHTML = title;
-        localStorage.setItem("songTitle", title);
-      }
-      let songArtist = document.getElementById("songArtist");
-      if (artist === null) {
-        artist = "Unknown Artist";
-        localStorage.setItem("songArtist", artist);
-      } else if (artist === "") {
-        artist = "Unknown Artist";
-        localStorage.setItem("songArtist", artist);
-      } else {
-        songArtist.innerHTML = artist;
-        localStorage.setItem("songArtist", artist);
-      }
+          openRequest.onerror = function(event) {
+            console.error("IndexedDB error: ", event.target.errorCode);
+          };
+        }
 
-      let songAlbum;
-      if (album === null) {
-        album = "Unknown Album";
-        localStorage.setItem("songAlbum", album);
-      } else if (album === "") {
-        album = "Unknown Album";
-        localStorage.setItem("songAlbum", album);
-      } else {
-        songAlbum = album;
-        localStorage.setItem("songAlbum", album);
-      }
-      let songPhoto = document.getElementById("songPhoto");
-      if (imageStr) {
-        songPhoto.src = imageStr;
-        localStorage.setItem("songArt", imageStr);
-      } else {
-        console.log("No picture found.");
-      }
-      console.log("Title: " + title + ", Artist: " + artist);
-      if (!isUpload) {
-        let duration = aud.duration;
-        webhookSend(title, artist, album, duration, year);
-      }
-    },
-    onError: function(error) {
-      console.log(error);
+        let songTitle = document.getElementById("songTitle");
+        if (title === null) {
+          title = fileName;
+          localStorage.setItem("songTitle", title);
+        } else if (title === "") {
+          title = fileName;
+          localStorage.setItem("songTitle", title);
+        } else {
+          songTitle.innerHTML = title;
+          localStorage.setItem("songTitle", title);
+        }
+        let songArtist = document.getElementById("songArtist");
+        if (artist === null) {
+          artist = "Unknown Artist";
+          localStorage.setItem("songArtist", artist);
+        } else if (artist === "") {
+          artist = "Unknown Artist";
+          localStorage.setItem("songArtist", artist);
+        } else {
+          songArtist.innerHTML = artist;
+          localStorage.setItem("songArtist", artist);
+        }
+
+        let songAlbum;
+        if (album === null) {
+          album = "Unknown Album";
+          localStorage.setItem("songAlbum", album);
+        } else if (album === "") {
+          album = "Unknown Album";
+          localStorage.setItem("songAlbum", album);
+        } else {
+          songAlbum = album;
+          localStorage.setItem("songAlbum", album);
+        }
+        let songPhoto = document.getElementById("songPhoto");
+        if (imageStr) {
+          songPhoto.src = imageStr;
+          localStorage.setItem("songArt", imageStr);
+        } else {
+          console.log("No picture found.");
+        }
+        console.log("Title: " + title + ", Artist: " + artist);
+        if (!isUpload) {
+          let duration = aud.duration;
+          webhookSend(title, artist, album, duration, year);
+        }
+      },
+      onError: function(error) {
+        let title = fileName || "Unknown Title";
+        let artist = "" || "Unknown Artist";
+        let album = "" || "Unknown Album";
+        let year = "" || "Unknown Year";
+        let imageStr = "../assets/defaultSong.jpg";
+        let songTitle = document.getElementById("songTitle");
+    songTitle.innerHTML = title;
+    localStorage.setItem("songTitle", title);
+
+    let songArtist = document.getElementById("songArtist");
+    songArtist.innerHTML = artist;
+    localStorage.setItem("songArtist", artist);
+
+    let songAlbum = album;
+    localStorage.setItem("songAlbum", album);
+
+    let songPhoto = document.getElementById("songPhoto");
+    songPhoto.src = imageStr;
+    localStorage.setItem("songArt", imageStr);
+    if (isUpload) {
+      const openRequest = indexedDB.open("songs_db", 2);
+      openRequest.onupgradeneeded = function(event) {
+        const db = event.target.result;
+        if (!db.objectStoreNames.contains("songs")) {
+          db.createObjectStore("songs", { keyPath: "name" });
+        }
+      };
+
+      openRequest.onsuccess = function(event) {
+        const db = event.target.result;
+        const transaction = db.transaction(["songs"], "readwrite");
+        const objectStore = transaction.objectStore("songs");
+        objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName });
+        console.log(songData);
+        localStorage.setItem("loaded", "1")
+      };
     }
-  });
-}
+  }
+    });
 
+}catch (e) {
+  console.log(e);
+}
+}
 
 
 function dataURItoBlob(dataURI) {
