@@ -97,6 +97,7 @@ function musicChange() {
     displayAllSongs();
     displayRecentSongs();
     createEventListeners();
+    showAlbums()
   });
 }
 console.log(window.location.pathname + window.location.search + window.location.hash);
