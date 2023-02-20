@@ -19,7 +19,9 @@ function displayAllSongs(isMore) {
         const songsDiv = document.getElementById("songsDiv");
         if (isMore) {
           songsDiv.innerHTML = "";
+          let i = 0;
           allSongs.forEach(function(song) {
+            i++;
             const songDiv = document.createElement("div");
             songDiv.classList.add("songDiv");
             if (song.name == "Unknown Title") {
@@ -36,7 +38,7 @@ function displayAllSongs(isMore) {
               if (song.year == "Unknown Year") {
               song.year = "";
               }
-            songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playSong('${song.name}'); currentSongIndex = 0;">
+            songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playSong('${song.name}'); currentSongIndex = ${i};">
                               <div class="songTitle">${songName}</div>
                                  <div class="songArtist">${song.artist || ''}</div>
                                  <div class="songAlbum">${song.album || ''}</div>
@@ -45,7 +47,9 @@ function displayAllSongs(isMore) {
             songsDiv.appendChild(songDiv);
           });
         } else {
+          let i = 0;
         allSongs.slice(0, 14).forEach(function(song) {
+          i++;
           const songDiv = document.createElement("div");
           songDiv.classList.add("songDiv");
           if (song.name == "Unknown Title") {
@@ -62,7 +66,7 @@ function displayAllSongs(isMore) {
             if (song.year == "Unknown Year") {
             song.year = "";
             }
-          songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playSong('${song.name}'); currentSongIndex = 0;">
+          songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playSong('${song.name}'); currentSongIndex = ${i};">
                             <div class="songTitle">${songName}</div>
                                <div class="songArtist">${song.artist || ''}</div>
                                <div class="songAlbum">${song.album || ''}</div>
@@ -344,7 +348,8 @@ function showAlbums() {
         albumArt.src = songs.find((song) => song.album === album).image;
         // Add onclick that will link to albuminfo.html with query of ?album=albumName
         albumArt.onclick = () => {
-          window.location.href = `albuminfo.html?album=${album}`;
+          let url = "albuminfo.html?album=" + album;
+          window.open(url, '_blank').focus();
         };
 
         const albumName = document.createElement("p");

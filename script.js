@@ -411,15 +411,10 @@ document.getElementById("volumeControl").addEventListener("input", function(even
     aud.volume = event.target.value;
   }
 });
-function goBack(albumSongName) {
+function goBack() {
 if (aud) {
 aud.pause();
 }
-if (albumSongName) {
-  playSong(albumSongName);
-  console.log(currentSongIndex);
-  console.log(albumSongName);
-} else {
 if (currentSongIndex === 0) {
 currentSongIndex = songs.length - 1;
 } else {
@@ -428,17 +423,11 @@ currentSongIndex -= 1;
 console.log(songs);
 playSong(songs[currentSongIndex]);
   }
-}
 
-function goForward(albumSongName) {
+function goForward() {
 if (aud) {
 aud.pause();
 }
-if (albumSongName) {
-  playSong(albumSongName);
-  console.log(currentSongIndex);
-  console.log(albumSongName);
-} else {
 if (currentSongIndex === songs.length - 1) {
 currentSongIndex = 0;
 } else {
@@ -447,7 +436,7 @@ currentSongIndex += 1;
 console.log(songs);
 playSong(songs[currentSongIndex]);
 } 
-}
+
 
 function pausePlay() {
 let pause = document.getElementById("pause");
