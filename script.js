@@ -42,7 +42,7 @@ function darkLightSwitch() {
 
 function changeurl(url, title) {
   var new_url = '/' + url;
-  if (location.href.includes("msgv3")) {
+  if (location.href.includes("msgweb")) {
     window.history.pushState('data', title, new_url);
   } else {
     window.history.pushState('data', title, new_url);
@@ -52,7 +52,7 @@ function changeurl(url, title) {
 }
 
 function settingsChange() {
-  var url = "msgv3/settings/";
+  var url = "msgweb/settings/";
   changeurl(url, "Settings"); 
   getHTML( '../settings/', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
@@ -76,9 +76,9 @@ function settingsChange() {
 }
 
 function homeChange() {
-  var url = "msgv3/";
+  var url = "msgweb/";
   changeurl(url, "Home"); 
-  getHTML( '/msgv3/', function (response) {
+  getHTML( '/msgweb/', function (response) {
     document.documentElement.innerHTML = response.documentElement.innerHTML;
     console.log(response.documentElement.innerHTML);
     displaySongs();
@@ -88,7 +88,7 @@ function homeChange() {
 }
 
 function musicChange() {
-  var url = "msgv3/library/";
+  var url = "msgweb/library/";
   changeurl(url, "Home"); 
   getHTML( '../library/', function (response) {
     document.documentElement.innerHTML = response.documentElement.innerHTML;
@@ -103,7 +103,7 @@ function musicChange() {
 console.log(window.location.pathname + window.location.search + window.location.hash);
 
 function gameChange() {
-  var url = "msgv3/games/";
+  var url = "msgweb/games/";
   changeurl(url, "Games"); 
   getHTML( '../games/', function (response) {
     var siteContent = document.querySelector( '#siteContent' );
