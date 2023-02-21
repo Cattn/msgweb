@@ -752,7 +752,6 @@ function getID3Data(songData, isUpload, fileName) {
             const transaction = db.transaction(["songs"], "readwrite");
             const objectStore = transaction.objectStore("songs");
             objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName, track: trackNum });
-            console.log(songData);
             localStorage.setItem("loaded", "1")
           };
 
