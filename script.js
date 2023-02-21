@@ -735,7 +735,7 @@ function getID3Data(songData, isUpload, fileName) {
             window.btoa(base64String);
           imageStr = base64;
         } else {
-          imageStr = "../assets/defaultSong.jpg";
+          imageStr = "assets/defaultSong.jpg";
         }
 
         if (isUpload) {
@@ -813,7 +813,7 @@ function getID3Data(songData, isUpload, fileName) {
         let artist = "" || "Unknown Artist";
         let album = "" || "Unknown Album";
         let year = "" || "Unknown Year";
-        let imageStr = "../assets/defaultSong.jpg";
+        let imageStr = "assets/defaultSong.jpg";
         let trackNum = "" || "Unknown Track Number";
         let songTitle = document.getElementById("songTitle");
     songTitle.innerHTML = title;
