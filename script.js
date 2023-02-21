@@ -58,6 +58,7 @@ function settingsChange() {
     document.documentElement.innerHTML = response.documentElement.innerHTML;
     console.log(response.documentElement.innerHTML);
     settingsLoad();
+    timeSet();
   });
 }
 
