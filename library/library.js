@@ -32,17 +32,9 @@ function displayAllSongs(isMore) {
             if (song.artist == "Unknown Artist") {
               song.artist = "";
               }
-              if (song.album == "Unknown Album") {
-              song.album = "";
-              }
-              if (song.year == "Unknown Year") {
-              song.year = "";
-              }
             songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playSong('${song.name}'); currentSongIndex = ${i};">
                               <div class="songTitle">${songName}</div>
                                  <div class="songArtist">${song.artist || ''}</div>
-                                 <div class="songAlbum">${song.album || ''}</div>
-                                 <div class="songYear">${song.year || ''}</div>
                                  <div class="expand-song" onclick="showMore('${song.name}')">Song Info</div>`;
             songsDiv.appendChild(songDiv);
           });
@@ -60,17 +52,9 @@ function displayAllSongs(isMore) {
           if (song.artist == "Unknown Artist") {
             song.artist = "";
             }
-            if (song.album == "Unknown Album") {
-            song.album = "";
-            }
-            if (song.year == "Unknown Year") {
-            song.year = "";
-            }
           songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playSong('${song.name}'); currentSongIndex = ${i};">
                             <div class="songTitle">${songName}</div>
                                <div class="songArtist">${song.artist || ''}</div>
-                               <div class="songAlbum">${song.album || ''}</div>
-                               <div class="songYear">${song.year || ''}</div>
                                <div class="expand-song" onclick="showMore('${song.name}')">Song Info</div>`;
           songsDiv.appendChild(songDiv);
         });
@@ -252,14 +236,6 @@ function resizeGrid() {
       for (let i = 0; i < songArtist.length; i++) {
         songArtist[i].style.display = "";
       }
-      let songAlbum = document.getElementsByClassName("songAlbum");
-      for (let i = 0; i < songAlbum.length; i++) {
-        songAlbum[i].style.display = "";
-      }
-      let songYear = document.getElementsByClassName("songYear");
-      for (let i = 0; i < songYear.length; i++) {
-        songYear[i].style.display = "";
-      }
       let resizeColor = document.getElementById("resizeColor");
       resizeColor.style.color = "var(--h1-color)";
     } else {
@@ -290,14 +266,6 @@ function resizeGrid() {
     let songArtist = document.getElementsByClassName("songArtist");
     for (let i = 0; i < songArtist.length; i++) {
       songArtist[i].style.display = "none";
-    }
-    let songAlbum = document.getElementsByClassName("songAlbum");
-    for (let i = 0; i < songAlbum.length; i++) {
-      songAlbum[i].style.display = "none";
-    }
-    let songYear = document.getElementsByClassName("songYear");
-    for (let i = 0; i < songYear.length; i++) {
-      songYear[i].style.display = "none";
     }
     let resizeColor = document.getElementById("resizeColor");
       resizeColor.style.color = "var(--media-icon-color)";
