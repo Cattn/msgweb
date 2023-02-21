@@ -175,44 +175,48 @@ var getHTML = function ( url, callback ) {
 // AUDIO HANDLING 
 
 f.onchange = e => {
-  if (f.files[0].type.indexOf('audio/') !== 0) {
-    console.warn('not an audio file');
-    return;
+  const files = f.files;
+  for (let i = 0; i < files.length; i++) {
+    if (files[i].type.indexOf('audio/') !== 0) {
+      console.warn(`File ${files[i].name} is not an audio file`);
+      continue;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function() {
+      const str = this.result;
+      const fileName = files[i].name.replace(/\s/g, "_");
+
+      // Get the ID3 data for the song
+      getID3Data(str, true, fileName, function(id3Data) {
+        // Add the song data and ID3 data to indexedDB
+        const openRequest = indexedDB.open("songs_db", 2);
+        openRequest.onupgradeneeded = function(event) {
+          const db = event.target.result;
+          if (!db.objectStoreNames.contains("songs")) {
+            db.createObjectStore("songs", { keyPath: "name" });
+          }
+        };
+
+        openRequest.onsuccess = function(event) {
+          const db = event.target.result;
+          const transaction = db.transaction(["songs"], "readwrite");
+          const objectStore = transaction.objectStore("songs");
+          objectStore.add({ name: fileName, data: str, id3Data: id3Data });
+          aud = new Audio(str);
+          localStorage.setItem("loaded", "1")
+        };
+
+        openRequest.onerror = function(event) {
+          console.error("IndexedDB error: ", event.target.errorCode);
+        };
+      });
+    };
+
+    reader.readAsDataURL(files[i]);
   }
-
-  const reader = new FileReader();
-  reader.onload = function() {
-    const str = this.result;
-    const fileName = f.files[0].name.replace(/\s/g, "_");
-
-    // Get the ID3 data for the song
-    getID3Data(str, true, fileName, function(id3Data) {
-      // Add the song data and ID3 data to indexedDB
-      const openRequest = indexedDB.open("songs_db", 2);
-      openRequest.onupgradeneeded = function(event) {
-        const db = event.target.result;
-        if (!db.objectStoreNames.contains("songs")) {
-          db.createObjectStore("songs", { keyPath: "name" });
-        }
-      };
-
-      openRequest.onsuccess = function(event) {
-        const db = event.target.result;
-        const transaction = db.transaction(["songs"], "readwrite");
-        const objectStore = transaction.objectStore("songs");
-        objectStore.add({ name: fileName, data: str, id3Data: id3Data });
-        aud = new Audio(str);
-        localStorage.setItem("loaded", "1")
-      };
-
-      openRequest.onerror = function(event) {
-        console.error("IndexedDB error: ", event.target.errorCode);
-      };
-    });
-  };
-
-  reader.readAsDataURL(f.files[0]);
 };
+
 
 
 displaySongs();
