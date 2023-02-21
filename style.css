@@ -787,7 +787,7 @@ a {
 }
 
 .onboard-fs {
-  transition: 0.4s;
+  transition: 0.4s; 
   background: var(--bg-color);
   height: 100%;
   width: 100%;
