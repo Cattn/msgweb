@@ -55,24 +55,10 @@ function settingsChange() {
   var url = "msgweb/settings/";
   changeurl(url, "Settings"); 
   getHTML( '../settings/', function (response) {
-    var siteContent = document.querySelector( '#siteContent' );
-    var otherSiteContent = response.querySelector( '#siteContent' );
-    var children = otherSiteContent.querySelectorAll(".settings-container, .first-content");
-    var pageTitle = document.querySelector("#pageTitle");
-    pageTitle.innerHTML = "Settings";
-    [].forEach.call(siteContent.children, function (child) {
-      child.remove();
-    });
-    [].forEach.call(children, function (child) {
-      siteContent.appendChild(child.cloneNode(true));
-    });
+    document.documentElement.innerHTML = response.documentElement.innerHTML;
+    console.log(response.documentElement.innerHTML);
     settingsLoad();
   });
-  [].forEach.call(siteContent.children, function (child) {
-    if (child.id != "games") {
-      child.remove();
-    }
-});
 }
 
 function homeChange() {
@@ -722,48 +708,6 @@ if (localStorage.getItem("referredName") === null) {
 }
 }
 createEventListeners();
-function returnID3Data(songData, cursor) {
-  let title = "Unknown Title";
-  let artist = "Unknown Artist";
-  let album = "Unknown Album";
-  let year = "Unknown Year";
-  let picture = "Unknown Picture";
-
-  let x = dataURItoBlob(songData);
-  jsmediatags.read(x, {
-    onSuccess: function(tag) {
-      title = tag.tags.title || "Unknown Title";
-      artist = tag.tags.artist || "Unknown Artist";
-      album = tag.tags.album || "Unknown Album";
-      year = tag.tags.year || "Unknown Year";
-      picture = tag.tags.picture || "Unknown Picture";
-
-      if (picture) {
-        let base64String = "";
-        for (let i = 0; i < picture.data.length; i++) {
-          base64String += String.fromCharCode(picture.data[i]);
-        }
-        let base64 = "data:" + picture.format + ";base64," + window.btoa(base64String);
-        songPhoto.src = base64;
-      }
-
-      const aud = new Audio(songData);
-      aud.addEventListener("loadedmetadata", function() {
-        const songDuration = formatTime(this.duration);
-        const songTile = `
-          <div class="song" onclick="playSong('${cursor.value.name}'); currentSongIndex = ${cursor.key};">
-            <div class="song-title">${title}</div>
-            <div class="song-duration">${songDuration}</div>
-            <div class="song-date">${year}</div>
-          </div>
-        `;
-        document.getElementById("song-tiles").innerHTML += songTile;
-      });
-    }
-  });
-}
-
-      
 function getID3Data(songData, isUpload, fileName) {
   try {
     let x = dataURItoBlob(songData);
@@ -775,6 +719,7 @@ function getID3Data(songData, isUpload, fileName) {
         let album = tag.tags.album || "";
         let year = tag.tags.year || "";
         let picture = tag.tags.picture;
+        let trackNum = tag.tags.track || "";
 
         let imageStr = null;
         if (picture) {
@@ -802,7 +747,7 @@ function getID3Data(songData, isUpload, fileName) {
             const db = event.target.result;
             const transaction = db.transaction(["songs"], "readwrite");
             const objectStore = transaction.objectStore("songs");
-            objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName });
+            objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName, track: trackNum });
             console.log(songData);
             localStorage.setItem("loaded", "1")
           };
@@ -865,6 +810,7 @@ function getID3Data(songData, isUpload, fileName) {
         let album = "" || "Unknown Album";
         let year = "" || "Unknown Year";
         let imageStr = "../assets/defaultSong.jpg";
+        let trackNum = "" || "Unknown Track Number";
         let songTitle = document.getElementById("songTitle");
     songTitle.innerHTML = title;
     localStorage.setItem("songTitle", title);
@@ -892,7 +838,7 @@ function getID3Data(songData, isUpload, fileName) {
         const db = event.target.result;
         const transaction = db.transaction(["songs"], "readwrite");
         const objectStore = transaction.objectStore("songs");
-        objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName });
+        objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName, track: trackNum });
         console.log(songData);
         localStorage.setItem("loaded", "1")
       };

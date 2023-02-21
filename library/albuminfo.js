@@ -1,4 +1,3 @@
-
 let albumSongs = [];
 let albumSongIndex = 0;
 let aud = null;
@@ -19,22 +18,23 @@ function displayAlbumSongs(albumName) {
         const transaction = db.transaction(["songs"], "readonly");
         const objectStore = transaction.objectStore("songs");
   
-        const albumSongs = [];
+        let albumSort = [];
         const songsDiv = document.getElementById("albumsDivs");
         objectStore.openCursor().onsuccess = function(event) {
             const cursor = event.target.result;
             if (cursor) {
                 const song = cursor.value;
                 if (song.album === albumName) {
-                    albumSongs.push(song);
+                    albumSort.push(song);
                 }
                 cursor.continue();
             } else {
-                if (albumSongs.length === 0) {
+                if (albumSort.length === 0) {
                     songsDiv.textContent = "No songs found in album.";
                     return;
                 }
-                albumSongs.forEach(function(song, i) {
+                albumSort.sort((a, b) => a.track - b.track); // sort the albumSongs array based on the track number
+                albumSort.forEach(function(song, i) {
                     song.index = i;
                     const songDiv = document.createElement("div");
                     songDiv.classList.add("songDiv");
@@ -53,7 +53,7 @@ function displayAlbumSongs(albumName) {
                     if (song.year == "Unknown Year") {
                         song.year = "";
                     }
-                    songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playAlbumSong('${song.name}'); currentSongIndex = ${i};">
+                    songDiv.innerHTML = `<img class="songImage" src="${song.image || '../assets/defaultSong.jpg'}" onclick="playAlbumSong('${song.name}'); albumSongIndex = ${i};">
                                         <div class="songTitle">${songName}</div>
                                         <div class="songArtist">${song.artist || ''}</div>
                                         <div class="songAlbum">${song.album || ''}</div>
@@ -69,7 +69,7 @@ function displayAlbumSongs(albumName) {
     openRequest.onerror = function(event) {
         console.error("IndexedDB error: ", event.target.errorCode);
     };
-  }
+}
 
 function logAlbumSongs(albumName) {
   const openRequest = indexedDB.open("songs_db", 2);
@@ -86,21 +86,34 @@ function logAlbumSongs(albumName) {
     const transaction = db.transaction(["songs"], "readonly");
     const objectStore = transaction.objectStore("songs");
 
-    objectStore.openCursor().onsuccess = function(event) {
+    albumSongs = [];
+    const allSongsRequest = objectStore.openCursor();
+    allSongsRequest.onsuccess = function(event) {
       const cursor = event.target.result;
       if (cursor) {
         const song = cursor.value;
         if (song.album === albumName) {
-          albumSongs.push(song.name);
+          albumSongs[song.track - 1] = song.name;
+          console.log(`Song added at position ${song.track - 1}: ${song.name}`);
         }
         cursor.continue();
       } else {
+        // Remove any empty slots in the array
+        const filteredSongs = albumSongs.filter(function(song) {
+          return song !== undefined;
+        });
+      
+        albumSongs.length = 0; // Clear the original array
+        albumSongs.push(...filteredSongs); // Add the filtered songs back to the array
+      
         console.log(`Songs in album "${albumName}":`);
         albumSongs.forEach(function(song) {
           console.log(song);
         });
-        console.log(`Album songs array: ${JSON.stringify(albumSongs)}`);
-      }
+      }      
+    };
+    allSongsRequest.onerror = function(event) {
+      console.error("IndexedDB error: ", event.target.errorCode);
     };
   };
 
@@ -109,15 +122,23 @@ function logAlbumSongs(albumName) {
   };
 }
 
+
+
+
+
+
+
+
 function playAlbumSong(songName) {
   if (aud && !aud.paused) { // check if a song is playing and pause it if it is
     aud.pause();
   }
-
   const openRequest = indexedDB.open("songs_db", 2);
   
   openRequest.onsuccess = function(event) {
     const db = event.target.result;
+    console.log(albumSongs);
+    console.log(songName);
     const transaction = db.transaction(["songs"], "readonly");
     const objectStore = transaction.objectStore("songs");
     const getRequest = objectStore.get(songName);
@@ -268,6 +289,7 @@ function pausePlay() {
           let album = tag.tags.album || "";
           let year = tag.tags.year || "";
           let picture = tag.tags.picture;
+          let trackNum = tag.tags.track || "";
   
           let imageStr = null;
           if (picture) {
@@ -295,7 +317,7 @@ function pausePlay() {
               const db = event.target.result;
               const transaction = db.transaction(["songs"], "readwrite");
               const objectStore = transaction.objectStore("songs");
-              objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName });
+              objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName, track: trackNum });
               console.log(songData);
               localStorage.setItem("loaded", "1")
             };
@@ -357,6 +379,7 @@ function pausePlay() {
           let album = "" || "Unknown Album";
           let year = "" || "Unknown Year";
           let imageStr = "../assets/defaultSong.jpg";
+          let trackNum = "" || "Unknown Track Number";
           let songTitle = document.getElementById("songTitle");
       songTitle.innerHTML = title;
       localStorage.setItem("songTitle", title);
@@ -384,7 +407,7 @@ function pausePlay() {
           const db = event.target.result;
           const transaction = db.transaction(["songs"], "readwrite");
           const objectStore = transaction.objectStore("songs");
-          objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName });
+          objectStore.add({ name: title, artist: artist, album: album, year: year, data: songData, image: imageStr, filename: fileName, track: trackNum });
           console.log(songData);
           localStorage.setItem("loaded", "1")
         };
