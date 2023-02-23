@@ -1,3 +1,4 @@
+function loadGameTiles() {
 games.forEach(game => {
   /*
   <div class="card">
@@ -41,3 +42,6 @@ games.forEach(game => {
   
   
 })
+
+}
+loadGameTiles();

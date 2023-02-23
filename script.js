@@ -93,55 +93,13 @@ function gameChange() {
   var url = "msgweb/games/";
   changeurl(url, "Games"); 
   getHTML( '../games/', function (response) {
-    var siteContent = document.querySelector( '#siteContent' );
-    var otherSiteContent = response.querySelector( '#siteContent' );
-    var children = otherSiteContent.querySelectorAll("*");
-    var pageTitle = document.querySelector("#pageTitle");
-    pageTitle.innerHTML = "Games";
-
-    var gamesDiv = document.querySelector("#games");
-    if (!gamesDiv) {
-      gamesDiv = document.createElement("div");
-      gamesDiv.id = "games";
-      siteContent.appendChild(gamesDiv);
-    } else {
-      while (gamesDiv.firstChild) {
-        gamesDiv.removeChild(gamesDiv.firstChild);
-      }
-    }
-
-    games.forEach(game => {
-      var card = document.createElement("div");
-      var content = document.createElement("div");
-      var image = document.createElement("img");
-      var title = document.createElement("h1");
-      var desc = document.createElement("p");
+    document.documentElement.innerHTML = response.documentElement.innerHTML;
+    console.log(response.documentElement.innerHTML);
+    timeSet();
+    loadGameTiles();
+    createEventListeners();
     
-      card.classList.add("card");
-      image.src = game.image || "https://t3.ftcdn.net/jpg/03/45/05/92/360_F_345059232_CPieT8RIWOUk4JqBkkWkIETYAkmz2b75.jpg" // placeholder image
-      image.style = "width: 100%"
-      image.alt = "Game image"
-      content.classList.add("card-content");
-      title.innerHTML = game.title
-      desc.innerHTML = game.description
-      image.classList.add("game-image")
-      content.appendChild(title)
-      card.appendChild(image)
-      content.appendChild(image)
-      content.appendChild(desc)
-      card.appendChild(content)
-      gamesDiv.appendChild(card);
-    
-      _.on(card, "click", () => {
-        location.href = game.file
-      })
-    })
   });
-  [].forEach.call(siteContent.children, function (child) {
-    if (child.id != "games") {
-      child.remove();
-    }
-});
 }
 
 

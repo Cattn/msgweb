@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Msgv3</title>
+  
+  <link href="../style.css" rel="stylesheet" type="text/css" />
+  <link href="./cardstyle.css" rel="stylesheet" type="text/css"/>
+  <link href="./player.css" rel="stylesheet" type="text/css"/>
+  <link href="../hover.min.css" rel="stylesheet" type="text/css" />
+  <link href="./themes.css" rel="stylesheet" type="text/css" />  
+  <script src="../quick.js"></script>
+</head>
+
+<body>
+  <div class="navMain" id="nav">
+ <img class="mainLogo" style="display: none;" id="logoMain" src="assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
+<div class="mobile spaceMobile2"></div>
+<div class="desktop spaceDesktop3" id="spaceDesktop3"></div> <!-- Remove after completing the bottom bar. -->
+ <div class="title-nav"><a class="title-link navlink" onclick="">MSGV3</a></div>
+<div class="linkBack"><a class="link navlink " onclick="homeChange();">Home</a></div>
+<div class="linkBack"><a class="link navlink" onclick="gameChange();" >Games</a></div>
+<div class="linkBack"><a class="link navlink" onclick="">Music</a></div>
+<div class="linkBack"><a class="link navlink" onclick="settingsChange();">Settings</a></div>
+<div class="desktop spaceDesktop2" id="spaceDesktop2"></div>
+<div class="hamburger-sidebar desktop" >
+  <svg id="hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+  </svg>
+  </div>
+<div class="quick-settings-wrap" id="quickSettingsOuter"> 
+ <div class="quick-button-wrap" id="quickSettingsWrap">
+   <div class="night-button-option" onclick="darkLightSwitch();" id="themeSwitch">
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+       <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+     </svg>                 
+   </div>
+   <div class="refresh-button-option" onclick="reloadSite();" id="reloadSwitch">
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+       <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+     </svg>          
+   </div>
+   <div class="fullscreen-button-option" onclick="toggleFullScreen();" id="fullScreenSwitch">
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+     </svg>          
+   </div>
+ </div>
+</div>
+<div class="desktop spaceDesktop1" id="spaceDesktop1"></div>
+<div class="desktop spaceDesktop2"></div>
+<h1 class="time-clock" id="time"> Test </p>
+</div>
+<div class="mobile menuExpandClosed" id="menuExpanded"></div>
+<div class="hamburger-menu mobile" id="menuExpand">
+<svg id="hamburgerMenu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+</svg>
+</div>
+<div id="menuContent" class="menuContent">
+  
+</div>
+<div class="bottom-wrap desktop" id="sidebarWrap">
+  
+  <div class="song-photo">
+    <img src="assets/a3783174096_10.jpg" class="photo-style" alt="Song Photo" id="songPhoto">
+  </div>
+
+  <div class="song-title-container">
+    <p class="song-artist" id="songArtist">Uknown Artist</p>
+    <h1 class="song-title" id="songTitle"> Unknown Song</h1>
+    </div>
+
+  <div class="back-arrow" id="backArrow">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="color:white;" class="w-6 h-6">
+      <path d="M9.195 18.44c1.25.713 2.805-.19 2.805-1.629v-2.34l6.945 3.968c1.25.714 2.805-.188 2.805-1.628V8.688c0-1.44-1.555-2.342-2.805-1.628L12 11.03v-2.34c0-1.44-1.555-2.343-2.805-1.629l-7.108 4.062c-1.26.72-1.26 2.536 0 3.256l7.108 4.061z" />
+    </svg> 
+   </div>
+
+   <div class="pause-play" id="pause">
+   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="color:white;" fill="currentColor" class="w-6 h-6">
+    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM9 8.25a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h.75a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75H9zm5.25 0a.75.75 0 00-.75.75v6c0 .414.336.75.75.75H15a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75h-.75z" clip-rule="evenodd" />
+  </svg>
+  </div>
+
+
+  <div class="forward-arrow" id="forwardArrow">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="color:white;" class="w-6 h-6">
+    <path d="M5.055 7.06c-1.25-.714-2.805.189-2.805 1.628v8.123c0 1.44 1.555 2.342 2.805 1.628L12 14.471v2.34c0 1.44 1.555 2.342 2.805 1.628l7.108-4.061c1.26-.72 1.26-2.536 0-3.256L14.805 7.06C13.555 6.346 12 7.25 12 8.688v2.34L5.055 7.06z" />
+  </svg>
+</div>
+
+<div class="progress-container">
+  <p style="position: absolute; margin-left: 7.2vh; font-size: 1.5vh;" id="currentTime">00:00/00:00</p>
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="volume-icon" id="mute">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+  <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
+  <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
+</svg>
+</div>
+
+<div class="volume-icon-mute" id="muted">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+  <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
+</svg>
+</div>
+
+<div id="musicSettings" class="hide"></div>
+<div id="musicSettingsContainer" class="hide"></div>
+<div class="volume-container">
+  <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" class="volumeSlide">
+</div>
+</div>
+
+</div>
+<div class="space-make"><p> space </p></div>
+<div class="first-content">
+  <div class="top-page-bar">
+  <h1 class="top-page-bar-title">MSG-Games</h1>
+  <h1 id="nameTitle" style="display: none"></h1>
+  <div class="search-box">
+      <button class="btn-search"><i class="fas fa-search"></i></button>
+      <input type="text" class="input-search" placeholder="Type to Search...">
+    </div>
+    <div class="search-question" onclick="homeChange();">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+      <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 01-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 01-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 01-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+    </svg>
+  </div>  
+  <div class="theme-mode" onclick="darkLightSwitch();">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" />
+        </svg>          
+  </div>    
+  <div class="settings-mode" id="startButton" onclick="recordGame();">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <path d="M4.5 4.5a3 3 0 00-3 3v9a3 3 0 003 3h8.25a3 3 0 003-3v-9a3 3 0 00-3-3H4.5zM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06z" />
+      </svg>                
+  </div>
+  <div id="stopButton" class="record-off">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+      <path d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM22.5 17.69c0 .471-.202.86-.504 1.124l-4.746-4.746V7.939l2.69-2.689c.944-.945 2.56-.276 2.56 1.06v11.38zM15.75 7.5v5.068L7.682 4.5h5.068a3 3 0 013 3zM1.5 7.5c0-.782.3-1.494.79-2.028l12.846 12.846A2.995 2.995 0 0112.75 19.5H4.5a3 3 0 01-3-3v-9z" />
+    </svg>    
+  </div>
+  </div>
+</div>
+
+  <div class="styleish" id="siteContent">  
+
+    <div class="game-player">
+        <h1 class="player-placeholder"> No Current game :muysad: (Insert obscure-not-understandable error here!)</h1>
+    </div>
+    <div class="game-info">
+      <div class="game-desc">
+        <h1 class="game-title"> MSG-Games! </h1>
+        <p class="game-text"> Welcome to the magical world of MSG-Games! Here you can play games, chat with friends, and more! </p>
+      </div>
+    <div class="recording-info">
+      <h1 class="game-title" id="recordingStatus"> Recording Status: Not Started </h1>
+      <video class="recording" autoplay muted></video>
+
+      <video class="output" autoplay controls></video>
+  
+      <a href="#" download="output.mp4" 
+  class="download-anc">Download</a>
+    </div>
+  </div>
+
+
+
+
+
+  </div>
+</body>
+<script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
+  new Crate({
+      server: '934807331668099142', // Math Study
+      channel: '997913036847325204' // #💬👽┃guest-general
+  })
+</script>
+<script src="recording.js"></script>
+<script src="../script.js"></script>
+<script src="../theme.js"></script>
+</html>
