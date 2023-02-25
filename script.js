@@ -98,7 +98,6 @@ function gameChange() {
     timeSet();
     loadGameTiles();
     createEventListeners();
-    
   });
 }
 

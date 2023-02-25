@@ -25,7 +25,7 @@
 <div class="linkBack"><a class="link navlink" onclick="">Music</a></div>
 <div class="linkBack"><a class="link navlink" onclick="settingsChange();">Settings</a></div>
 <div class="desktop spaceDesktop2" id="spaceDesktop2"></div>
-<div class="hamburger-sidebar desktop" >
+<div class="hamburger-sidebar desktop" onclick="raiseSidebar();">
   <svg id="hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
   </svg>
@@ -120,12 +120,8 @@
 <div class="space-make"><p> space </p></div>
 <div class="first-content">
   <div class="top-page-bar">
-  <h1 class="top-page-bar-title">MSG-Games</h1>
+  <h1 id="gameTitle" class="top-page-bar-title">[Duck Life 2]</h1>
   <h1 id="nameTitle" style="display: none"></h1>
-  <div class="search-box">
-      <button class="btn-search"><i class="fas fa-search"></i></button>
-      <input type="text" class="input-search" placeholder="Type to Search...">
-    </div>
     <div class="search-question" onclick="homeChange();">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
       <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 01-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 01-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 01-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
@@ -148,26 +144,40 @@
   </div>
   </div>
 </div>
-
   <div class="styleish" id="siteContent">  
-
+    <div class="game-image" id="gameBackground"></div>
+    <div class="game-content">
     <div class="game-player">
+        <iframe id="gameSrc" src="https://bing.com" class="game-frame">
+          You do not have Iframes Enabled
+        </iframe>
         <h1 class="player-placeholder"> No Current game :muysad: (Insert obscure-not-understandable error here!)</h1>
     </div>
     <div class="game-info">
       <div class="game-desc">
-        <h1 class="game-title"> MSG-Games! </h1>
-        <p class="game-text"> Welcome to the magical world of MSG-Games! Here you can play games, chat with friends, and more! </p>
+        <h1 id="miniGameTitle" class="game-title"> New Super Mario Bros 2 Wii </h1>
+        <p id="gameDescription" class="game-text"> The game you've been waiting for is finally here! A true classic. </p>
       </div>
-    <div class="recording-info">
-      <h1 class="game-title" id="recordingStatus"> Recording Status: Not Started </h1>
-      <video class="recording" autoplay muted></video>
-
-      <video class="output" autoplay controls></video>
+      <div class="recording-info">
+        <h1 class="game-title" id="recordingStatus"> Recording Status: Not Started </h1>
+        <video class="recording" autoplay muted></video>
   
-      <a href="#" download="output.mp4" 
-  class="download-anc">Download</a>
+        <video class="output" autoplay controls></video>
+    
+        <a href="#" download="output.mp4" 
+    class="download-anc">Download</a>
+      </div>
     </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <!--- -->
   </div>
 
 
@@ -182,6 +192,7 @@
       channel: '997913036847325204' // #💬👽┃guest-general
   })
 </script>
+<script src="player.js"></script>
 <script src="recording.js"></script>
 <script src="../script.js"></script>
 <script src="../theme.js"></script>

@@ -37,7 +37,18 @@ games.forEach(game => {
     console.log("Not on games page")
   }
   _.on(card, "click", () => {
-    location.href = game.file;
+    var url = "msgweb/games/player.html";
+  changeurl(url, "Game Player"); 
+  getHTML( '../games/player.html', function (response) {
+    document.documentElement.innerHTML = response.documentElement.innerHTML;
+    console.log(response.documentElement.innerHTML);
+    timeSet();
+    loadGameData();
+  });
+    localStorage.setItem("game-background", image.src);
+    localStorage.setItem("game-file", game.file);
+    localStorage.setItem("game-title", game.title);
+    localStorage.setItem("game-description", game.description);
   })
   
   

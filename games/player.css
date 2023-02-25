@@ -1,20 +1,39 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.game-image {
+  filter: blur(1vh);
+  background-image: url(../assets/hero.avif);
+  width: 100%;
+  height: 100%;
+  bottom: -25vh;
+  left: 0;  
+  position: absolute;
+  z-index: -1;
+  background-position: left;
+  opacity: 0.4;
+}
+
 .top-page-bar-title {
     text-align: left;
     font-size: 4vw;
-    padding-top: 0vh;
+    padding-top: 4vh;
     padding-left: 1vw;
     margin-top: 1vh;
 }
 
 .top-page-bar {
     display: flex;
+    height: auto; 
 }
 
 .search-box{
     width: fit-content;
     height: fit-content;
     position: relative;
-    margin-top: 4vh;
+    margin-top: 8vh;
     margin-left: 16vw;
   }
   .input-search{
@@ -72,15 +91,15 @@
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 4vh;
-    margin-left: 28vw;  
+    margin-top: 7vh;
+    margin-left: 2vw;  
   }
 
   .grid-size {
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 4vh;
+    margin-top: 7vh;
     margin-left: 20vw;
   }
 
@@ -88,21 +107,21 @@
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 4vh;
+    margin-top: 7vh;
   }
 
   .settings-mode {
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 4vh;
+    margin-top: 7vh;
   }
 
   .record-off {
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 4vh;
+    margin-top: 7vh;
     display: none;
   }
 
@@ -110,7 +129,7 @@
     width: 3vw;
     height: 3vw;
     color: var(--h1-color);
-    margin-top: 4vh;
+    margin-top: 8vh;
     margin-left: 1vw;
   }
 
@@ -160,37 +179,19 @@
     }
 
 
-.game-player {
-    background-color: var(--card-color-darker);
-    width: 65vw;
-    border-radius: 2vh;
-    margin-left: 1vw;
-    height: 60vh;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
 .player-placeholder {
     margin-left: 0vw;
     padding-top: 20vh;
     text-align: center;
+    display: none;
 }
 
-.game-info {
-    margin-left: 1vw;
-    margin-top: 1vh;
-    border-radius: 2vh;
-    height: 50vh;
-    width: 65vw;
-    background-color: var(--card-color);
-    display: flex;
-    margin-bottom: 1vh;
-}
+
 
 .recording {
     display: none;
-    height: 20vh;
-    margin-left: 0.2vw;
+    height: 10vh;
+    margin-left: 2.5vw;
     padding-top: 1vh;
 }
 
@@ -214,8 +215,8 @@
 
 .output {
   display: none;
-  height: 20vh;
-  margin-left: 0.2vw;
+  height: 10vh;
+  margin-left: 2.5vw;
   padding-top: 1vh;
 }
 
@@ -227,4 +228,48 @@
 
 .download-anc:hover {
     transform: scale(1.1);
+}
+
+.first-content {
+  background-color: #005952;
+  width: 100% !important;
+}
+
+.space-make {
+  height: 0vh;
+}
+
+
+.game-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game-info {
+  width: 14vw;
+  height: 90vh;
+  background-color: var(--card-color);
+  border-top-left-radius: 2vh;
+  border-bottom-left-radius: 2vh;
+  padding: 1vh;
+  margin-left: auto; /* align the div all the way to the right */
+  overflow-x: hidden;
+}
+
+.game-player {
+  width: 70vw;
+  height: 60vh;
+  background-color: transparent;
+  border-radius: 2vh;
+  border: var(--card-color-darker) 1vw solid;
+  margin-left: 2vw;
+  margin-right: 1vw;
+  margin-top: 4vh;
+  margin-bottom: 1vh;
+}
+
+.game-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 1vh;
 }
