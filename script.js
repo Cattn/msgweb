@@ -68,7 +68,6 @@ function homeChange() {
   getHTML( '/msgweb/', function (response) {
     document.documentElement.innerHTML = response.documentElement.innerHTML;
     console.log(response.documentElement.innerHTML);
-    displaySongs();
     timeSet();
     createEventListeners();
   });
@@ -175,96 +174,7 @@ f.onchange = e => {
   }
 };
 
-
-
-displaySongs();
-
 const songs = [];
-function displaySongs() {
-  const songData = document.getElementById("songData");
-  const recentlyPlayedData = document.getElementById("recentlyPlayed");
-  var recentlyPlayedQuestion;
-  if (recentlyPlayedData === null) {
-    recentlyPlayedQuestion = "no";
-    console.log("no")
-  } else {
-    recentlyPlayedQuestion = "yes";
-    console.log("yes")
-  }
-
-  // Open the indexedDB
-  const openRequest = indexedDB.open("songs_db", 2);
-
-  // Array to hold all songs
-
-  openRequest.onsuccess = function(event) {
-    const db = event.target.result;
-    const transaction = db.transaction(["songs"], "readonly");
-    const objectStore = transaction.objectStore("songs");
-
-    objectStore.openCursor().onsuccess = function(event) {
-      const cursor = event.target.result;
-      if (cursor) {
-        songs.push(cursor.value.name);
-        cursor.continue();
-      } else {
-        let html = "";
-        const totalSongs = songs.length;
-        const maxSongsToDisplay = 10;
-        const songsToDisplay =
-          totalSongs > maxSongsToDisplay
-            ? maxSongsToDisplay
-            : totalSongs;
-        for (let i = 0; i < songsToDisplay; i++) {
-          const song = songs[i];
-          html += `<div class="song" onclick="playSong('${song}'); currentSongIndex = 0;">${song.replace(
-            "_",
-            " "
-          )}</div>`;
-        }
-        if (totalSongs > maxSongsToDisplay) {
-          html += `<button class="show-more" id="showMoreSongsBtn">Show All</button>`;
-        }
-        songData.innerHTML = html;
-
-        if (recentlyPlayedQuestion === "yes") {
-        // Load recently played songs from local storage
-        let recentlyPlayed = JSON.parse(localStorage.getItem("recentlyPlayed")) || [];
-        let recentlyPlayedHtml = "";
-        for (let i = 0; i < recentlyPlayed.length; i++) {
-          const song = recentlyPlayed[i];
-          recentlyPlayedHtml += `<div class="song-tile" onclick="playSong('${song}');"><p class="song-text">${song.replace(
-            "_",
-            " "
-          )}</p></div>`;
-        }
-        recentlyPlayedData.innerHTML = recentlyPlayedHtml;
-      }
-        if (totalSongs > maxSongsToDisplay) {
-          const showMoreSongsBtn = document.getElementById(
-            "showMoreSongsBtn"
-          );
-          showMoreSongsBtn.addEventListener("click", function() {
-            let moreHtml = "";
-            for (let i = maxSongsToDisplay; i < totalSongs; i++) {
-              const song = songs[i];
-              moreHtml += `<div class="song" onclick="playSong('${song}'); currentSongIndex = ${i};">${song.replace(
-                "_",
-                " "
-              )}</div>`;
-            }
-            songData.innerHTML = html + moreHtml;
-            showMoreSongsBtn.remove();
-          });
-        }
-      }
-    };
-  };
-
-  openRequest.onerror = function(event) {
-    console.error("IndexedDB error: ", event.target.errorCode);
-  };
-}
 let aud;
 let currentSongIndex = 0;
 let isPlaying = false;

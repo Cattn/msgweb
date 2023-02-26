@@ -1,4 +1,3 @@
-
 function displayAllSongs(isMore) {
     const openRequest = indexedDB.open("songs_db", 2);
   
