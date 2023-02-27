@@ -50,126 +50,42 @@ function changeurl(url, title) {
   
   
 }
-let swapCount = 0;
+
 function settingsChange() {
-  swapCount ++;
-  if (swapCount >= 5) {
     let host = window.location.hostname;
     let port = window.location.port;
     if (port != "") {
       host = host + ":" + port;
     }
     window.location.href = "https://" + host + "/msgweb/settings/";
-  }
-  if (isPlaying === true) {
-  var url = "msgweb/settings/";
-  changeurl(url, "Settings"); 
-  getHTML( '../settings/', function (response) {
-    document.documentElement.innerHTML = response.documentElement.innerHTML;
-    console.log(response.documentElement.innerHTML);
-    settingsLoad();
-    timeSet();
-  });
-} else {
-  let host = window.location.hostname;
-  let port = window.location.port;
-  if (port != "") {
-    host = host + ":" + port;
-  }
-  window.location.href = "https://" + host + "/msgweb/settings/";
-}
 }
 
 function homeChange() {
-  swapCount ++;
-  if (swapCount >= 5) {
     let host = window.location.hostname;
   let port = window.location.port;
   if (port != "") {
     host = host + ":" + port;
   }
   window.location.href = "https://" + host + "/msgweb/";
-  }
-  if (isPlaying === true) {
-  var url = "msgweb/";
-  changeurl(url, "Home"); 
-  getHTML( '/msgweb/', function (response) {
-    document.documentElement.innerHTML = response.documentElement.innerHTML;
-    console.log(response.documentElement.innerHTML);
-    timeSet();
-    createEventListeners();
-  });
-  } else {
-    let host = window.location.hostname;
-  let port = window.location.port;
-  if (port != "") {
-    host = host + ":" + port;
-  }
-  window.location.href = "https://" + host + "/msgweb/";
-  }
 }
 
 function musicChange() {
-  swapCount ++;
-  if (swapCount >= 5) {
     let host = window.location.hostname;
   let port = window.location.port;
   if (port != "") {
     host = host + ":" + port;
   }
   window.location.href = "https://" + host + "/msgweb/library/";
-  }
-  if (isPlaying === true) {
-  var url = "msgweb/library/";
-  changeurl(url, "Home"); 
-  getHTML( '../library/', function (response) {
-    document.documentElement.innerHTML = response.documentElement.innerHTML;
-    console.log(response.documentElement.innerHTML);
-    timeSet();
-    displayAllSongs();
-    displayRecentSongs();
-    createEventListeners();
-    showAlbums()
-  });
-} else {
-  let host = window.location.hostname;
-  let port = window.location.port;
-  if (port != "") {
-    host = host + ":" + port;
-  }
-  window.location.href = "https://" + host + "/msgweb/library/";
+
 }
-}
-console.log(window.location.pathname + window.location.search + window.location.hash);
 
 function gameChange() {
-  swapCount ++;
-  if (swapCount >= 5) {
     let host = window.location.hostname;
     let port = window.location.port;
     if (port != "") {
       host = host + ":" + port;
     }
     window.location.href = "https://" + host + "/msgweb/games/";
-  }
-  if (isPlaying === true) {
-  var url = "msgweb/games/";
-  changeurl(url, "Games"); 
-  getHTML( '../games/', function (response) {
-    document.documentElement.innerHTML = response.documentElement.innerHTML;
-    console.log(response.documentElement.innerHTML);
-    timeSet();
-    loadGameTiles();
-    createEventListeners();
-  });
-  } else {
-    let host = window.location.hostname;
-    let port = window.location.port;
-    if (port != "") {
-      host = host + ":" + port;
-    }
-    window.location.href = "https://" + host + "/msgweb/games/";
-  }
 }
 
 
