@@ -240,6 +240,98 @@ function playSong(songName) {
   localStorage.setItem("data_streams", data_streams);
 }
 
+
+async function displayRecentSongs() {
+  const songData = document.getElementById("songData");
+  const recentlyPlayedData = document.getElementById("recentlyPlayed");
+
+  const db = await openSongsDB();
+  const transaction = db.transaction("songs", "readonly");
+  const objectStore = transaction.objectStore("songs");
+
+  let recentlyPlayed = JSON.parse(localStorage.getItem("recentlyPlayed")) || [];
+  let recentlyPlayedHtml = "";
+
+  const requests = recentlyPlayed.map((songName) => getSong(objectStore, songName).catch(() => null)); // Catch errors and return null
+  const songs = await Promise.all(requests);
+
+  for (let i = 0; i < songs.length; i++) {
+    const song = songs[i];
+    if (song) { // Check if song is null or not
+      if (song.image) {
+        recentlyPlayedHtml += `
+          <div class="song-container">
+            <img class="song-image" src="${song.image}" onclick="playSong('${song.name}'); currentSongIndex = ${i};">
+            <div class="song-Title">${song.name}</div>
+          </div>
+        `;
+      } else {
+        console.log(`Missing image property for song: ${JSON.stringify(song)}`);
+      }
+    }
+  }
+
+  recentlyPlayedData.innerHTML = recentlyPlayedHtml;
+
+  const images = recentlyPlayedData.querySelectorAll(".song-image");
+  images.forEach((image) => {
+    image.addEventListener("click", () => {
+      const audio = new Audio(image.dataset.songUrl);
+      audio.play();
+    });
+  });
+}
+displayRecentSongs();
+
+async function openSongsDB() {
+  const dbName = "songs_db";
+  const dbVersion = 2;
+
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(dbName, dbVersion);
+
+    request.onerror = function(event) {
+      console.error("IndexedDB error: ", event.target.errorCode);
+      reject(event.target.errorCode);
+    };
+
+    request.onsuccess = function(event) {
+      const db = event.target.result;
+      console.log("Database opened successfully");
+      resolve(db);
+    };
+  });
+}
+
+function getSong(objectStore, name) {
+  return new Promise((resolve, reject) => {
+    const request = objectStore.get(name);
+
+    request.onerror = function (event) {
+      reject(new Error('Error retrieving song from database'));
+    };
+
+    request.onsuccess = function (event) {
+      const song = event.target.result;
+      if (!song) {
+        const error = new Error(`Song '${name}' not found in database`);
+        error.name = "SongNotFoundError";
+        reject(error);
+        return;
+      }
+
+      if (song.image) {
+        const imageData = song.image;
+        const dataUrl = imageData;
+        song.image = dataUrl;
+      }
+
+      song.data = URL.createObjectURL(new Blob([song.data], {type: 'audio/mpeg'}));
+      resolve(song);
+    };
+  });
+}
+
 document.getElementById("songData").addEventListener("click", function(event) {
   // pause the current audio if it's being played and a different song is clicked
   if (aud && isPlaying) {

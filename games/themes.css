@@ -20,7 +20,7 @@
     --alt-bg-color: #33c263;
     --mobile-bg: #343434;
     --nav-bar-bg: #5a6a74;
-    --bg-image: url(assets/Mountain_Lighter.svg);
+    --bg-image: url(assets/msg-bg.png);
   /* Unfinished!! */
 }
 
@@ -47,7 +47,7 @@
   --alt-bg-color: #33c263;
   --mobile-bg: #343434;
   --nav-bar-bg: #0D7377;
-  --bg-image: url(assets/Mountain_Darker.svg);
+  --bg-image: url(assets/msg-bg.png);
 }
 
 [data-theme="lavender"] {

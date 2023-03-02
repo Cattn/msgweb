@@ -53,6 +53,43 @@ button {
   display: inline-block;
 }
 
+#recentlyPlayed {
+  display: flex;
+  flex-direction: row;
+  margin-top: 0vh;
+  margin-left: 1vw;
+  overflow-x: auto; /* add this line to enable vertical scrollbar */
+  overflow-y: hidden;
+
+}
+
+.song-Title {
+  font-size: 0.8vw;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 1vw;
+  margin-right: 0;
+  padding: 0;
+  background-color: var(--card-color);
+  height: 1vw;
+  width: 10vw;
+  text-align: center;
+  border-radius: 1vw;
+  transition: 0.2s;
+}
+
+.song-image {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 10%;
+  margin-top: 2vh;
+  margin-left: 1vw;
+  margin-right: 0;
+  margin-bottom: 0;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 .title-link {
   text-decoration: none;
   color: var(--title-color);
@@ -915,19 +952,6 @@ a {
   overflow: hidden;
   white-space: nowrap;
 }
-
-.recentlyPlayed {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  background-color: transparent;
-  border-radius: 3vh;
-  height: 18vh;
-  margin-top: 2vh;
-  margin-left: 4vw;
-  overflow-y: hidden;
-}
-
 
 
 .song-tile {
