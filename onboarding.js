@@ -12,6 +12,7 @@ They will be shown in the order frop botttom to top, in terms of where you place
 */
 
 window.onload = function() {
+    /*
     completed = localStorage.getItem("onboarded");
     if (completed == "true") {
         console.log("Onboarded!");
@@ -24,6 +25,7 @@ window.onload = function() {
     onboardInitalize('Welcome to MSGv3, Please answer a few one-time setup questions!', 'theme-fs', 'Skip', 'Begin', 'skip();', 'onboardClose(this);');
     completed = true;
     localStorage.setItem("onboarded", true);
+    */
 }
 
 
