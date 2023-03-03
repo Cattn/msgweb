@@ -1,26 +1,26 @@
 :root {
-    --title-color: #2a3238;
-    --h1-color: black;
-    --bg-color: #F0F5F9;
-    --title-family: 'Blinker', sans-serif;
-    --body-family: 'DM Sans';
-    --card-color: #5a6a74;
-    --card-color-music: #1c2124;
-    --card-color-darker: #2f383d;
-    --card-title-font: 'Blinker', sans-serif;
-    --card-title-color: white;
-    --card-text-color: white;
-    --card-text-weight: bold;
-    --p-text-color: rgb(255, 255, 255);
-    --link-decoration: none;
-    --settings-container: #F0F5F9;
-    --media-skip-buttons: rgba(189, 116, 116, 0.7);
-    --media-play-buttons: rgba(223, 192, 113, 0.7);
-    --media-icon-color: rgb(90, 167, 197);
-    --alt-bg-color: #33c263;
-    --mobile-bg: #343434;
-    --nav-bar-bg: #5a6a74;
-    --bg-image: url(assets/msg-bg.png);
+  --title-color: #14FFEC;
+  --h1-color: white;
+  --bg-color: #212121;  
+  --title-family: 'Blinker', sans-serif;
+  --body-family: 'DM Sans';
+  --card-color: #0d7377;
+  --card-color-darker: #0a4446;
+  --card-color-music: #062a2b;
+  --card-title-font: 'Blinker', sans-serif;
+  --card-title-color: rgb(255, 255, 255);
+  --card-text-color: rgb(255, 255, 255);
+  --card-text-weight: bold;
+  --p-text-color: rgb(255, 255, 255);
+  --link-decoration: none;
+  --settings-container: #212121;
+  --media-skip-buttons: rgba(102, 40, 40, 0.7);
+  --media-play-buttons: rgba(128, 105, 46, 0.7);
+  --media-icon-color: black;
+  --alt-bg-color: #33c263;
+  --mobile-bg: #343434;
+  --nav-bar-bg: #0D7377;
+  --bg-image: url(assets/msg-bg.png);
   /* Unfinished!! */
 }
 
