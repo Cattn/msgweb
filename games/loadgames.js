@@ -46,7 +46,7 @@ games.forEach(game => {
     if (port != "") {
       host = host + ":" + port;
     }
-    window.location.href = "https://" + host + "/games/player.html";
+    window.location.href = "https://" + host + "/msgweb/games/player.html";
   })
   
   
