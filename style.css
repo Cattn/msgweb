@@ -918,8 +918,8 @@ a {
 }
   .home-tile {
     flex: 0 0 auto;
-    width: 40vh;
-    height: 20vh;
+    width: 30vh;
+    height: 19vh;
     margin: 2vh;
     border-radius: 3vh;
     background-color: var(--card-color-darker);
@@ -936,6 +936,7 @@ a {
   margin-left: 2vh;
   margin-right: 2vh;
   margin-bottom: 2vh;
+  font-size: 2vh;
   color: var(--card-text-color);
   width: auto;
 }
