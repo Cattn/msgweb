@@ -18,3 +18,16 @@ miniGameTitle.innerHTML = gameTitle || 'Game Title';
 
 }
 loadGameData();
+
+function goFullscreen() {
+    let screen = document.getElementById("gameSrc");
+    if (screen.requestFullscreen) {
+        screen.requestFullscreen();
+    } else if (screen.mozRequestFullScreen) { /* Firefox */
+        screen.mozRequestFullScreen();
+    } else if (screen.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        screen.webkitRequestFullscreen();
+    } else if (screen.msRequestFullscreen) { /* IE/Edge */
+        screen.msRequestFullscreen();
+}
+}

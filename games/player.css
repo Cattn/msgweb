@@ -258,7 +258,7 @@ body {
 
 .game-player {
   width: 70vw;
-  height: 60vh;
+  height: 80vh;
   background-color: transparent;
   border-radius: 2vh;
   border: var(--card-color-darker) 1vw solid;
