@@ -245,7 +245,7 @@ var games = [
         "image": "https://mathlover1.github.io/msgweb-assets/motox3m-pool/splash.jpg",
         "description": "Moto X3M Pool, a game where you have to ride your bike through the pool.",
         "file": "https://mathlover1.github.io/msgweb-assets/motox3m-pool/index.html"
-    }
+    },
 
     {
         "id": "motox3m-spooky",
@@ -277,7 +277,5 @@ var games = [
         "image": "https://www.coolmathgames.com/sites/default/files/styles/pwa_512x512/public/game_m_thumbnail/moto-x3m-pool-party-icon.png",
         "description": "Moto X3M 2, a game where you have to ride your bike through the forest.",
         "file": "https://mathlover1.github.io/msgweb-assets/motox3m2/index.html"
-    },
-
-    
+    }
 ]
