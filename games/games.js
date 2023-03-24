@@ -173,7 +173,111 @@ var games = [
         "image": "https://mathlover1.github.io/msgweb-assets/you-are-bezos/img/banner.png",
         "description": "You are Bezos, a game where you have to be the richest person in the world.",
         "file": "https://mathlover1.github.io/msgweb-assets/you-are-bezos/index.html"
-    }
+    },
+
+    {
+        "id": "CirclO",
+        "title": "CirclO",
+        "image": "https://mathlover1.github.io/msgweb-assets/circlo/img/download.png",
+        "description": "CirclO, a game where you have to dodge the obstacles.",
+        "file": "https://mathlover1.github.io/msgweb-assets/circlo/index.html"
+    },
+
+    {
+        "id": "cluster-rush",
+        "title": "cluster-rush",
+        "image": "https://mathlover1.github.io/msgweb-assets/cluster-rush/icon.jpg",
+        "description": "Cluster Rush, a game where you have to jump from truck to truck.",
+        "file": "https://mathlover1.github.io/msgweb-assets/cluster-rush/index.html"
+    },
+
+    {
+        "id": "drift-boss",
+        "title": "drift-boss",
+        "image": "https://mathlover1.github.io/msgweb-assets/drift-boss/media/graphics/splash/mobile/cover-start.jpg",
+        "description": "Drift Boss, a game where you have to drift around the track.",
+        "file": "https://mathlover1.github.io/msgweb-assets/drift-boss/index.html"
+    },
     
+    {
+        "id": "ducklife1",
+        "title": "ducklife1",
+        "image": "https://mathlover1.github.io/msgweb-assets/ducklife1/ducklife.png",
+        "description": "Duck Life 1, a game where you have to train your duck to be the best duck.",
+        "file": "https://mathlover1.github.io/msgweb-assets/ducklife1/index.html"
+    },
+
+    {
+        "id": "ducklife2",
+        "title": "ducklife2",
+        "image": "https://mathlover1.github.io/msgweb-assets/ducklife2/ducklife2.png",
+        "description": "Duck Life 2, a game where you have to train your duck to be the best duck.",
+        "file": "https://mathlover1.github.io/msgweb-assets/ducklife2/index.html"
+    },
+
+    {
+        "id": "ducklife3",
+        "title": "ducklife3",
+        "image": "https://mathlover1.github.io/msgweb-assets/ducklife3/duck.png",
+        "description": "Duck Life 3, a game where you have to train your duck to be the best duck.",
+        "file": "https://mathlover1.github.io/msgweb-assets/ducklife3/index.html"
+    },
+
+    {
+        "id": "ducklife4",
+        "title": "ducklife4",
+        "image": "https://mathlover1.github.io/msgweb-assets/ducklife4/splash.jpg",
+        "description": "Duck Life 4, a game where you have to train your duck to be the best duck.",
+        "file": "https://mathlover1.github.io/msgweb-assets/ducklife4/index.html"
+    },
+
+    {
+        "id": "fireboywatergirlforesttemple",
+        "title": "fireboywatergirlforesttemple",
+        "image": "https://mathlover1.github.io/msgweb-assets/fireboywatergirlforesttemple/logo.jpeg",
+        "description": "Fireboy and Watergirl Forest Temple, a game where you have to help Fireboy and Watergirl get to the exit.",
+        "file": "https://mathlover1.github.io/msgweb-assets/fireboywatergirlforesttemple/index.html"
+    },
+
+    {
+        "id": "motox3m-pool",
+        "title": "motox3m-pool",
+        "image": "https://mathlover1.github.io/msgweb-assets/motox3m-pool/splash.jpg",
+        "description": "Moto X3M Pool, a game where you have to ride your bike through the pool.",
+        "file": "https://mathlover1.github.io/msgweb-assets/motox3m-pool/index.html"
+    }
+
+    {
+        "id": "motox3m-spooky",
+        "title": "motox3m-spooky",
+        "image": "https://mathlover1.github.io/msgweb-assets/motox3m-spooky/splash.jpeg",
+        "description": "Moto X3M Spooky, a game where you have to ride your bike through the spooky forest.",
+        "file": "https://mathlover1.github.io/msgweb-assets/motox3m-spooky/index.html"
+    },
+
+    {
+        "id": "motox3m-winter",
+        "title": "motox3m-winter",
+        "image": "https://mathlover1.github.io/msgweb-assets/motox3m-winter/download.jpeg",
+        "description": "Moto X3M Winter, a game where you have to ride your bike through the snowy forest.",
+        "file": "https://mathlover1.github.io/msgweb-assets/motox3m-winter/index.html"
+    },
+
+    {
+        "id": "motox3m",
+        "title": "motox3m",
+        "image": "https://mathlover1.github.io/msgweb-assets/motox3m/splash.jpg",
+        "description": "Moto X3M, a game where you have to ride your bike through the forest.",
+        "file": "https://mathlover1.github.io/msgweb-assets/motox3m/index.html"
+    },
+
+    {
+        "id": "motox3m2",
+        "title": "motox3m2",
+        "image": "https://www.coolmathgames.com/sites/default/files/styles/pwa_512x512/public/game_m_thumbnail/moto-x3m-pool-party-icon.png",
+        "description": "Moto X3M 2, a game where you have to ride your bike through the forest.",
+        "file": "https://mathlover1.github.io/msgweb-assets/motox3m2/index.html"
+    },
+
     
 ]
