@@ -25,6 +25,15 @@ function toggleFullScreen() {
   }
 }
 
+function noDiscord() {
+  let widg = document.getElementsByTagName("widgetbot-crate")[0];
+  if (widg.style.display == "none") {
+    widg.style.display = "block";
+  }
+  else {
+    widg.style.display = "none";
+  }
+}
 
 function reloadSite () {
   location.reload();
@@ -86,6 +95,15 @@ function gameChange() {
       host = host + ":" + port;
     }
     window.location.href = "https://" + host + "/msgweb/games/";
+}
+
+function gptChange() {
+    let host = window.location.hostname;
+    let port = window.location.port;
+    if (port != "") {
+      host = host + ":" + port;
+    }
+    window.location.href = "https://" + host + "/msgweb/gpt/";
 }
 
 

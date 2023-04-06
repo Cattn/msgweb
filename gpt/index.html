@@ -7,9 +7,9 @@
   <title>Msgv3</title>
   
   <link href="../style.css" rel="stylesheet" type="text/css" />
-  <link href="./cardstyle.css" rel="stylesheet" type="text/css"/>
   <link href="../hover.min.css" rel="stylesheet" type="text/css" />
-  <link href="./themes.css" rel="stylesheet" type="text/css" />  
+  <link href="../games/themes.css" rel="stylesheet" type="text/css" />  
+    <link href="./settings.css" rel="stylesheet" type="text/css" />
   <script src="../quick.js"></script>
 </head>
 
@@ -18,14 +18,14 @@
  <img class="mainLogo" style="display: none;" id="logoMain" src="assets/mathstudy.png" type="image/png" alt="Math Study Logo" height="1vh"/>
 <div class="mobile spaceMobile2"></div>
 <div class="desktop spaceDesktop3" id="spaceDesktop3"></div> <!-- Remove after completing the bottom bar. -->
-<div class="title-nav"><a class="title-link navlink" onclick="">MSGV3</a></div>
+ <div class="title-nav"><a class="title-link navlink" onclick="">MSGV3</a></div>
 <div class="linkBack"><a class="link navlink " onclick="homeChange();">Home</a></div>
 <div class="linkBack"><a class="link navlink" onclick="gameChange();" >Games</a></div>
-<div class="linkBack"><a class="link navlink" onclick="musicChange();">Music</a></div>
+<div class="linkBack"><a class="link navlink" onclick="">Music</a></div>
 <div class="linkBack"><a class="link navlink" onclick="settingsChange();">Settings</a></div>
 <div class="linkBack"><a class="link navlink" onclick="gptChange();">ChatGPT</a></div>
 <div class="desktop spaceDesktop2" id="spaceDesktop2"></div>
-<div class="hamburger-sidebar desktop" >
+<div class="hamburger-sidebar desktop">
   <svg id="hamburgerSidebar" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
   </svg>
@@ -109,8 +109,7 @@
 </svg>
 </div>
 
-<div id="musicSettings" class="hide"></div>
-<div id="musicSettingsContainer" class="hide"></div>
+
 <div class="volume-container">
   <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" class="volumeSlide">
 </div>
@@ -119,22 +118,15 @@
 </div>
   <div class="space-make"><p> space </p></div>
   <div class="first-content">
-    <h1 class="title-text" id="pageTitle"> Games </h1>
+    <h1 class="title-text" style="text-align: center;"> ChatGPT </h1>
+    <p>Looking for free access to ChatGPT? MSG is looking into soon providing a chatGPT box here! For now, you can go<a class="big-link" href="https://discord.gg/math-study-934807331668099142"> here</a> and visit #chatgpt. It's free! (You may need to use a proxy)</p>
   </div>
-  <div class="styleish" id="siteContent">  
-    <div id="games">
-    </div>
-  </div>
+
+  <div id="siteContent">
+    
+</div>  
+   
 </body>
-<script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
-  new Crate({
-      server: '934807331668099142', // Math Study
-      channel: '997913036847325204' // #💬👽┃guest-general
-  })
-</script>
-<script src="games.js"></script>
-<script src="loadgames.js"></script>
 <script src="../script.js"></script>
 <script src="../theme.js"></script>
-<script src="player.js"></script>
 </html>

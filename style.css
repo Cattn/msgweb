@@ -47,8 +47,6 @@ button {
   font-weight: bold;
   height: 5vh;
   font: 'Blinker';
-  width: 0vw;
-  padding-left: 0vh;
   padding-top: 0.4vh;
   display: inline-block;
 }
@@ -101,6 +99,13 @@ button {
   width: 2vw;
   padding-bottom: 0vh;
   display: inline-block;
+}
+
+.big-link {
+  font-size: 2vw;
+  color: var(--title-color);
+  font-weight: bold;
+  font: 'Blinker';
 }
 
 #nav {
@@ -577,11 +582,10 @@ a {
 
 .linkBack {
   margin-top: 3.5vh;
-  margin-left: 0vw;
+  margin-left: 1.4vw;
   transition: 0.4s;
   height: 5vh;
   color: var(--card-text-color);
-  width: 7%;
   text-align: center;
   border-radius: 3vh;
 }
