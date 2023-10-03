@@ -1,20 +1,20 @@
 # MSGweb
-A stunning, innovative, and brand new game site made with all your basic wants + needs in mind.
+A stunning, innovative, and brand-new game site made with all your basic wants + needs in mind.
 
 ## Features:
-### ⭐ STAR ⭐ This repo to show support!
+### ⭐ STAR ⭐ This repo to show your support!
 - Inline Music Player
     - Supports ID3 Standards, allowing you to upload music and see the Artist, Album Art, and Title.
     - Uninterrupted listening. Using MSGweb's dynamic page loading, your music will never stop.
     - Customizable Library. Make your library YOURS.
-        - Find recently played songs or your entire library or other things in the click of a button!
-    - Sync your listening to Discord. Your listening Activity can be broadcasted to a specified Discord Channel!
-        - Choose to sync and display it in our public Status Channel, or input your own, custom discord channel for yourself.
-        - You can customize your Username, Profile Picture, + More!
+        - Find recently played songs or your entire library or other things at the click of a button!
+    - Sync your listening to Discord. Your listening Activity can be broadcast to a specified Discord Channel!
+        - Choose to sync and display it in our public Status Channel or input your custom discord channel.
+        - You can customize your Username, Profile Picture, and more!
 - Dynamic Page Loading
-    - Pages load dynamically so certain elements can persist across pages (Think Youtube)
+    - Pages load dynamically so certain elements can persist across pages (Think YouTube)
 - Huge Game Library
-    - A huge game library, powered by a dynamic Tile system.
+    - A vast game library powered by a dynamic Tile system.
 - Proxy Viewer
     - More Details to be revealed closer to launch.
 
