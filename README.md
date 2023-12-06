@@ -1,36 +1,38 @@
-# MSGweb
-A stunning, innovative, and brand-new game site made with all your basic wants + needs in mind.
+# create-svelte
 
-## Features:
-### ⭐ STAR ⭐ This repo to show your support!
-- Inline Music Player
-    - Supports ID3 Standards, allowing you to upload music and see the Artist, Album Art, and Title.
-    - Uninterrupted listening. Using MSGweb's dynamic page loading, your music will never stop.
-    - Customizable Library. Make your library YOURS.
-        - Find recently played songs or your entire library or other things at the click of a button!
-    - Sync your listening to Discord. Your listening Activity can be broadcast to a specified Discord Channel!
-        - Choose to sync and display it in our public Status Channel or input your custom discord channel.
-        - You can customize your Username, Profile Picture, and more!
-- Dynamic Page Loading
-    - Pages load dynamically so certain elements can persist across pages (Think YouTube)
-- Huge Game Library
-    - A vast game library powered by a dynamic Tile system.
-- Proxy Viewer
-    - More Details to be revealed closer to launch.
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
+## Creating a project
 
-## Contributing: 
-- If you'd like to contribute, please join our discord server @ discord.gg/mathstudy.
-    - We review all applications, and if you are confident in your skills, go ahead and apply by making a ticket!
+If you're seeing this, you've probably already done this step. Congrats!
 
-#### Thank you!
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-## Github Profiles:
+# create a new project in my-app
+npm create svelte@latest my-app
+```
 
-### - [Cattn](https://github.com/cattn)
+## Developing
 
-### - [Nailington](https://github.com/nailington)
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-### - [Parrot](https://github.com/proudparrot2)
+```bash
+npm run dev
 
-### - [Math Study (Org)](https://github.com/math-study)
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
+
+## Building
+
+To create a production version of your app:
+
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
